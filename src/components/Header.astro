@@ -1,0 +1,62 @@
+---
+import { CONTACT, NAV_LINKS, SITE_NAME, SITE_DESCRIPTION } from '../config/site';
+
+const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/" rel="home">
+      <p class="site-title">{SITE_NAME}</p>
+      <p class="site-description">{SITE_DESCRIPTION}</p>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+      <a href={CONTACT.googleReviews} target="_blank" rel="noopener noreferrer" aria-label="Google Reviews">Reviews</a>
+      <a href={CONTACT.phoneHref} aria-label="Phone">{CONTACT.phone}</a>
+      <a href={CONTACT.line} target="_blank" rel="noopener noreferrer" aria-label="LINE">LINE</a>
+      <a class="btn btn--outline" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">ติดต่อขาย</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-label="เปิดเมนู" aria-expanded="false" data-menu-toggle>
+      ☰
+    </button>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Mobile" hidden data-mobile-nav>
+    <ul>
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    mobileNav?.toggleAttribute('hidden');
+  });
+</script>

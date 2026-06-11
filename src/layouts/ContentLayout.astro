@@ -1,0 +1,18 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { PageRecord } from '../lib/types';
+
+interface Props {
+  page: PageRecord;
+}
+
+const { page } = Astro.props;
+const bodyHasH1 = /<h1[\s>]/i.test(page.bodyHtml || '');
+---
+
+<BaseLayout page={page}>
+  <article class="entry content-wrap">
+    {!bodyHasH1 && page.seo.h1 && <h1 class="entry-title">{page.seo.h1}</h1>}
+    <div class="entry-content wp-content" set:html={page.bodyHtml} />
+  </article>
+</BaseLayout>

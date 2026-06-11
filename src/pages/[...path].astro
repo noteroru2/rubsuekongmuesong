@@ -1,0 +1,26 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { getAllRoutes, getPageByPath } from '../lib/content';
+import { pathToSlugParam } from '../lib/seo';
+
+export async function getStaticPaths() {
+  const routes = getAllRoutes().filter((route) => route.path !== '/');
+  return routes.map((route) => ({
+    params: { path: pathToSlugParam(route.path) },
+    props: { pagePath: route.path },
+  }));
+}
+
+interface Props {
+  pagePath: string;
+}
+
+const { pagePath } = Astro.props;
+const page = getPageByPath(pagePath);
+
+if (!page) {
+  throw new Error(`Missing content for path: ${pagePath}`);
+}
+---
+
+<ContentLayout page={page} />

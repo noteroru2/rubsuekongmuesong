@@ -1,0 +1,52 @@
+---
+import { COMPANY, NAV_LINKS, SITE_NAME } from '../config/site';
+
+const cameraBrands = [
+  'รับซื้อกล้อง Canon',
+  'รับซื้อกล้อง Sony',
+  'รับซื้อกล้อง Fujifilm',
+  'รับซื้อกล้อง Nikon',
+  'รับซื้อกล้อง Lieca',
+  'รับซื้อกล้อง Panasonic',
+  'รับซื้อกล้อง Oympus',
+  'รับซื้อกล้อง DJI',
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__grid">
+    <div>
+      <img
+        src="https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1.png"
+        alt="logo"
+        width="219"
+        height="219"
+        loading="lazy"
+      />
+    </div>
+
+    <div>
+      <h2>เมนู</h2>
+      <ul>
+        {NAV_LINKS.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2>ที่อยู่</h2>
+      <p>{COMPANY.name}</p>
+      <p>{COMPANY.address}</p>
+    </div>
+
+    <div>
+      <h2>กล้องที่รับซื้อ</h2>
+      <ul>
+        {cameraBrands.map((brand) => <li><p>{brand}</p></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>&copy; {new Date().getFullYear()} {SITE_NAME} by {COMPANY.name}</p>
+  </div>
+</footer>

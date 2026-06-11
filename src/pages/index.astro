@@ -1,0 +1,11 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { getHomePage } from '../lib/content';
+
+const page = getHomePage();
+if (!page) {
+  throw new Error('Homepage content missing. Run: npm run crawl');
+}
+---
+
+<ContentLayout page={page} />

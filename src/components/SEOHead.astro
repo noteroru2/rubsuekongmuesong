@@ -1,0 +1,41 @@
+---
+import { SITE_NAME, SITE_URL } from '../config/site';
+import type { PageRecord } from '../lib/types';
+import { buildPageGraph } from '../lib/schema';
+
+interface Props {
+  page: PageRecord;
+}
+
+const { page } = Astro.props;
+const { seo } = page;
+// Served URL is the canonical — Yoast may still reference legacy /uncategorized/ paths.
+const canonical = `${SITE_URL}${page.path}`;
+const ogImage = seo.ogImage;
+const schemaGraph = buildPageGraph(page);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{seo.title}</title>
+{seo.metaDescription && <meta name="description" content={seo.metaDescription} />}
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={seo.robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+
+<meta property="og:locale" content="th_TH" />
+<meta property="og:type" content={seo.ogType || 'website'} />
+<meta property="og:title" content={seo.ogTitle || seo.title} />
+{seo.ogDescription && <meta property="og:description" content={seo.ogDescription} />}
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={SITE_NAME} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seo.ogTitle || seo.title} />
+{seo.ogDescription && <meta name="twitter:description" content={seo.ogDescription} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+<link rel="icon" href="https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-32x32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-180x180.png" />
+
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })} />
