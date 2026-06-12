@@ -1,0 +1,43 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import type { ArticleSummary } from '../lib/articles';
+
+interface Props {
+  articles: ArticleSummary[];
+  title?: string;
+  subtitle?: string;
+  showAllLink?: boolean;
+}
+
+const {
+  articles,
+  title = 'บทความล่าสุด',
+  subtitle = 'ความรู้เรื่องกล้องมือสอง วิธีเช็คสภาพ และเทคนิคก่อนซื้อ-ขาย',
+  showAllLink = true,
+} = Astro.props;
+---
+
+{
+  articles.length > 0 && (
+    <section class="article-section">
+      <div class="article-section__inner">
+        <header class="article-section__header">
+          <div>
+            <h2 class="article-section__title">{title}</h2>
+            {subtitle && <p class="article-section__subtitle">{subtitle}</p>}
+          </div>
+          {showAllLink && (
+            <a class="article-section__all" href="/blog/">
+              ดูบทความทั้งหมด →
+            </a>
+          )}
+        </header>
+        <div class="article-grid">
+          {articles.map((article) => (
+            <ArticleCard article={article} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

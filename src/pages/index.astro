@@ -1,11 +1,35 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
+import BlogListing from '../components/BlogListing.astro';
+import ArticleGrid from '../components/ArticleGrid.astro';
+import { getArticles, getBlogPosts } from '../lib/articles';
 import { getHomePage } from '../lib/content';
 
 const page = getHomePage();
 if (!page) {
   throw new Error('Homepage content missing. Run: npm run crawl');
 }
+
+const latestBuyback = getBlogPosts().slice(0, 6);
+const latestArticles = getArticles().slice(0, 6);
 ---
 
-<ContentLayout page={page} />
+<ContentLayout page={page}>
+  <div slot="after" class="home-post-sections">
+    <section class="home-buyback-section">
+      <div class="home-buyback-section__inner">
+        <header class="home-buyback-section__header">
+          <h2>บทความรับซื้อกล้อง</h2>
+          <a href="/blog/">ดูทั้งหมด →</a>
+        </header>
+        <BlogListing posts={latestBuyback} />
+      </div>
+    </section>
+    <ArticleGrid
+      articles={latestArticles}
+      title="ความรู้เรื่องกล้อง"
+      subtitle="เทคนิคเช็คสภาพและเปรียบเทียบรุ่นกล้องมือสอง"
+      showAllLink={false}
+    />
+  </div>
+</ContentLayout>

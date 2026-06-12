@@ -1,5 +1,5 @@
 ---
-import { CONTACT, NAV_LINKS, SITE_NAME, SITE_DESCRIPTION } from '../config/site';
+import { CONTACT, LOGO_URL, NAV_LINKS, SITE_NAME } from '../config/site';
 
 const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 ---
@@ -7,8 +7,7 @@ const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${A
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href="/" rel="home">
-      <p class="site-title">{SITE_NAME}</p>
-      <p class="site-description">{SITE_DESCRIPTION}</p>
+      <img class="brand__logo" src={LOGO_URL} alt={SITE_NAME} width="180" height="48" decoding="async" />
     </a>
 
     <nav class="main-nav" aria-label="Primary">

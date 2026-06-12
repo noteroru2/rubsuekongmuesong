@@ -1,5 +1,5 @@
 ---
-import { COMPANY, NAV_LINKS, SITE_NAME } from '../config/site';
+import { COMPANY, FOOTER_LOGO_URL, NAV_LINKS, SITE_NAME } from '../config/site';
 
 const cameraBrands = [
   'รับซื้อกล้อง Canon',
@@ -17,8 +17,8 @@ const cameraBrands = [
   <div class="site-footer__grid">
     <div>
       <img
-        src="https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1.png"
-        alt="logo"
+        src={FOOTER_LOGO_URL}
+        alt={SITE_NAME}
         width="219"
         height="219"
         loading="lazy"

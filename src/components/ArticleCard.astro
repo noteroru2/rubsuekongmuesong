@@ -1,0 +1,39 @@
+---
+import { formatArticleDate, type ArticleSummary } from '../lib/articles';
+
+interface Props {
+  article: ArticleSummary;
+}
+
+const { article } = Astro.props;
+const dateLabel = formatArticleDate(article.datePublished);
+---
+
+<article class="article-card">
+  <a class="article-card__link" href={article.path}>
+    {
+      article.image ? (
+        <div class="article-card__media">
+          <img
+            src={article.image}
+            alt={article.imageAlt || article.title}
+            width="640"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : (
+        <div class="article-card__media article-card__media--placeholder" aria-hidden="true">
+          <span>📷</span>
+        </div>
+      )
+    }
+    <div class="article-card__body">
+      {dateLabel && <time class="article-card__date" datetime={article.datePublished}>{dateLabel}</time>}
+      <h2 class="article-card__title">{article.title}</h2>
+      {article.excerpt && <p class="article-card__excerpt">{article.excerpt}</p>}
+      <span class="article-card__more">อ่านต่อ →</span>
+    </div>
+  </a>
+</article>

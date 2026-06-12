@@ -16,6 +16,13 @@ const { page, bodyClass = '' } = Astro.props;
 <html lang="th">
   <head>
     <SEOHead page={page} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/wp-theme.css" />
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body class={`site-body ${bodyClass}`.trim()}>

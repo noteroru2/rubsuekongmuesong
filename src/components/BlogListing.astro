@@ -1,0 +1,48 @@
+---
+import BlogPostCard from './BlogPostCard.astro';
+import { BLOG_POSTS_PER_PAGE, type ArticleSummary } from '../lib/articles';
+
+interface Props {
+  posts: ArticleSummary[];
+  currentPage?: number;
+  totalPages?: number;
+}
+
+const { posts, currentPage = 1, totalPages = 1 } = Astro.props;
+
+function pageHref(page: number): string {
+  return page <= 1 ? '/blog/' : `/blog/page/${page}/`;
+}
+---
+
+<section class="blog-listing">
+  <div class="blog-listing__grid">
+    {posts.map((post) => (
+      <BlogPostCard post={post} />
+    ))}
+  </div>
+
+  {
+    totalPages > 1 && (
+      <nav class="blog-pagination" aria-label="Blog pagination">
+        {
+          currentPage > 1 && (
+            <a class="blog-pagination__link" href={pageHref(currentPage - 1)}>
+              ← ก่อนหน้า
+            </a>
+          )
+        }
+        <span class="blog-pagination__status">
+          หน้า {currentPage} / {totalPages}
+        </span>
+        {
+          currentPage < totalPages && (
+            <a class="blog-pagination__link" href={pageHref(currentPage + 1)}>
+              ถัดไป →
+            </a>
+          )
+        }
+      </nav>
+    )
+  }
+</section>

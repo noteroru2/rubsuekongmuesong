@@ -1,5 +1,10 @@
 export const SITE_URL = 'https://xn--12cman8e0bjt1czaccb9b1fg31ad.com';
 
+export function absoluteAsset(assetPath: string): string {
+  if (assetPath.startsWith('http')) return assetPath;
+  return `${SITE_URL}${assetPath.startsWith('/') ? assetPath : `/${assetPath}`}`;
+}
+
 export const SITE_NAME = 'รับซื้อกล้องมือสอง';
 export const SITE_DESCRIPTION = 'ให้บริการรับซื้อกล้องมือสองทุกรุ่น ทุกยี่ห้อ';
 
@@ -27,7 +32,15 @@ export const NAV_LINKS = [
 ] as const;
 
 export const LOGO_URL =
-  'https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-3.png';
+  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-3.webp';
 
-export const OG_DEFAULT_IMAGE =
-  'https://xn--12cman8e0bjt1czaccb9b1fg31ad.com/wp-content/uploads/2025/06/รับซื้อกล้องมือสอง.jpg';
+export const FAVICON_URL =
+  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-32x32.webp';
+
+export const APPLE_TOUCH_ICON_URL =
+  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-180x180.webp';
+
+export const FOOTER_LOGO_URL =
+  '/images/uploads/2025/06/ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1.webp';
+
+export const OG_DEFAULT_IMAGE = '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp';

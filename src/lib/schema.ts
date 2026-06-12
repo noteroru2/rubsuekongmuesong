@@ -1,4 +1,4 @@
-import { COMPANY, CONTACT, LOGO_URL, OG_DEFAULT_IMAGE, SITE_NAME, SITE_URL } from '../config/site';
+import { absoluteAsset, COMPANY, CONTACT, LOGO_URL, OG_DEFAULT_IMAGE, SITE_NAME, SITE_URL } from '../config/site';
 import type { PageRecord } from './types';
 
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -13,7 +13,7 @@ export function buildBaseGraph(): Record<string, unknown>[] {
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: LOGO_URL,
+        url: absoluteAsset(LOGO_URL),
         width: 512,
         height: 512,
       },
@@ -34,7 +34,7 @@ export function buildBaseGraph(): Record<string, unknown>[] {
       '@type': 'LocalBusiness',
       '@id': `${SITE_URL}/#localbusiness`,
       name: SITE_NAME,
-      image: OG_DEFAULT_IMAGE,
+      image: absoluteAsset(OG_DEFAULT_IMAGE),
       url: SITE_URL,
       telephone: CONTACT.phone,
       address: {
@@ -58,7 +58,11 @@ export function buildBaseGraph(): Record<string, unknown>[] {
 
 export function buildPageGraph(page: PageRecord): Record<string, unknown>[] {
   if (page.schemaGraph?.length) {
-    return page.schemaGraph;
+    const json = JSON.stringify(page.schemaGraph);
+    const fixed = json.replace(/"(\/images\/[^"]+)"/g, (_, assetPath: string) =>
+      JSON.stringify(absoluteAsset(assetPath)),
+    );
+    return JSON.parse(fixed);
   }
 
   const pageUrl = page.seo.canonical || `${SITE_URL}${page.path}`;

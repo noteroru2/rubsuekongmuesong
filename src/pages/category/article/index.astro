@@ -1,0 +1,48 @@
+---
+import { getArticles } from '../../../lib/articles';
+import { getPageByPath } from '../../../lib/content';
+import { SITE_NAME, SITE_URL } from '../../../config/site';
+import type { PageRecord } from '../../../lib/types';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+
+const articles = getArticles();
+const crawled = getPageByPath('/category/article/');
+
+const page: PageRecord = crawled
+  ? {
+      ...crawled,
+      seo: {
+        ...crawled.seo,
+        h1: 'บทความ',
+        title: `บทความ - ${SITE_NAME}`,
+      },
+    }
+  : {
+      id: 'category-article',
+      oldUrl: `${SITE_URL}/category/article/`,
+      path: '/category/article/',
+      pageType: 'category',
+      seo: {
+        title: `บทความ - ${SITE_NAME}`,
+        metaDescription: 'บทความความรู้เรื่องกล้องมือสอง',
+        canonical: `${SITE_URL}/category/article/`,
+        h1: 'บทความ',
+      },
+      bodyHtml: '',
+    };
+---
+
+<BaseLayout page={page}>
+  <article class="entry content-wrap blog-archive">
+    <header class="blog-archive__header">
+      <h1 class="entry-title">บทความ</h1>
+      <p class="blog-archive__intro">ความรู้เรื่องกล้องมือสอง วิธีเช็คสภาพ และเทคนิคก่อนซื้อ-ขาย</p>
+    </header>
+    <div class="article-grid article-grid--archive">
+      {articles.map((article) => (
+        <ArticleCard article={article} />
+      ))}
+    </div>
+  </article>
+</BaseLayout>

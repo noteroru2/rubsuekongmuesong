@@ -4,7 +4,10 @@ import { getAllRoutes, getPageByPath } from '../lib/content';
 import { pathToSlugParam } from '../lib/seo';
 
 export async function getStaticPaths() {
-  const routes = getAllRoutes().filter((route) => route.path !== '/');
+  const skipPaths = new Set(['/blog/', '/category/article/']);
+  const routes = getAllRoutes().filter(
+    (route) => route.path !== '/' && !skipPaths.has(route.path),
+  );
   return routes.map((route) => ({
     params: { path: pathToSlugParam(route.path) },
     props: { pagePath: route.path },

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogListing from '../../components/BlogListing.astro';
+import { getBlogPosts, paginateBlogPosts } from '../../lib/articles';
+import { getPageByPath } from '../../lib/content';
+import { SITE_NAME, SITE_URL } from '../../config/site';
+import type { PageRecord } from '../../lib/types';
+
+const allPosts = getBlogPosts();
+const { posts, currentPage, totalPages } = paginateBlogPosts(allPosts, 1);
+const crawled = getPageByPath('/blog/');
+
+const page: PageRecord = crawled
+  ? {
+      ...crawled,
+      seo: {
+        ...crawled.seo,
+        h1: 'Blog',
+        title: `Blog - ${SITE_NAME}`,
+      },
+    }
+  : {
+      id: 'blog-index',
+      oldUrl: `${SITE_URL}/blog/`,
+      path: '/blog/',
+      pageType: 'archive',
+      seo: {
+        title: `Blog - ${SITE_NAME}`,
+        metaDescription: 'บทความรับซื้อกล้องมือสอง ขายกล้องมือสอง ทุกจังหวัด',
+        canonical: `${SITE_URL}/blog/`,
+        h1: 'Blog',
+      },
+      bodyHtml: '',
+    };
+---
+
+<BaseLayout page={page} bodyClass="page-blog">
+  <article class="entry blog-archive">
+    <h1 class="blog-archive__title screen-reader-text">Blog</h1>
+    <BlogListing posts={posts} currentPage={currentPage} totalPages={totalPages} />
+  </article>
+</BaseLayout>

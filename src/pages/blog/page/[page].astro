@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogListing from '../../../components/BlogListing.astro';
+import { getBlogPosts, paginateBlogPosts } from '../../../lib/articles';
+import { getPageByPath } from '../../../lib/content';
+import { SITE_NAME, SITE_URL } from '../../../config/site';
+import type { PageRecord } from '../../../lib/types';
+
+export function getStaticPaths() {
+  const allPosts = getBlogPosts();
+  const { totalPages } = paginateBlogPosts(allPosts, 1);
+  if (totalPages <= 1) return [];
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: { pageNum: i + 2 },
+  }));
+}
+
+interface Props {
+  pageNum: number;
+}
+
+const { pageNum } = Astro.props;
+const allPosts = getBlogPosts();
+const { posts, currentPage, totalPages } = paginateBlogPosts(allPosts, pageNum);
+const crawled = getPageByPath('/blog/');
+
+const page: PageRecord = crawled
+  ? {
+      ...crawled,
+      seo: {
+        ...crawled.seo,
+        h1: 'Blog',
+        title: pageNum > 1 ? `Blog — หน้า ${pageNum} - ${SITE_NAME}` : `Blog - ${SITE_NAME}`,
+        canonical:
+          pageNum > 1
+            ? `${SITE_URL}/blog/page/${pageNum}/`
+            : `${SITE_URL}/blog/`,
+      },
+    }
+  : {
+      id: `blog-page-${pageNum}`,
+      oldUrl: pageNum > 1 ? `${SITE_URL}/blog/page/${pageNum}/` : `${SITE_URL}/blog/`,
+      path: pageNum > 1 ? `/blog/page/${pageNum}/` : '/blog/',
+      pageType: 'archive',
+      seo: {
+        title: pageNum > 1 ? `Blog — หน้า ${pageNum} - ${SITE_NAME}` : `Blog - ${SITE_NAME}`,
+        metaDescription: 'บทความรับซื้อกล้องมือสอง ขายกล้องมือสอง ทุกจังหวัด',
+        canonical: pageNum > 1 ? `${SITE_URL}/blog/page/${pageNum}/` : `${SITE_URL}/blog/`,
+        h1: 'Blog',
+      },
+      bodyHtml: '',
+    };
+---
+
+<BaseLayout page={page} bodyClass="page-blog">
+  <article class="entry blog-archive">
+    {currentPage === 1 && <h1 class="blog-archive__title screen-reader-text">Blog</h1>}
+    <BlogListing posts={posts} currentPage={currentPage} totalPages={totalPages} />
+  </article>
+</BaseLayout>
