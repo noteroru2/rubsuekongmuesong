@@ -8,6 +8,9 @@ export function absoluteAsset(assetPath: string): string {
 export const SITE_NAME = 'รับซื้อกล้องมือสอง';
 export const SITE_DESCRIPTION = 'ให้บริการรับซื้อกล้องมือสองทุกรุ่น ทุกยี่ห้อ';
 
+export const LINE_ID = '@webuy';
+export const LINE_ID_SHORT = 'webuy';
+
 export const CONTACT = {
   phone: '0642579353',
   phoneHref: 'tel:0642579353',

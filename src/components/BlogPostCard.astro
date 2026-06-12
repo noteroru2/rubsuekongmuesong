@@ -10,20 +10,20 @@ const { post } = Astro.props;
 
 <article class="blog-post-card">
   <a class="blog-post-card__link" href={post.path}>
-    {
-      post.image && (
-        <div class="blog-post-card__media">
-          <img
-            src={post.image}
-            alt={post.imageAlt || post.title}
-            width="640"
-            height="336"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      )
-    }
+    <div class="blog-post-card__media">
+      {post.image ? (
+        <img
+          src={post.image}
+          alt={post.imageAlt || post.title}
+          width="640"
+          height="336"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div class="blog-post-card__media--placeholder" aria-hidden="true">📷</div>
+      )}
+    </div>
     <div class="blog-post-card__body">
       <h2 class="blog-post-card__title">{post.title}</h2>
       {post.excerpt && <p class="blog-post-card__excerpt">{post.excerpt}</p>}

@@ -1,4 +1,5 @@
 ---
+import ContactCta from '../components/ContactCta.astro';
 import BaseLayout from './BaseLayout.astro';
 import { fixWordPressHtml } from '../lib/fixHtml';
 import type { PageRecord } from '../lib/types';
@@ -9,27 +10,43 @@ interface Props {
 
 const { page } = Astro.props;
 const isHomepage = page.pageType === 'homepage';
-const isLocationPage =
+const isBuybackArea =
   page.pageType === 'location' && page.path.startsWith('/รับซื้อกล้อง/');
 const bodyHtml = fixWordPressHtml(page.bodyHtml || '');
 const bodyHasH1 = /<h1[\s>]/i.test(bodyHtml);
-const bodyClass = isHomepage ? 'page-home' : isLocationPage ? 'page-location' : '';
+const hasKadenceLayout = /kb-row-layout|wp-block-kadence/i.test(bodyHtml);
+const isArticlePage = !isHomepage && !hasKadenceLayout;
+const showArticleHero = isArticlePage && page.seo.h1 && !bodyHasH1;
+const bodyClass = isHomepage
+  ? 'page-home'
+  : isBuybackArea || isArticlePage
+    ? 'page-location'
+    : '';
 ---
 
 <BaseLayout page={page} bodyClass={bodyClass}>
   {
-    isLocationPage && page.seo.h1 && (
+    showArticleHero && (
       <div class="location-hero">
-        <p class="location-hero__label">รับซื้อกล้อง</p>
+        {
+          isBuybackArea && <p class="location-hero__label">รับซื้อกล้อง</p>
+        }
         <h1 class="location-hero__title">{page.seo.h1}</h1>
       </div>
     )
   }
-  <article class:list={['entry', isHomepage ? 'entry--home' : isLocationPage ? 'entry--location' : 'content-wrap']}>
-    {!bodyHasH1 && page.seo.h1 && !isHomepage && !isLocationPage && (
-      <h1 class="entry-title">{page.seo.h1}</h1>
-    )}
-    <div class="entry-content wp-content" set:html={bodyHtml} />
+  {isArticlePage && <ContactCta />}
+  <article
+    class:list={[
+      'entry',
+      isHomepage ? 'entry--home' : isArticlePage ? 'entry--article' : 'content-wrap',
+    ]}
+  >
+    <div
+      class:list={['entry-content', 'wp-content', isArticlePage && 'content-article']}
+      set:html={bodyHtml}
+    />
+    {isArticlePage && <ContactCta compact />}
   </article>
   <slot name="after" />
 </BaseLayout>

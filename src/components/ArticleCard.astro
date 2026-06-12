@@ -3,9 +3,11 @@ import { formatArticleDate, type ArticleSummary } from '../lib/articles';
 
 interface Props {
   article: ArticleSummary;
+  /** Pass true for the first card to eagerly load its image */
+  eager?: boolean;
 }
 
-const { article } = Astro.props;
+const { article, eager = false } = Astro.props;
 const dateLabel = formatArticleDate(article.datePublished);
 ---
 
@@ -19,8 +21,9 @@ const dateLabel = formatArticleDate(article.datePublished);
             alt={article.imageAlt || article.title}
             width="640"
             height="360"
-            loading="lazy"
-            decoding="async"
+            loading={eager ? 'eager' : 'lazy'}
+            decoding={eager ? 'sync' : 'async'}
+            fetchpriority={eager ? 'high' : undefined}
           />
         </div>
       ) : (

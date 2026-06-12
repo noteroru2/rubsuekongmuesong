@@ -1,7 +1,18 @@
 ---
-import { absoluteAsset, APPLE_TOUCH_ICON_URL, FAVICON_URL, SITE_NAME, SITE_URL } from '../config/site';
+import {
+  absoluteAsset,
+  APPLE_TOUCH_ICON_URL,
+  FAVICON_URL,
+  SITE_NAME,
+  SITE_URL,
+} from '../config/site';
 import type { PageRecord } from '../lib/types';
-import { buildPageGraph } from '../lib/schema';
+import {
+  buildPageGraph,
+  buildFaqGraph,
+  extractFaqFromHtml,
+  buildGenericFaq,
+} from '../lib/schema';
 
 interface Props {
   page: PageRecord;
@@ -12,6 +23,23 @@ const { seo } = page;
 const canonical = `${SITE_URL}${page.path}`;
 const ogImage = seo.ogImage ? absoluteAsset(seo.ogImage) : undefined;
 const schemaGraph = buildPageGraph(page);
+
+// ---------- FAQ / AEO / GEO ----------
+const hasKadence = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
+const faqPageTypes = new Set(['location', 'post', 'article', 'homepage']);
+const shouldAddFaq = faqPageTypes.has(page.pageType);
+
+let faqPairs: Array<{ question: string; answer: string }> = [];
+if (shouldAddFaq) {
+  if (!hasKadence) {
+    faqPairs = extractFaqFromHtml(page.bodyHtml || '');
+  }
+  // Fallback to generic FAQs when content doesn't have structured Q&A (< 2 pairs)
+  if (faqPairs.length < 2) {
+    faqPairs = buildGenericFaq(page.pageType, page.seo.h1 || '', seo.metaDescription || '');
+  }
+}
+const faqSchema = faqPairs.length >= 1 ? buildFaqGraph(faqPairs, canonical) : null;
 ---
 
 <meta charset="UTF-8" />
@@ -19,8 +47,13 @@ const schemaGraph = buildPageGraph(page);
 <title>{seo.title}</title>
 {seo.metaDescription && <meta name="description" content={seo.metaDescription} />}
 <link rel="canonical" href={canonical} />
-<meta name="robots" content={seo.robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+<meta
+  name="robots"
+  content={seo.robots ||
+    'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}
+/>
 
+{/* Open Graph */}
 <meta property="og:locale" content="th_TH" />
 <meta property="og:type" content={seo.ogType || 'website'} />
 <meta property="og:title" content={seo.ogTitle || seo.title} />
@@ -28,13 +61,31 @@ const schemaGraph = buildPageGraph(page);
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={SITE_NAME} />
 {ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && <meta property="og:image:width" content="1200" />}
+{ogImage && <meta property="og:image:height" content="630" />}
 
+{/* Twitter / X */}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={seo.ogTitle || seo.title} />
 {seo.ogDescription && <meta name="twitter:description" content={seo.ogDescription} />}
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
+{/* Icons */}
 <link rel="icon" href={FAVICON_URL} sizes="32x32" type="image/webp" />
 <link rel="apple-touch-icon" href={APPLE_TOUCH_ICON_URL} />
 
-<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })} />
+{/* JSON-LD — Page graph */}
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })}
+/>
+
+{/* JSON-LD — FAQPage (AEO / GEO) */}
+{
+  faqSchema && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ '@context': 'https://schema.org', ...faqSchema })}
+    />
+  )
+}
