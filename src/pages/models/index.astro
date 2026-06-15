@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByPath } from '../../lib/content';
+import { CONTACT } from '../../config/site';
+
+const page = getPageByPath('/models/');
+if (!page) throw new Error('Missing /models/ content');
+
+const brands = [
+  {
+    id: 'canon',
+    name: 'Canon',
+    badge: 'ยอดนิยม',
+    img: '/images/uploads/2025/06/รับซื้อกล้อง-canon.webp',
+    alt: 'รับซื้อกล้อง Canon มือสอง',
+    models: [
+      'EOS R5', 'EOS R6 Mark II', 'EOS R8', 'EOS R50', 'EOS R3',
+      '5D Mark IV', '6D Mark II', '90D', '850D', '80D',
+      'M50 Mark II', 'M6 Mark II', 'M200', 'G7X Mark III',
+      'PowerShot G5X II', 'EOS RP',
+    ],
+  },
+  {
+    id: 'sony',
+    name: 'Sony',
+    badge: 'ขายดี',
+    img: '/images/uploads/2025/06/Sony-A7-III-Body-Black-Thai-1.webp',
+    alt: 'รับซื้อกล้อง Sony มือสอง',
+    models: [
+      'A7 IV', 'A7 III', 'A7C', 'A7C II', 'A7R V', 'A7R IV',
+      'A9 III', 'A9 II', 'A6700', 'A6600', 'A6400',
+      'ZV-E10', 'ZV-1', 'RX100 VII', 'RX100 VI', 'RX10 IV',
+    ],
+  },
+  {
+    id: 'fujifilm',
+    name: 'Fujifilm',
+    badge: '',
+    img: '/images/uploads/2025/06/fuji-xt4-vs-xt5.webp',
+    alt: 'รับซื้อกล้อง Fujifilm มือสอง',
+    models: [
+      'X-T5', 'X-T4', 'X-T3', 'X-S20', 'X-S10',
+      'X-H2S', 'X-H2', 'X100VI', 'X100V', 'X-Pro3',
+      'X-A7', 'X-A5', 'GFX 100S', 'GFX 50S II',
+    ],
+  },
+  {
+    id: 'nikon',
+    name: 'Nikon',
+    badge: '',
+    img: '/images/uploads/2025/06/35.webp',
+    alt: 'รับซื้อกล้อง Nikon มือสอง',
+    models: [
+      'Z8', 'Z9', 'Z6 III', 'Z6 II', 'Z7 II',
+      'Z5 II', 'Z50', 'Zfc', 'D850', 'D750',
+      'D7500', 'D5600', 'D3500', 'D810',
+    ],
+  },
+  {
+    id: 'leica',
+    name: 'Leica',
+    badge: 'ราคาสูง',
+    img: '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp',
+    alt: 'รับซื้อกล้อง Leica มือสอง',
+    models: [
+      'M11', 'M11-P', 'M10-R', 'M10', 'M6', 'MP',
+      'Q3', 'Q2', 'Q', 'SL3', 'SL2', 'SL2-S',
+      'CL', 'TL2', 'Monochrom',
+    ],
+  },
+  {
+    id: 'panasonic',
+    name: 'Panasonic',
+    badge: '',
+    img: '/images/uploads/2025/06/กล้อง-Mirrorless.webp',
+    alt: 'รับซื้อกล้อง Panasonic มือสอง',
+    models: [
+      'S5 II', 'S5 IIX', 'S1R', 'S1', 'S1H',
+      'GH6', 'GH5 II', 'GH5', 'G9 II', 'G9',
+      'G7', 'GX9', 'LX100 II',
+    ],
+  },
+  {
+    id: 'olympus',
+    name: 'Olympus / OM System',
+    badge: '',
+    img: '/images/uploads/2025/06/กล้องคอมแพค.webp',
+    alt: 'รับซื้อกล้อง Olympus มือสอง',
+    models: [
+      'OM-1 Mark II', 'OM-1', 'OM-5',
+      'E-M1X', 'E-M1 Mark III', 'E-M5 Mark III',
+      'E-M10 Mark IV', 'PEN-F', 'E-PL10', 'TG-7',
+    ],
+  },
+  {
+    id: 'dji',
+    name: 'DJI',
+    badge: '',
+    img: '/images/uploads/2025/06/Osmo-Action-5-Pro.webp',
+    alt: 'รับซื้อกล้อง DJI มือสอง',
+    models: [
+      'Mavic 3 Pro', 'Mavic 3 Classic', 'Mini 4 Pro', 'Mini 3 Pro',
+      'Air 3', 'Avata 2', 'Osmo Action 5 Pro', 'Osmo Action 4',
+      'Pocket 3', 'OM 6', 'RS 3 Pro',
+    ],
+  },
+];
+---
+
+<BaseLayout page={page} bodyClass="page-models">
+  <div class="inner-page">
+    <!-- Hero -->
+    <div class="models-hero">
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">รุ่นที่รับซื้อ</p>
+      <h1>{page.seo.h1 || 'รุ่นกล้องมือสองที่เรารับซื้อ'}</h1>
+      <p>Canon · Sony · Fujifilm · Nikon · Leica · Panasonic · Olympus · DJI และแบรนด์อื่นๆ<br />ประเมินฟรี ให้ราคายุติธรรม โอนทันที</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.5rem;">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          ส่งรูปประเมินราคาฟรี
+        </a>
+        <a class="btn btn--secondary btn--lg" href={CONTACT.phoneHref}>โทร 064-257-9353</a>
+      </div>
+    </div>
+
+    <!-- Anchor tabs -->
+    <nav class="brand-tabs" aria-label="แบรนด์กล้อง">
+      {brands.map((b) => (
+        <a class="brand-tab" href={`#${b.id}`}>{b.name}</a>
+      ))}
+    </nav>
+
+    <!-- Brand sections -->
+    {brands.map((brand) => (
+      <section class="brand-section" id={brand.id} aria-labelledby={`brand-${brand.id}`}>
+        <div class="brand-section__header">
+          <h2 class="brand-section__name" id={`brand-${brand.id}`}>{brand.name}</h2>
+          {brand.badge && <span class="brand-section__badge">{brand.badge}</span>}
+        </div>
+        <div class="brand-section__body">
+          <div class="brand-section__img">
+            <img
+              src={brand.img}
+              alt={brand.alt}
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="brand-section__models">
+            <h3>รุ่นที่รับซื้อ</h3>
+            <ul>
+              {brand.models.map((m) => <li>{m}</li>)}
+            </ul>
+            <a
+              class="btn btn--primary"
+              href={CONTACT.lineCta}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ส่งรูปประเมินราคา {brand.name}
+            </a>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- Final CTA -->
+    <div class="review-cta-banner" style="margin-bottom:4rem;">
+      <h2>ไม่เจอรุ่นที่ต้องการ?</h2>
+      <p>เราซื้อกล้องทุกรุ่น ทุกแบรนด์ แม้ไม่มีในรายการ ส่งรูปมาถามได้เลย</p>
+      <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+        สอบถามราคาผ่าน LINE
+      </a>
+    </div>
+  </div>
+</BaseLayout>

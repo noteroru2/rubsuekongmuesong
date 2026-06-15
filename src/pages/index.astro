@@ -1,35 +1,450 @@
 ---
-import ContentLayout from '../layouts/ContentLayout.astro';
-import BlogListing from '../components/BlogListing.astro';
-import ArticleGrid from '../components/ArticleGrid.astro';
-import { getArticles, getBlogPosts } from '../lib/articles';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+import HomeInteractions from '../components/HomeInteractions.astro';
+import { getBlogPosts } from '../lib/articles';
 import { getHomePage } from '../lib/content';
+import { CONTACT, LINE_ID } from '../config/site';
 
 const page = getHomePage();
-if (!page) {
-  throw new Error('Homepage content missing. Run: npm run crawl');
-}
+if (!page) throw new Error('Homepage content missing. Run: npm run crawl');
 
-const latestBuyback = getBlogPosts().slice(0, 6);
-const latestArticles = getArticles().slice(0, 6);
+const latestPosts = getBlogPosts().slice(0, 6);
+
+const brands = [
+  {
+    id: 'canon',
+    name: 'Canon',
+    img: '/images/uploads/2025/06/รับซื้อกล้อง-canon.webp',
+    alt: 'รับซื้อกล้อง Canon มือสอง',
+    models: ['EOS R5', 'EOS R6 II', 'EOS R50', '5D Mark IV', '90D', 'M50 II'],
+  },
+  {
+    id: 'sony',
+    name: 'Sony',
+    img: '/images/uploads/2025/06/Sony-A7-III-Body-Black-Thai-1.webp',
+    alt: 'รับซื้อกล้อง Sony มือสอง',
+    models: ['A7 IV', 'A7 III', 'A7C', 'A6700', 'RX100 VII', 'ZV-E10'],
+  },
+  {
+    id: 'fujifilm',
+    name: 'Fujifilm',
+    img: '/images/uploads/2025/06/DSCF0088-Photoroom-1-1.webp',
+    alt: 'รับซื้อกล้อง Fujifilm มือสอง',
+    models: ['X-T5', 'X-T4', 'X-S20', 'X100VI', 'GFX 100S', 'X-A7'],
+  },
+  {
+    id: 'nikon',
+    name: 'Nikon',
+    img: '/images/uploads/2025/06/70d.webp',
+    alt: 'รับซื้อกล้อง Nikon มือสอง',
+    models: ['Z8', 'Z6 III', 'Z5 II', 'D850', 'D750', 'Z50'],
+  },
+  {
+    id: 'leica',
+    name: 'Leica',
+    img: '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp',
+    alt: 'รับซื้อกล้อง Leica มือสอง',
+    models: ['M11', 'M10', 'Q3', 'Q2', 'SL2', 'M6'],
+  },
+  {
+    id: 'panasonic',
+    name: 'Panasonic',
+    img: '/images/uploads/2025/06/กล้อง-Mirrorless.webp',
+    alt: 'รับซื้อกล้อง Panasonic มือสอง',
+    models: ['S5 II', 'S1', 'GH6', 'GH5', 'G9 II', 'G7'],
+  },
+  {
+    id: 'olympus',
+    name: 'Olympus / OM System',
+    img: '/images/uploads/2025/06/กล้องคอมแพค.webp',
+    alt: 'รับซื้อกล้อง Olympus มือสอง',
+    models: ['OM-5', 'E-M1 III', 'E-M10 IV', 'E-M5 III', 'PEN-F', 'E-PL10'],
+  },
+  {
+    id: 'dji',
+    name: 'DJI',
+    img: '/images/uploads/2025/06/Osmo-Action-5-Pro.webp',
+    alt: 'รับซื้อกล้อง DJI มือสอง',
+    models: ['Osmo Action 5 Pro', 'Mavic 3 Pro', 'Mini 4 Pro', 'Pocket 3', 'OM 6', 'Air 3'],
+  },
+];
+
+const galleryItems = [
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_1.webp', caption: 'รับซื้อกล้อง Fujifilm' },
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_2.webp', caption: 'ตรวจเช็กสภาพกล้อง' },
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_3.webp', caption: 'รับซื้อเลนส์มือสอง' },
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_4.webp', caption: 'รับซื้อ Sony A7' },
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_5.webp', caption: 'รับซื้อถึงที่' },
+  { img: '/images/uploads/2025/06/LINE_NOTE_250618_6.webp', caption: 'ตรวจสอบอุปกรณ์เสริม' },
+];
+
+const reviews = [
+  {
+    name: 'คุณกัญญารัตน์',
+    location: 'อุบลราชธานี',
+    text: 'ขาย Leica M6 ได้ราคาดีมาก ประเมินภายใน 15 นาที โอนเงินทันทีหลังตกลงราคา ไม่กดราคาเลย ประทับใจมากๆ',
+    stars: 5,
+  },
+  {
+    name: 'คุณศิริพร',
+    location: 'กรุงเทพฯ',
+    text: 'ส่ง EMS ขาย Fujifilm X-T4 พร้อมเลนส์ 2 ตัว ได้ราคาตรงตามที่ประเมิน ทำธุรกรรมเร็ว น่าเชื่อถือมาก',
+    stars: 5,
+  },
+  {
+    name: 'คุณเอกชัย',
+    location: 'ขอนแก่น',
+    text: 'ตอบไวมาก ส่งรูปปุ๊บ รู้ราคาใน 10 นาที โอนเงินจริงใน 5 นาทีหลังส่งกล้อง บริการดีมาก',
+    stars: 5,
+  },
+  {
+    name: 'คุณมดดำ',
+    location: 'ชลบุรี',
+    text: 'ไม่สะดวกโทร แต่แชท LINE ตอบเร็วมาก ขายกล้องได้ง่ายๆ ไม่ต้องเดินทางไปหน้าร้าน',
+    stars: 5,
+  },
+  {
+    name: 'คุณชัยณรงค์',
+    location: 'เชียงใหม่',
+    text: 'ขาย Canon 90D พร้อมเลนส์ได้ราคาสูงกว่าที่คิด ทีมงานเป็นมืออาชีพ แนะนำให้คนรู้จักหลายคนแล้ว',
+    stars: 5,
+  },
+  {
+    name: 'คุณนภาพร',
+    location: 'นครราชสีมา',
+    text: 'ครั้งแรกที่ขายกล้องออนไลน์ กังวลนิดหน่อยแต่พอได้ทำจริงก็ง่ายมาก ได้ราคาดีและปลอดภัย',
+    stars: 5,
+  },
+];
 ---
 
-<ContentLayout page={page}>
-  <div slot="after" class="home-post-sections">
-    <section class="home-buyback-section">
-      <div class="home-buyback-section__inner">
-        <header class="home-buyback-section__header">
-          <h2>บทความรับซื้อกล้อง</h2>
+<BaseLayout page={page} bodyClass="page-home">
+  <!-- SECTION 1: HERO -->
+  <section class="hero" aria-label="รับซื้อกล้องมือสอง">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+          มีหน้าร้านจริง · อุบลราชธานี
+        </div>
+        <h1>
+          รับซื้อกล้องมือสอง<br />
+          <span class="accent">ให้ราคาดี โอนทันที</span>
+        </h1>
+        <p class="hero__sub">
+          Canon · Sony · Nikon · Fujifilm · Leica · DJI<br />
+          ส่งรูปประเมินฟรี ตอบไว 10–30 นาที มีหน้าร้านจริงในอุบลราชธานี
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path>
+            </svg>
+            ส่งรูปประเมินราคา
+          </a>
+          <a class="btn btn--secondary btn--lg" href="/models/">ดูรุ่นที่รับซื้อ</a>
+        </div>
+        <div class="hero__trust">
+          <span class="trust-badge">ประเมินฟรี</span>
+          <span class="trust-badge">มีหน้าร้านจริง</span>
+          <span class="trust-badge">รับทั่วประเทศ</span>
+          <span class="trust-badge">โอนทันที</span>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__img-wrap">
+          <img
+            src="/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp"
+            alt="รับซื้อกล้องมือสอง อุบลราชธานี"
+            width="420"
+            height="315"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="hero__img-badge">
+          <strong>1,000+</strong>
+          <span>กล้องที่รับซื้อแล้ว</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: QUICK CONTACT -->
+  <section class="quick-contact" aria-label="ติดต่อประเมินราคา">
+    <div class="quick-contact__inner">
+      <div class="quick-contact__header">
+        <div class="quick-contact__qr-wrap">
+          <img
+            src="/images/uploads/2025/06/M_gainfriends_2dbarcodes_BW.webp"
+            alt="QR Code LINE @webuy"
+            width="80"
+            height="80"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="quick-contact__copy">
+          <h2>ประเมินราคากล้องฟรี</h2>
+          <p>ส่งรูปกล้อง/เลนส์ มือสอง รับราคาไว ภายใน 10–30 นาที</p>
+        </div>
+      </div>
+
+      <div class="quick-contact__btns">
+        <a class="btn btn--line btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path>
+          </svg>
+          แชท LINE {LINE_ID}
+        </a>
+        <a class="btn btn--primary btn--lg" href={CONTACT.phoneHref}>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          โทร 064-257-9353
+        </a>
+      </div>
+
+      <hr class="quick-contact__divider" />
+      <p class="quick-contact__form-title">หรือกรอกข้อมูลให้เราติดต่อกลับ</p>
+      <form class="estimate-form" id="estimate-form" aria-label="ฟอร์มขอประเมินราคา">
+        <div class="estimate-form__field">
+          <label for="camera-model">รุ่นกล้อง / เลนส์</label>
+          <input type="text" id="camera-model" name="camera" placeholder="เช่น Sony A7 IV, Fujifilm X-T5" autocomplete="off" />
+        </div>
+        <div class="estimate-form__field">
+          <label for="accessories">อุปกรณ์ที่มี</label>
+          <input type="text" id="accessories" name="accessories" placeholder="เช่น กล่อง, ชาร์จ, เลนส์" autocomplete="off" />
+        </div>
+        <div class="estimate-form__field estimate-form__submit">
+          <label for="contact-line">เบอร์โทร / LINE ID</label>
+          <input type="text" id="contact-line" name="contact" placeholder="เช่น 081-234-5678 หรือ LINE ID" autocomplete="off" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--block estimate-form__submit">
+          ส่งข้อมูลขอประเมินราคา →
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECTION 3: BRAND CARDS -->
+  <section class="brands-section" aria-labelledby="brands-title">
+    <div class="brands-section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">รุ่นที่รับซื้อ</p>
+        <h2 class="section__title" id="brands-title">รับซื้อกล้องทุกแบรนด์ ทุกรุ่น</h2>
+        <p class="section__desc">ประเมินราคาตามตลาดจริง ไม่กดราคา</p>
+      </div>
+      <div class="brands-grid">
+        {brands.map((brand) => (
+          <div class="brand-card">
+            <div class="brand-card__img">
+              <img
+                src={brand.img}
+                alt={brand.alt}
+                width="320"
+                height="180"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="brand-card__body">
+              <h3 class="brand-card__name">{brand.name}</h3>
+              <ul class="brand-card__models">
+                {brand.models.map((m) => <li>{m}</li>)}
+              </ul>
+              <a
+                class="btn btn--outline-red brand-card__cta"
+                href={`/models/#${brand.id}`}
+              >
+                ดูรุ่นที่รับซื้อ →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          ส่งรูปประเมินราคาฟรี
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: STEPS -->
+  <section class="steps-section" aria-labelledby="steps-title">
+    <div class="steps-section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">ขั้นตอนง่ายๆ</p>
+        <h2 class="section__title" id="steps-title">ขายกล้องได้ใน 3 ขั้นตอน</h2>
+        <p class="section__desc">ไม่ต้องออกจากบ้าน ส่ง EMS หรือนัดรับถึงที่</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">1</div>
+          <h3>ส่งรูป + รุ่นกล้อง</h3>
+          <p>ถ่ายรูปกล้องทุกด้าน พร้อมบอกรุ่นและอุปกรณ์ที่มี แชท LINE มาได้เลย</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">2</div>
+          <h3>รับราคาประเมิน</h3>
+          <p>เจ้าหน้าที่ตอบกลับภายใน 10–30 นาที ราคายุติธรรมตามตลาดจริง</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">3</div>
+          <h3>รับเงินทันที</h3>
+          <p>ส่ง EMS หรือนัดรับถึงบ้าน ตรวจสภาพแล้วโอนทันที ปลอดภัย 100%</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          เริ่มประเมินราคาฟรี
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: REAL GALLERY -->
+  <section class="gallery-section" aria-labelledby="gallery-title">
+    <div class="gallery-section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">ตัวอย่างงานจริง</p>
+        <h2 class="section__title" id="gallery-title">ภาพรับซื้อจริงจากลูกค้า</h2>
+        <p class="section__desc">กล้องและเลนส์ที่เราเคยรับซื้อ รูปจริง ไม่แต่งราคา</p>
+      </div>
+      <div class="gallery-grid">
+        {galleryItems.map((item) => (
+          <div class="gallery-item">
+            <img
+              src={item.img}
+              alt={item.caption}
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="gallery-item__caption">{item.caption}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: REVIEWS -->
+  <section class="reviews-section" aria-labelledby="reviews-title">
+    <div class="reviews-section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">รีวิวจากลูกค้า</p>
+        <h2 class="section__title" id="reviews-title">ลูกค้าพูดถึงเรา</h2>
+        <p class="section__desc">รีวิวจริงจากลูกค้าที่ขายกล้องกับเรา</p>
+      </div>
+      <div class="reviews-grid">
+        {reviews.map((r) => (
+          <div class="review-card">
+            <div class="review-card__stars" aria-label={`ให้ ${r.stars} ดาว`}>
+              {Array.from({ length: r.stars }).map(() => <span aria-hidden="true">★</span>)}
+            </div>
+            <p class="review-card__text">"{r.text}"</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar" aria-hidden="true">
+                {r.name.charAt(2)}
+              </div>
+              <div>
+                <div class="review-card__name">{r.name}</div>
+                <div class="review-card__location">{r.location}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a class="btn btn--secondary" href="/review/">ดูรีวิวทั้งหมด →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: WHY US -->
+  <section class="why-section" aria-labelledby="why-title">
+    <div class="why-section__inner">
+      <div class="section__header">
+        <p class="section__eyebrow">ทำไมต้องเลือกเรา</p>
+        <h2 class="section__title" id="why-title">เราต่างจากคนอื่นอย่างไร</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-card__icon" aria-hidden="true">💰</span>
+          <h3>ให้ราคายุติธรรม</h3>
+          <p>ประเมินตามราคาตลาดจริง อ้างอิงราคาซื้อขายปัจจุบัน</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card__icon" aria-hidden="true">🤝</span>
+          <h3>ไม่กดราคา</h3>
+          <p>บอกราคาตรงๆ ไม่มีการต่อรองกดราคาหลังจากดูของแล้ว</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card__icon" aria-hidden="true">🏪</span>
+          <h3>มีหน้าร้านจริง</h3>
+          <p>บริษัทจดทะเบียนถูกต้อง มีที่อยู่จริงในอุบลราชธานี</p>
+        </div>
+        <div class="why-card">
+          <span class="why-card__icon" aria-hidden="true">⚡</span>
+          <h3>โอนเงินทันที</h3>
+          <p>ตกลงราคาแล้วโอนทันที ไม่รอ ไม่ถ่วง ปลอดภัย 100%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: BLOG -->
+  {latestPosts.length > 0 && (
+    <section class="home-blog-section" aria-labelledby="blog-title">
+      <div class="home-blog-section__inner">
+        <div class="home-blog-section__header">
+          <h2 id="blog-title">บทความ &amp; ความรู้กล้อง</h2>
           <a href="/blog/">ดูทั้งหมด →</a>
-        </header>
-        <BlogListing posts={latestBuyback} />
+        </div>
+        <div class="blog-grid">
+          {latestPosts.slice(0, 6).map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </div>
       </div>
     </section>
-    <ArticleGrid
-      articles={latestArticles}
-      title="ความรู้เรื่องกล้อง"
-      subtitle="เทคนิคเช็คสภาพและเปรียบเทียบรุ่นกล้องมือสอง"
-      showAllLink={false}
-    />
-  </div>
-</ContentLayout>
+  )}
+
+  <!-- SECTION 9: FINAL CTA -->
+  <section class="final-cta" aria-label="ส่งรูปประเมินราคา">
+    <div class="final-cta__inner">
+      <p class="final-cta__eyebrow">ประเมินฟรี · ไม่มีข้อผูกมัด</p>
+      <h2>มีกล้องไม่ได้ใช้?<br />ส่งรูปให้เราตีราคาได้ฟรี</h2>
+      <p class="final-cta__sub">
+        ตอบไว 10–30 นาที ราคาดี โอนทันที ไม่กดราคา
+      </p>
+      <div class="final-cta__actions">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path>
+          </svg>
+          ส่งรูปประเมินราคาใน LINE
+        </a>
+        <a class="btn btn--secondary btn--lg" href={CONTACT.phoneHref}>โทร 064-257-9353</a>
+      </div>
+    </div>
+  </section>
+
+  <HomeInteractions />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('estimate-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const camera = (document.getElementById('camera-model') as HTMLInputElement)?.value || '';
+    const acc = (document.getElementById('accessories') as HTMLInputElement)?.value || '';
+    const contact = (document.getElementById('contact-line') as HTMLInputElement)?.value || '';
+    const msg = encodeURIComponent(`สวัสดี ต้องการประเมินราคา\nรุ่น: ${camera}\nอุปกรณ์: ${acc}\nติดต่อ: ${contact}`);
+    window.open(`https://line.me/R/ti/p/@webuy?openExternalBrowser=1`, '_blank');
+  });
+</script>

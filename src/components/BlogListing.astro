@@ -1,6 +1,6 @@
 ---
 import BlogPostCard from './BlogPostCard.astro';
-import { BLOG_POSTS_PER_PAGE, type ArticleSummary } from '../lib/articles';
+import type { ArticleSummary } from '../lib/articles';
 
 interface Props {
   posts: ArticleSummary[];
@@ -13,36 +13,43 @@ const { posts, currentPage = 1, totalPages = 1 } = Astro.props;
 function pageHref(page: number): string {
   return page <= 1 ? '/blog/' : `/blog/page/${page}/`;
 }
+
+const pages = Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+  if (totalPages <= 5) return i + 1;
+  if (currentPage <= 3) return i + 1;
+  if (currentPage >= totalPages - 2) return totalPages - 4 + i;
+  return currentPage - 2 + i;
+});
 ---
 
-<section class="blog-listing">
-  <div class="blog-listing__grid">
+<section class="blog-listing" aria-label="รายการบทความ">
+  <div class="blog-grid">
     {posts.map((post) => (
       <BlogPostCard post={post} />
     ))}
   </div>
 
-  {
-    totalPages > 1 && (
-      <nav class="blog-pagination" aria-label="การแบ่งหน้าบทความ">
-        {
-          currentPage > 1 && (
-            <a class="blog-pagination__link" href={pageHref(currentPage - 1)}>
-              ← ก่อนหน้า
-            </a>
-          )
-        }
-        <span class="blog-pagination__status">
-          หน้า {currentPage} / {totalPages}
-        </span>
-        {
-          currentPage < totalPages && (
-            <a class="blog-pagination__link" href={pageHref(currentPage + 1)}>
-              ถัดไป →
-            </a>
-          )
-        }
-      </nav>
-    )
-  }
+  {totalPages > 1 && (
+    <nav class="pagination" aria-label="การแบ่งหน้าบทความ" style="margin-top:3rem;">
+      {currentPage > 1 ? (
+        <a href={pageHref(currentPage - 1)} aria-label="หน้าก่อนหน้า">‹</a>
+      ) : (
+        <span class="disabled" aria-disabled="true">‹</span>
+      )}
+
+      {pages.map((p) => (
+        p === currentPage ? (
+          <span class="current" aria-current="page">{p}</span>
+        ) : (
+          <a href={pageHref(p)} aria-label={`หน้า ${p}`}>{p}</a>
+        )
+      ))}
+
+      {currentPage < totalPages ? (
+        <a href={pageHref(currentPage + 1)} aria-label="หน้าถัดไป">›</a>
+      ) : (
+        <span class="disabled" aria-disabled="true">›</span>
+      )}
+    </nav>
+  )}
 </section>

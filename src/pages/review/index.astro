@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByPath } from '../../lib/content';
+import { CONTACT } from '../../config/site';
+
+const page = getPageByPath('/review/');
+if (!page) throw new Error('Missing /review/ content');
+
+const reviews = [
+  {
+    name: 'คุณกัญญารัตน์',
+    location: 'อุบลราชธานี',
+    camera: 'Leica M6',
+    text: 'ขาย Leica M6 ได้ราคาดีมาก ประเมินภายใน 15 นาที โอนเงินทันทีหลังตกลงราคา ไม่กดราคาเลย ประทับใจมากๆ บริการเป็นมืออาชีพ',
+    stars: 5,
+  },
+  {
+    name: 'คุณศิริพร',
+    location: 'กรุงเทพฯ',
+    camera: 'Fujifilm X-T4',
+    text: 'ส่ง EMS ขาย Fujifilm X-T4 พร้อมเลนส์ 2 ตัว ได้ราคาตรงตามที่ประเมิน ทำธุรกรรมเร็วมาก ปลอดภัยสบายใจ',
+    stars: 5,
+  },
+  {
+    name: 'คุณเอกชัย',
+    location: 'ขอนแก่น',
+    camera: 'Sony A7 III',
+    text: 'ตอบไวมาก ส่งรูปปุ๊บ รู้ราคาใน 10 นาที โอนเงินจริงใน 5 นาทีหลังส่งกล้อง บริการดีมากครับ แนะนำเลย',
+    stars: 5,
+  },
+  {
+    name: 'คุณมดดำ',
+    location: 'ชลบุรี',
+    camera: 'Canon 80D',
+    text: 'ไม่สะดวกโทร แต่แชท LINE ตอบเร็วมาก ขายกล้องได้ง่ายๆ ไม่ต้องเดินทางไปหน้าร้าน สะดวกมาก',
+    stars: 5,
+  },
+  {
+    name: 'คุณชัยณรงค์',
+    location: 'เชียงใหม่',
+    camera: 'Canon 90D',
+    text: 'ขาย Canon 90D พร้อมเลนส์ได้ราคาสูงกว่าที่คิดไว้ ทีมงานเป็นมืออาชีพ แนะนำให้คนรู้จักหลายคนแล้ว',
+    stars: 5,
+  },
+  {
+    name: 'คุณนภาพร',
+    location: 'นครราชสีมา',
+    camera: 'Nikon D750',
+    text: 'ครั้งแรกที่ขายกล้องออนไลน์ กังวลนิดหน่อยแต่พอได้ทำจริงก็ง่ายมาก ได้ราคาดีและรู้สึกปลอดภัยมาก',
+    stars: 5,
+  },
+  {
+    name: 'คุณธนพล',
+    location: 'สุราษฎร์ธานี',
+    camera: 'Fujifilm X-H2S',
+    text: 'ขายกล้องแบบ walk-in ที่หน้าร้าน สะดวกมาก ราคาตรงตามที่คุยกันไว้ทาง LINE ไม่มีการหลอกลวง',
+    stars: 5,
+  },
+  {
+    name: 'คุณพิมพ์ใจ',
+    location: 'อุดรธานี',
+    camera: 'Sony A6400',
+    text: 'ขาย Sony A6400 พร้อมเลนส์ kit ได้ราคาดีมาก ส่ง EMS แล้วได้รับเงินภายใน 2 ชั่วโมง ไวมากๆ',
+    stars: 5,
+  },
+  {
+    name: 'คุณวรรณา',
+    location: 'ร้อยเอ็ด',
+    camera: 'Olympus E-M10 III',
+    text: 'ประเมินราคาฟรี ไม่ต้องเสียค่าใช้จ่ายอะไรก่อนตัดสินใจ ราคาที่ได้ดีกว่าตลาดออนไลน์ด้วย',
+    stars: 5,
+  },
+];
+
+const galleryImages = [
+  { src: '/images/uploads/2025/06/LINE_NOTE_250618_7.webp', alt: 'ตัวอย่างการโอนเงิน' },
+  { src: '/images/uploads/2025/06/LINE_NOTE_250618_8.webp', alt: 'ตัวอย่างแชทประเมินราคา' },
+  { src: '/images/uploads/2025/06/LINE_NOTE_250618_9.webp', alt: 'รับซื้อกล้องมือสอง' },
+  { src: '/images/uploads/2025/06/LINE_NOTE_250618_10.webp', alt: 'ตัวอย่างงานรับซื้อ' },
+  { src: '/images/uploads/2025/06/LINE_NOTE_250618_11.webp', alt: 'ลูกค้าพอใจ' },
+  { src: '/images/uploads/2025/06/S__18694154.webp', alt: 'กล้องที่รับซื้อ' },
+];
+---
+
+<BaseLayout page={page} bodyClass="page-review">
+  <div class="inner-page">
+    <!-- Hero -->
+    <div class="review-hero">
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">รีวิวจากลูกค้า</p>
+      <h1>รีวิวจากลูกค้าจริง</h1>
+      <p>ลูกค้าที่ขายกล้องมือสองกับเราแล้วมากกว่า 1,000+ ราย</p>
+    </div>
+
+    <!-- Review grid -->
+    <section aria-labelledby="reviews-h2" style="margin-bottom:3rem;">
+      <h2 id="reviews-h2" class="sr-only">รีวิวทั้งหมด</h2>
+      <div class="review-page-grid">
+        {reviews.map((r) => (
+          <div class="review-card">
+            <div class="review-card__stars" aria-label={`${r.stars} ดาว`}>
+              {Array.from({ length: r.stars }).map(() => <span aria-hidden="true">★</span>)}
+            </div>
+            <p class="review-card__text">"{r.text}"</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar" aria-hidden="true">{r.name.charAt(2)}</div>
+              <div>
+                <div class="review-card__name">{r.name}</div>
+                <div class="review-card__location">{r.location} · {r.camera}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA after reviews -->
+    <div class="review-cta-banner">
+      <h2>พอใจอยากขายกล้อง?</h2>
+      <p>ส่งรูปมาประเมินราคาฟรี ตอบไว ได้ราคาดีเหมือนลูกค้าคนอื่น</p>
+      <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+        ส่งรูปประเมินราคาใน LINE
+      </a>
+    </div>
+
+    <!-- Gallery from real transactions -->
+    <section aria-labelledby="gallery-h2" style="margin:3rem 0 4rem;">
+      <h2 id="gallery-h2" style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">ตัวอย่างการรับซื้อจริง</h2>
+      <div class="gallery-grid">
+        {galleryImages.map((img) => (
+          <div class="gallery-item">
+            <img
+              src={img.src}
+              alt={img.alt}
+              width="400"
+              height="300"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Second CTA -->
+    <div class="review-cta-banner" style="margin-bottom:4rem;">
+      <h2>เริ่มขายกล้องได้เลยตอนนี้</h2>
+      <p>ส่งรูปกล้อง รับราคาฟรีภายใน 30 นาที</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          แชท LINE ประเมินราคา
+        </a>
+        <a class="btn btn--secondary btn--lg" href={CONTACT.phoneHref}>โทร 064-257-9353</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+  }
+</style>

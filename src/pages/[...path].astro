@@ -4,7 +4,7 @@ import { getAllRoutes, getPageByPath } from '../lib/content';
 import { pathToSlugParam } from '../lib/seo';
 
 export async function getStaticPaths() {
-  const skipPaths = new Set(['/blog/', '/category/article/']);
+  const skipPaths = new Set(['/blog/', '/category/article/', '/models/', '/process/', '/review/', '/about/']);
   const routes = getAllRoutes().filter(
     (route) => route.path !== '/' && !skipPaths.has(route.path),
   );

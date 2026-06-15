@@ -1,33 +1,46 @@
 ---
-import { type ArticleSummary } from '../lib/articles';
+import type { ArticleSummary } from '../lib/articles';
 
 interface Props {
   post: ArticleSummary;
 }
 
 const { post } = Astro.props;
+
+const categories = post.path.startsWith('/buy-camera') || post.path.includes('รับซื้อ') || post.path.includes('buy')
+  ? 'รับซื้อกล้อง'
+  : post.path.includes('compare') || post.path.includes('vs') || post.title?.includes('vs') || post.title?.includes('เปรียบ')
+  ? 'เปรียบเทียบรุ่น'
+  : 'ความรู้กล้อง';
+
+const displayTitle = post.title || '';
+const displayExcerpt = post.excerpt || '';
 ---
 
-<article class="blog-post-card">
-  <a class="blog-post-card__link" href={post.path}>
-    <div class="blog-post-card__media">
-      {post.image ? (
-        <img
-          src={post.image}
-          alt={post.imageAlt || post.title}
-          width="640"
-          height="336"
-          loading="lazy"
-          decoding="async"
-        />
-      ) : (
-        <div class="blog-post-card__media--placeholder" aria-hidden="true">📷</div>
-      )}
+<a class="blog-post-card" href={post.path} aria-label={displayTitle}>
+  {post.image && (
+    <div class="blog-post-card__img">
+      <img
+        src={post.image}
+        alt={displayTitle}
+        width="400"
+        height="225"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
-    <div class="blog-post-card__body">
-      <h2 class="blog-post-card__title">{post.title}</h2>
-      {post.excerpt && <p class="blog-post-card__excerpt">{post.excerpt}</p>}
+  )}
+  <div class="blog-post-card__body">
+    <span class="blog-post-card__category">{categories}</span>
+    <h3 class="blog-post-card__title">{displayTitle}</h3>
+    {displayExcerpt && (
+      <p class="blog-post-card__excerpt">{displayExcerpt}</p>
+    )}
+    <div class="blog-post-card__meta">
+      <span class="blog-post-card__date">
+        {post.datePublished ? new Date(post.datePublished).toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
+      </span>
       <span class="blog-post-card__more">อ่านต่อ →</span>
     </div>
-  </a>
-</article>
+  </div>
+</a>

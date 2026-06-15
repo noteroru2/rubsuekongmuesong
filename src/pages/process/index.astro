@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByPath } from '../../lib/content';
+import { CONTACT } from '../../config/site';
+
+const page = getPageByPath('/process/');
+if (!page) throw new Error('Missing /process/ content');
+---
+
+<BaseLayout page={page} bodyClass="page-process">
+  <div class="inner-page">
+    <!-- Hero -->
+    <div class="process-hero">
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">ขั้นตอนการขาย</p>
+      <h1>ขั้นตอนการขายกล้องมือสอง</h1>
+      <p>ง่าย รวดเร็ว ปลอดภัย ไม่ต้องเดินทางออกจากบ้าน</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.5rem;">
+        <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+          เริ่มประเมินราคาฟรี
+        </a>
+        <a class="btn btn--secondary btn--lg" href={CONTACT.phoneHref}>โทร 064-257-9353</a>
+      </div>
+    </div>
+
+    <!-- 3 Steps -->
+    <section aria-labelledby="steps-title" style="margin-bottom:4rem;">
+      <h2 id="steps-title" style="font-size:1.4rem;font-weight:800;margin-bottom:1.75rem;text-align:center;">ขายกล้องได้ใน 3 ขั้นตอน</h2>
+      <div class="process-steps-grid">
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">1</div>
+          <h3>ส่งรูป + รุ่นกล้อง</h3>
+          <p>ถ่ายรูปกล้องทุกด้าน ด้านหน้า ด้านหลัง จอ และอุปกรณ์ที่มี ส่งผ่าน LINE @webuy</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">2</div>
+          <h3>รับราคาประเมิน</h3>
+          <p>เจ้าหน้าที่ตอบกลับภายใน 10–30 นาที ราคายุติธรรม อ้างอิงตลาดจริง</p>
+        </div>
+        <div class="step-card">
+          <div class="step-card__num" aria-hidden="true">3</div>
+          <h3>รับเงินทันที</h3>
+          <p>ส่ง EMS หรือนัดรับถึงบ้าน ตรวจสอบแล้วโอนเงินทันที ไม่ต้องรอ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklists -->
+    <section aria-label="ข้อมูลสำคัญ" style="margin-bottom:4rem;">
+      <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:1.75rem;text-align:center;">ข้อมูลที่ควรเตรียม</h2>
+      <div class="process-checklists">
+        <div class="checklist-card">
+          <h3>ข้อมูลที่ควรเตรียม</h3>
+          <ul>
+            <li>รูปกล้องด้านหน้า ด้านหลัง ด้านข้าง</li>
+            <li>รูปจอภาพ (เปิดกล้องขึ้นมา)</li>
+            <li>รูป shutter count (ถ้าทำได้)</li>
+            <li>รายการอุปกรณ์ที่มี (กล่อง ชาร์จ เลนส์ ฯลฯ)</li>
+            <li>รุ่นและซีเรียลนัมเบอร์ (ถ้ามี)</li>
+            <li>เบอร์ติดต่อหรือ LINE ID</li>
+          </ul>
+        </div>
+        <div class="checklist-card">
+          <h3>เราตรวจอะไรบ้าง</h3>
+          <ul>
+            <li>สภาพภายนอก รอยขีดข่วน บุบ</li>
+            <li>ฟังก์ชันกล้องทำงานปกติ</li>
+            <li>จำนวน shutter count</li>
+            <li>สภาพเซนเซอร์ ฝุ่น ฝ้า รา</li>
+            <li>สภาพเลนส์ (ถ้ามี)</li>
+            <li>อุปกรณ์เสริมครบชุด</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Price guide -->
+    <section aria-labelledby="price-title" class="price-guide">
+      <h2 id="price-title">ปัจจัยที่กำหนดราคา</h2>
+      <div style="overflow-x:auto;">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>ปัจจัย</th>
+              <th>ผลต่อราคา</th>
+              <th>หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>สภาพภายนอก</td>
+              <td>สูงมาก</td>
+              <td>ไม่มีรอย ราคาดีกว่า</td>
+            </tr>
+            <tr>
+              <td>Shutter Count</td>
+              <td>สูง</td>
+              <td>ยิ่งน้อย ยิ่งดี</td>
+            </tr>
+            <tr>
+              <td>อุปกรณ์ครบชุด</td>
+              <td>ปานกลาง</td>
+              <td>กล่อง ชาร์จ สายคล้อง</td>
+            </tr>
+            <tr>
+              <td>รุ่น / ความนิยม</td>
+              <td>สูงมาก</td>
+              <td>รุ่นใหม่ ขายง่าย ราคาดี</td>
+            </tr>
+            <tr>
+              <td>สภาพเซนเซอร์</td>
+              <td>สูง</td>
+              <td>ฝุ่น รา กระทบราคา</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq-title" style="margin:3rem 0;">
+      <h2 id="faq-title" style="font-size:1.3rem;font-weight:800;margin-bottom:1.25rem;">คำถามที่พบบ่อย</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>ต้องเดินทางมาหน้าร้านไหม?</summary>
+          <p>ไม่จำเป็น สามารถส่ง EMS มาให้เราได้เลย หรือถ้าอยู่ในอุบลราชธานีจะนัดรับถึงที่ก็ได้ ไม่มีค่าใช้จ่ายเพิ่ม</p>
+        </details>
+        <details class="faq-item">
+          <summary>ได้รับเงินเมื่อไหร่?</summary>
+          <p>หลังจากเราตรวจสอบกล้องเสร็จและตกลงราคากัน จะโอนเงินทันทีภายใน 5–15 นาที ผ่านพร้อมเพย์หรือบัญชีธนาคาร</p>
+        </details>
+        <details class="faq-item">
+          <summary>ราคาที่ประเมินออนไลน์เป็นราคาจริงไหม?</summary>
+          <p>ราคาที่แจ้งทาง LINE เป็นราคาเบื้องต้น อาจปรับเล็กน้อยหลังตรวจสอบสภาพจริง แต่เราไม่กดราคา ถ้าตกลงราคาแล้วเราไม่เปลี่ยน</p>
+        </details>
+        <details class="faq-item">
+          <summary>รับซื้อกล้องที่ชำรุดหรือซ่อมมาแล้วไหม?</summary>
+          <p>รับซื้อได้ แต่ราคาจะต่ำกว่าปกติตามสภาพ กรุณาแจ้งก่อนส่งรูปเพื่อประเมินราคาที่ถูกต้อง</p>
+        </details>
+        <details class="faq-item">
+          <summary>ซื้อเลนส์มือสองด้วยไหม?</summary>
+          <p>รับซื้อเลนส์ทุกแบรนด์ ทุกรุ่น ส่งรูปมาประเมินได้เลยทาง LINE</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="review-cta-banner" style="margin-bottom:4rem;">
+      <h2>พร้อมขายกล้องแล้ว?</h2>
+      <p>ส่งรูปกล้องมาประเมินฟรี ตอบไว ไม่มีข้อผูกมัด</p>
+      <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
+        เริ่มประเมินราคาใน LINE
+      </a>
+    </div>
+  </div>
+</BaseLayout>
