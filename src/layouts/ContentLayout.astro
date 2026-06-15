@@ -1,6 +1,12 @@
 ---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ContactCta from '../components/ContactCta.astro';
+import HomeInteractions from '../components/HomeInteractions.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import SellStepsStrip from '../components/SellStepsStrip.astro';
+import TrustBar from '../components/TrustBar.astro';
 import BaseLayout from './BaseLayout.astro';
+import { buildBreadcrumbItems } from '../lib/breadcrumbs';
 import { fixWordPressHtml } from '../lib/fixHtml';
 import type { PageRecord } from '../lib/types';
 
@@ -10,32 +16,47 @@ interface Props {
 
 const { page } = Astro.props;
 const isHomepage = page.pageType === 'homepage';
-const isBuybackArea =
-  page.pageType === 'location' && page.path.startsWith('/รับซื้อกล้อง/');
+const isBuybackArea = page.pageType === 'location';
 const bodyHtml = fixWordPressHtml(page.bodyHtml || '');
 const bodyHasH1 = /<h1[\s>]/i.test(bodyHtml);
 const hasKadenceLayout = /kb-row-layout|wp-block-kadence/i.test(bodyHtml);
 const isArticlePage = !isHomepage && !hasKadenceLayout;
 const showArticleHero = isArticlePage && page.seo.h1 && !bodyHasH1;
+const breadcrumbs = isArticlePage ? buildBreadcrumbItems(page) : [];
 const bodyClass = isHomepage
   ? 'page-home'
-  : isBuybackArea || isArticlePage
-    ? 'page-location'
+  : isArticlePage
+    ? isBuybackArea
+      ? 'page-location'
+      : 'page-article'
+    : '';
+const heroDescription =
+  isArticlePage && page.seo.metaDescription
+    ? page.seo.metaDescription.replace(/\s*\.\.\.\s*$/, '').trim()
     : '';
 ---
 
 <BaseLayout page={page} bodyClass={bodyClass}>
   {
-    showArticleHero && (
-      <div class="location-hero">
-        {
-          isBuybackArea && <p class="location-hero__label">รับซื้อกล้อง</p>
-        }
-        <h1 class="location-hero__title">{page.seo.h1}</h1>
+    isArticlePage && (
+      <div class="article-landing">
+        <div class="article-landing__top">
+          <Breadcrumbs items={breadcrumbs} />
+          {
+            showArticleHero && (
+              <div class="location-hero">
+                {isBuybackArea && <p class="location-hero__label">รับซื้อกล้องมือสอง</p>}
+                <h1 class="location-hero__title">{page.seo.h1}</h1>
+                {heroDescription && <p class="location-hero__desc">{heroDescription}</p>}
+              </div>
+            )
+          }
+          <TrustBar />
+          <ContactCta />
+        </div>
       </div>
     )
   }
-  {isArticlePage && <ContactCta />}
   <article
     class:list={[
       'entry',
@@ -46,7 +67,16 @@ const bodyClass = isHomepage
       class:list={['entry-content', 'wp-content', isArticlePage && 'content-article']}
       set:html={bodyHtml}
     />
-    {isArticlePage && <ContactCta compact />}
   </article>
+  {
+    isArticlePage && (
+      <div class="article-landing__bottom">
+        <SellStepsStrip />
+        <ContactCta compact />
+        <RelatedPosts path={page.path} />
+      </div>
+    )
+  }
+  {isHomepage && <HomeInteractions />}
   <slot name="after" />
 </BaseLayout>

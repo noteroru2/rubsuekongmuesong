@@ -1,0 +1,38 @@
+---
+import { CONTACT, LINE_ID } from '../config/site';
+
+const steps = [
+  { num: '1', title: 'ส่งรูป + รุ่นกล้อง', desc: `แชท Line ${LINE_ID}` },
+  { num: '2', title: 'รับราคาประเมิน', desc: 'ตอบกลับภายใน 10–30 นาที' },
+  { num: '3', title: 'รับเงินทันที', desc: 'นัดรับถึงบ้าน หรือส่ง EMS' },
+] as const;
+---
+
+<section class="sell-steps" aria-label="ขั้นตอนการขายกล้อง">
+  <div class="sell-steps__inner">
+    <h2 class="sell-steps__heading">ขายกล้องง่ายๆ ใน 3 ขั้นตอน</h2>
+    <ol class="sell-steps__list">
+      {
+        steps.map((step) => (
+          <li class="sell-steps__item">
+            <span class="sell-steps__num" aria-hidden="true">
+              {step.num}
+            </span>
+            <div class="sell-steps__copy">
+              <strong>{step.title}</strong>
+              <span>{step.desc}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <a
+      class="btn btn--line sell-steps__cta"
+      href={CONTACT.lineCta}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      เริ่มประเมินราคาฟรี
+    </a>
+  </div>
+</section>

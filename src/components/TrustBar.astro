@@ -1,0 +1,26 @@
+---
+const items = [
+  { icon: '💰', title: 'ราคายุติธรรม', desc: 'ประเมินตามตลาดจริง ไม่กดราคา' },
+  { icon: '⚡', title: 'ตอบไว 10–30 นาที', desc: 'เจ้าหน้าที่ติดต่อกลับเร็ว' },
+  { icon: '🛡️', title: 'ปลอดภัย มีตัวตน', desc: 'มีหน้าร้าน รีวิวจริงจากลูกค้า' },
+  { icon: '🚚', title: 'รับถึงบ้าน / EMS', desc: 'ทั่วประเทศ โอนทันทีหลังตรวจ' },
+] as const;
+---
+
+<div class="trust-bar">
+  <ul class="trust-bar__list">
+    {
+      items.map((item) => (
+        <li class="trust-bar__item">
+          <span class="trust-bar__icon" aria-hidden="true">
+            {item.icon}
+          </span>
+          <div class="trust-bar__copy">
+            <strong class="trust-bar__title">{item.title}</strong>
+            <span class="trust-bar__desc">{item.desc}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>

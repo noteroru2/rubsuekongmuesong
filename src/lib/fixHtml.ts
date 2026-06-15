@@ -36,5 +36,10 @@ export function fixWordPressHtml(html: string): string {
     return next;
   });
 
+  // Thai UI strings from WordPress theme
+  out = out.replace(/Read More\s*→/gi, 'อ่านต่อ →');
+  out = out.replace(/>\s*Read More\s*</gi, '>อ่านต่อ<');
+  out = out.replace(/Continue Reading/gi, 'อ่านต่อ');
+
   return out;
 }

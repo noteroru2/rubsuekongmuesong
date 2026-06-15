@@ -17,11 +17,13 @@
     "redirects": "node scripts/generate-legacy-redirects.mjs",
     "images": "node scripts/migrate-images.mjs",
     "blog:index": "node scripts/generate-blog-index.mjs",
+    "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@splidejs/splide": "^4.1.4",
     "astro": "^6.4.6",
     "cheerio": "^1.2.0",
     "sharp": "^0.34.2"

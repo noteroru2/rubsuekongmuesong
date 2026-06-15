@@ -15,8 +15,8 @@ const page: PageRecord = crawled
       ...crawled,
       seo: {
         ...crawled.seo,
-        h1: 'Blog',
-        title: `Blog - ${SITE_NAME}`,
+        h1: 'บทความรับซื้อกล้องมือสอง',
+        title: `บทความรับซื้อกล้องมือสอง - ${SITE_NAME}`,
       },
     }
   : {
@@ -25,10 +25,10 @@ const page: PageRecord = crawled
       path: '/blog/',
       pageType: 'archive',
       seo: {
-        title: `Blog - ${SITE_NAME}`,
+        title: `บทความรับซื้อกล้องมือสอง - ${SITE_NAME}`,
         metaDescription: 'บทความรับซื้อกล้องมือสอง ขายกล้องมือสอง ทุกจังหวัด',
         canonical: `${SITE_URL}/blog/`,
-        h1: 'Blog',
+        h1: 'บทความรับซื้อกล้องมือสอง',
       },
       bodyHtml: '',
     };
@@ -36,7 +36,12 @@ const page: PageRecord = crawled
 
 <BaseLayout page={page} bodyClass="page-blog">
   <article class="entry blog-archive">
-    <h1 class="blog-archive__title screen-reader-text">Blog</h1>
+    <header class="blog-archive__hero">
+      <h1 class="blog-archive__title">บทความรับซื้อกล้องมือสอง</h1>
+      <p class="blog-archive__intro">
+        รวมบทความรับซื้อกล้อง ขายกล้องมือสอง และความรู้เรื่องกล้องทุกจังหวัด — อัปเดตสม่ำเสมอ
+      </p>
+    </header>
     <BlogListing posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </article>
 </BaseLayout>

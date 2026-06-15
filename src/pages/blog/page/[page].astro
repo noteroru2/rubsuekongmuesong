@@ -25,18 +25,19 @@ const { pageNum } = Astro.props;
 const allPosts = getBlogPosts();
 const { posts, currentPage, totalPages } = paginateBlogPosts(allPosts, pageNum);
 const crawled = getPageByPath('/blog/');
+const blogTitle = 'บทความรับซื้อกล้องมือสอง';
+const pageTitle =
+  pageNum > 1 ? `${blogTitle} — หน้า ${pageNum} - ${SITE_NAME}` : `${blogTitle} - ${SITE_NAME}`;
 
 const page: PageRecord = crawled
   ? {
       ...crawled,
       seo: {
         ...crawled.seo,
-        h1: 'Blog',
-        title: pageNum > 1 ? `Blog — หน้า ${pageNum} - ${SITE_NAME}` : `Blog - ${SITE_NAME}`,
+        h1: blogTitle,
+        title: pageTitle,
         canonical:
-          pageNum > 1
-            ? `${SITE_URL}/blog/page/${pageNum}/`
-            : `${SITE_URL}/blog/`,
+          pageNum > 1 ? `${SITE_URL}/blog/page/${pageNum}/` : `${SITE_URL}/blog/`,
       },
     }
   : {
@@ -45,10 +46,10 @@ const page: PageRecord = crawled
       path: pageNum > 1 ? `/blog/page/${pageNum}/` : '/blog/',
       pageType: 'archive',
       seo: {
-        title: pageNum > 1 ? `Blog — หน้า ${pageNum} - ${SITE_NAME}` : `Blog - ${SITE_NAME}`,
+        title: pageTitle,
         metaDescription: 'บทความรับซื้อกล้องมือสอง ขายกล้องมือสอง ทุกจังหวัด',
         canonical: pageNum > 1 ? `${SITE_URL}/blog/page/${pageNum}/` : `${SITE_URL}/blog/`,
-        h1: 'Blog',
+        h1: blogTitle,
       },
       bodyHtml: '',
     };
@@ -56,7 +57,12 @@ const page: PageRecord = crawled
 
 <BaseLayout page={page} bodyClass="page-blog">
   <article class="entry blog-archive">
-    {currentPage === 1 && <h1 class="blog-archive__title screen-reader-text">Blog</h1>}
+    <header class="blog-archive__hero">
+      <h1 class="blog-archive__title">{blogTitle}</h1>
+      <p class="blog-archive__intro">
+        หน้า {currentPage} จาก {totalPages} — รวมบทความรับซื้อกล้องและขายกล้องมือสองทั่วประเทศ
+      </p>
+    </header>
     <BlogListing posts={posts} currentPage={currentPage} totalPages={totalPages} />
   </article>
 </BaseLayout>

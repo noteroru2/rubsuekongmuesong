@@ -30,7 +30,7 @@ export const NAV_LINKS = [
   { href: '/models/', label: 'รุ่นที่รับซื้อ' },
   { href: '/process/', label: 'ขั้นตอนการขาย' },
   { href: '/review/', label: 'รีวิว' },
-  { href: '/blog/', label: 'Blog' },
+  { href: '/blog/', label: 'บทความ' },
   { href: '/about/', label: 'เกี่ยวกับเรา' },
 ] as const;
 

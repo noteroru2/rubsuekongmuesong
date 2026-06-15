@@ -1,0 +1,31 @@
+---
+interface Props {
+  items: Array<{ label: string; href: string }>;
+}
+
+const { items } = Astro.props;
+if (items.length < 2) return null;
+---
+
+<nav class="breadcrumbs" aria-label="เส้นทางนำทาง">
+  <ol class="breadcrumbs__list">
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li class="breadcrumbs__item">
+            {isLast ? (
+              <span class="breadcrumbs__current" aria-current="page">
+                {item.label}
+              </span>
+            ) : (
+              <a class="breadcrumbs__link" href={item.href}>
+                {item.label}
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
