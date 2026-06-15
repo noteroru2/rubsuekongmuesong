@@ -1,0 +1,85 @@
+---
+import type { ShutterCountEnhancement } from '../../lib/moneyPages/types';
+import { HUB_PATH } from '../../lib/moneyPages/shared';
+import QuickAnswerBox from './QuickAnswerBox.astro';
+import FAQSection from './FAQSection.astro';
+import LineCTA from './LineCTA.astro';
+import RelatedBrandLinks from './RelatedBrandLinks.astro';
+
+interface Props {
+  data: ShutterCountEnhancement;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="money-page money-page--shutter">
+  <QuickAnswerBox answer={data.quickAnswer} />
+
+  <section class="money-section" aria-labelledby="shutter-steps-heading">
+    <h2 id="shutter-steps-heading" class="money-section__title">
+      วิธีเช็ค Shutter Count แยกตามแบรนด์
+    </h2>
+    <div class="shutter-brand-steps">
+      {
+        data.brandSteps.map((group) => (
+          <div class="shutter-brand-card">
+            <h3>{group.brand}</h3>
+            <ol>
+              {group.steps.map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="money-section" aria-labelledby="shutter-levels-heading">
+    <h2 id="shutter-levels-heading" class="money-section__title">
+      ระดับ Shutter Count ต่ำ / กลาง / สูง
+    </h2>
+    <div class="shutter-levels-table-wrap">
+      <table class="shutter-levels-table">
+        <thead>
+          <tr>
+            <th>ระดับ</th>
+            <th>ช่วงค่า</th>
+            <th>ความหมาย</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.shutterLevels.map((row) => (
+              <tr>
+                <td><strong>{row.level}</strong></td>
+                <td>{row.range}</td>
+                <td>{row.meaning}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="shutter-sell-cta">
+    <h2>เช็คแล้วอยากขายกล้อง?</h2>
+    <p>ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาประเมินราคาฟรี ไม่มีค่าธรรมเนียม</p>
+    <LineCTA title="ส่งรูปประเมินราคาฟรี" />
+  </aside>
+
+  <FAQSection faqs={data.faqs} />
+
+  <nav class="money-section related-links" aria-labelledby="shutter-related-heading">
+    <h2 id="shutter-related-heading" class="money-section__title">ลิงก์ที่เกี่ยวข้อง</h2>
+    <ul class="related-links__list">
+      <li><a href={HUB_PATH}>รับซื้อกล้องทุกจังหวัด</a></li>
+      <li><a href="/models/">รุ่นกล้องที่รับซื้อ</a></li>
+      <li><a href="/process/">ขั้นตอนการขายกล้อง</a></li>
+    </ul>
+  </nav>
+
+  <RelatedBrandLinks />
+</div>

@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuickAnswerBox from '../../components/money/QuickAnswerBox.astro';
+import FAQSection from '../../components/money/FAQSection.astro';
+import LineCTA from '../../components/money/LineCTA.astro';
+import RelatedProvinceLinks from '../../components/money/RelatedProvinceLinks.astro';
 import { getPageByPath } from '../../lib/content';
+import { BRAND_MONEY_PAGE_MAP } from '../../lib/moneyPages';
 import { CONTACT } from '../../config/site';
 
 const page = getPageByPath('/models/');
@@ -130,12 +135,15 @@ const brands = [
     </nav>
 
     <!-- Brand sections -->
-    {brands.map((brand) => (
-      <section class="brand-section" id={brand.id} aria-labelledby={`brand-${brand.id}`}>
+    {brands.map((brand) => {
+      const hub = BRAND_MONEY_PAGE_MAP.get(brand.id);
+      return (
+      <section class="brand-section brand-section--hub" id={brand.id} aria-labelledby={`brand-${brand.id}`}>
         <div class="brand-section__header">
-          <h2 class="brand-section__name" id={`brand-${brand.id}`}>{brand.name}</h2>
+          <h2 class="brand-section__name" id={`brand-${brand.id}`}>รับซื้อกล้อง {brand.name} มือสอง</h2>
           {brand.badge && <span class="brand-section__badge">{brand.badge}</span>}
         </div>
+        {hub && <QuickAnswerBox answer={hub.quickAnswer} />}
         <div class="brand-section__body">
           <div class="brand-section__img">
             <img
@@ -150,20 +158,42 @@ const brands = [
           <div class="brand-section__models">
             <h3>รุ่นที่รับซื้อ</h3>
             <ul>
-              {brand.models.map((m) => <li>{m}</li>)}
+              {(hub?.popularModels ?? brand.models).map((m) => <li>{m}</li>)}
             </ul>
-            <a
-              class="btn btn--primary"
-              href={CONTACT.lineCta}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ส่งรูปประเมินราคา {brand.name}
-            </a>
+            {hub && (
+              <>
+                <h3>รุ่นยอดนิยมที่ขายง่าย</h3>
+                <ul class="brand-easy-sell">
+                  {hub.easySellModels.map((m) => <li>{m}</li>)}
+                </ul>
+                <h3>อุปกรณ์ที่ควรถ่ายรูปส่ง</h3>
+                <ul class="brand-photo-checklist">
+                  {hub.photoChecklist.map((item) => <li>{item}</li>)}
+                </ul>
+              </>
+            )}
+            <LineCTA title={`ส่งรูปประเมินราคา ${brand.name}`} compact />
           </div>
         </div>
+        {hub && (
+          <div class="brand-section__extras">
+            <section class="money-section price-factors" aria-label={`ปัจจัยราคา ${brand.name}`}>
+              <h3 class="money-section__title">ปัจจัยที่มีผลต่อราคา {brand.name}</h3>
+              <ul class="price-factors__list">
+                {hub.priceFactors.map((f) => (
+                  <li class="price-factors__item">
+                    <strong>{f.title}</strong>
+                    <p>{f.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <FAQSection faqs={hub.faqs} heading={`คำถามเกี่ยวกับ ${brand.name}`} />
+            <RelatedProvinceLinks provinces={hub.topProvinces} heading="รับซื้อกล้องตามจังหวัด" />
+          </div>
+        )}
       </section>
-    ))}
+    )})}
 
     <!-- Final CTA -->
     <div class="review-cta-banner" style="margin-bottom:4rem;">

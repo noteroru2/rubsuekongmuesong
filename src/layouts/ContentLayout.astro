@@ -5,9 +5,19 @@ import HomeInteractions from '../components/HomeInteractions.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import SellStepsStrip from '../components/SellStepsStrip.astro';
 import TrustBar from '../components/TrustBar.astro';
+import ArticleMoneyEnhancement from '../components/money/ArticleMoneyEnhancement.astro';
+import CategoryHubEnhancement from '../components/money/CategoryHubEnhancement.astro';
+import ProvinceMoneyPage from '../components/money/ProvinceMoneyPage.astro';
+import ShutterCountEnhancement from '../components/money/ShutterCountEnhancement.astro';
 import BaseLayout from './BaseLayout.astro';
 import { buildBreadcrumbItems } from '../lib/breadcrumbs';
-import { fixWordPressHtml } from '../lib/fixHtml';
+import { fixWordPressHtml, stripFirstH1 } from '../lib/fixHtml';
+import {
+  getProvinceMoneyPage,
+  getShutterCountEnhancement,
+  getArticleMoneyEnhancement,
+  getCategoryHubEnhancement,
+} from '../lib/moneyPages';
 import type { PageRecord } from '../lib/types';
 
 interface Props {
@@ -17,42 +27,99 @@ interface Props {
 const { page } = Astro.props;
 const isHomepage = page.pageType === 'homepage';
 const isBuybackArea = page.pageType === 'location';
-const bodyHtml = fixWordPressHtml(page.bodyHtml || '');
+const isCategoryPage = page.pageType === 'category';
+const provinceMoney = getProvinceMoneyPage(page.path);
+const shutterEnhancement = getShutterCountEnhancement(page.path);
+const articleEnhancement = getArticleMoneyEnhancement(page.path);
+const categoryHub = getCategoryHubEnhancement(page.path);
+const isMoneyProvince = Boolean(provinceMoney);
+const isMoneyShutter = Boolean(shutterEnhancement);
+const isMoneyArticleEnh = Boolean(articleEnhancement);
+const isCategoryHub = Boolean(categoryHub);
+const hasMoneyEnhancement = isMoneyProvince || isMoneyShutter || isMoneyArticleEnh || isCategoryHub;
+const rawBodyHtml = fixWordPressHtml(page.bodyHtml || '');
+const bodyHtml = hasMoneyEnhancement && !isCategoryHub ? stripFirstH1(rawBodyHtml) : rawBodyHtml;
 const bodyHasH1 = /<h1[\s>]/i.test(bodyHtml);
-const hasKadenceLayout = /kb-row-layout|wp-block-kadence/i.test(bodyHtml);
-const isArticlePage = !isHomepage && !hasKadenceLayout;
-const showArticleHero = isArticlePage && page.seo.h1 && !bodyHasH1;
-const breadcrumbs = isArticlePage ? buildBreadcrumbItems(page) : [];
+const hasKadenceLayout = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
+const isArticlePage = !isHomepage && !hasKadenceLayout && !isCategoryPage;
+const showArticleHero =
+  (isArticlePage || isMoneyArticleEnh) &&
+  page.seo.h1 &&
+  !bodyHasH1 &&
+  !isMoneyProvince &&
+  !isMoneyShutter &&
+  !isCategoryHub;
+const breadcrumbs =
+  isArticlePage || isMoneyArticleEnh || isCategoryHub ? buildBreadcrumbItems(page) : [];
 const bodyClass = isHomepage
   ? 'page-home'
-  : isArticlePage
-    ? isBuybackArea
-      ? 'page-location'
-      : 'page-article'
-    : '';
+  : isCategoryHub
+    ? 'page-category-hub'
+    : isArticlePage
+      ? isBuybackArea
+        ? 'page-location'
+        : 'page-article'
+      : '';
 const heroDescription =
-  isArticlePage && page.seo.metaDescription
+  isArticlePage && page.seo.metaDescription && !isMoneyProvince
     ? page.seo.metaDescription.replace(/\s*\.\.\.\s*$/, '').trim()
     : '';
 ---
 
 <BaseLayout page={page} bodyClass={bodyClass}>
   {
-    isArticlePage && (
+    isCategoryHub && categoryHub && (
+      <div class="article-landing">
+        <div class="article-landing__top">
+          <Breadcrumbs items={breadcrumbs} />
+          <CategoryHubEnhancement data={categoryHub} />
+        </div>
+      </div>
+    )
+  }
+  {
+    isArticlePage && !isMoneyShutter && (
       <div class="article-landing">
         <div class="article-landing__top">
           <Breadcrumbs items={breadcrumbs} />
           {
+            isMoneyProvince && provinceMoney && (
+              <ProvinceMoneyPage data={provinceMoney} h1={page.seo.h1 || ''} />
+            )
+          }
+          {
             showArticleHero && (
               <div class="location-hero">
                 {isBuybackArea && <p class="location-hero__label">รับซื้อกล้องมือสอง</p>}
+                {!isBuybackArea && isMoneyArticleEnh && (
+                  <p class="location-hero__label">บทความ</p>
+                )}
                 <h1 class="location-hero__title">{page.seo.h1}</h1>
                 {heroDescription && <p class="location-hero__desc">{heroDescription}</p>}
               </div>
             )
           }
-          <TrustBar />
-          <ContactCta />
+          {
+            !isMoneyProvince && !isMoneyArticleEnh && (
+              <>
+                <TrustBar />
+                <ContactCta />
+              </>
+            )
+          }
+        </div>
+      </div>
+    )
+  }
+  {
+    isMoneyShutter && shutterEnhancement && (
+      <div class="article-landing">
+        <div class="article-landing__top">
+          <Breadcrumbs items={breadcrumbs} />
+          <div class="location-hero">
+            <p class="location-hero__label">บทความ</p>
+            <h1 class="location-hero__title">{page.seo.h1}</h1>
+          </div>
         </div>
       </div>
     )
@@ -60,19 +127,51 @@ const heroDescription =
   <article
     class:list={[
       'entry',
-      isHomepage ? 'entry--home' : isArticlePage ? 'entry--article' : 'content-wrap',
+      isHomepage ? 'entry--home' : isArticlePage || isCategoryHub ? 'entry--article' : 'content-wrap',
+      hasMoneyEnhancement && 'entry--money',
     ]}
   >
-    <div
-      class:list={['entry-content', 'wp-content', isArticlePage && 'content-article']}
-      set:html={bodyHtml}
-    />
+    {
+      isMoneyShutter && shutterEnhancement && (
+        <ShutterCountEnhancement data={shutterEnhancement} />
+      )
+    }
+    {
+      isMoneyArticleEnh && articleEnhancement && (
+        <ArticleMoneyEnhancement data={articleEnhancement} />
+      )
+    }
+    {
+      !isCategoryHub && (
+        <div
+          class:list={[
+            'entry-content',
+            'wp-content',
+            isArticlePage && 'content-article',
+            hasMoneyEnhancement && 'entry-content--legacy',
+          ]}
+          set:html={bodyHtml}
+        />
+      )
+    }
+    {
+      isCategoryHub && bodyHtml && (
+        <div class="entry-content wp-content entry-content--legacy category-hub-archive" set:html={bodyHtml} />
+      )
+    }
   </article>
   {
-    isArticlePage && (
+    isArticlePage && !isMoneyProvince && !isMoneyArticleEnh && !isMoneyShutter && (
       <div class="article-landing__bottom">
         <SellStepsStrip />
         <ContactCta compact />
+        <RelatedPosts path={page.path} />
+      </div>
+    )
+  }
+  {
+    (isMoneyProvince || isMoneyArticleEnh || isMoneyShutter) && (
+      <div class="article-landing__bottom">
         <RelatedPosts path={page.path} />
       </div>
     )

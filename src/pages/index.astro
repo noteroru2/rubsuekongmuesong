@@ -4,6 +4,7 @@ import BlogPostCard from '../components/BlogPostCard.astro';
 import HomeInteractions from '../components/HomeInteractions.astro';
 import { getBlogPosts } from '../lib/articles';
 import { getHomePage } from '../lib/content';
+import HomeProvinceLinks from '../components/money/HomeProvinceLinks.astro';
 import { CONTACT, LINE_ID } from '../config/site';
 
 const page = getHomePage();
@@ -67,6 +68,13 @@ const reviews = [
           </a>
           <a class="btn btn--secondary btn--lg" href="/models/">ดูรุ่นที่รับซื้อ</a>
         </div>
+        <nav class="hero__links" aria-label="ลิงก์ที่เกี่ยวข้อง">
+          <a href="/models/">รุ่นที่รับซื้อทุกแบรนด์</a>
+          <span aria-hidden="true">·</span>
+          <a href="/article/shutter-count/">เช็ค Shutter Count ก่อนขาย</a>
+          <span aria-hidden="true">·</span>
+          <a href="/category/รับซื้อกล้อง/">รับซื้อตามจังหวัด</a>
+        </nav>
         <div class="hero__stats">
           <div class="hero__stat">
             <strong>1,000+</strong>
@@ -99,6 +107,9 @@ const reviews = [
       </div>
     </div>
   </section>
+
+  <!-- ─── TOP PROVINCES ─── -->
+  <HomeProvinceLinks />
 
   <!-- ─── QUICK CONTACT ─── -->
   <section class="quick-contact" aria-label="ติดต่อประเมินราคา">

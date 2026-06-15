@@ -1,0 +1,45 @@
+---
+import type { BrandModels } from '../../lib/moneyPages/types';
+
+interface Props {
+  brands?: string[];
+  popularModels: BrandModels[];
+  modelsPath?: string;
+}
+
+const { brands = [], popularModels, modelsPath = '/models/' } = Astro.props;
+---
+
+<section class="money-section brand-model-grid" aria-labelledby="brand-model-heading">
+  <h2 id="brand-model-heading" class="money-section__title">แบรนด์และรุ่นที่รับซื้อ</h2>
+  {
+    brands.length > 0 && (
+      <div class="brand-model-grid__brands">
+        {brands.map((brand) => (
+          <a class="brand-chip" href={`${modelsPath}#${brand.toLowerCase().replace(/\s+/g, '-')}`}>
+            {brand}
+          </a>
+        ))}
+      </div>
+    )
+  }
+  <div class="brand-model-grid__cards">
+    {
+      popularModels.map((group) => (
+        <div class="brand-model-card">
+          <h3 class="brand-model-card__name">
+            <a href={`${modelsPath}#${group.slug}`}>{group.brand}</a>
+          </h3>
+          <ul class="brand-model-card__list">
+            {group.models.map((model) => (
+              <li>{model}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <p class="money-section__note">
+    ไม่เจอรุ่นที่ต้องการ? <a href="/models/">ดูรุ่นทั้งหมด</a> หรือส่งรูปมาถามได้เลย
+  </p>
+</section>

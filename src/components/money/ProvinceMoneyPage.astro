@@ -1,0 +1,42 @@
+---
+import type { ProvinceMoneyPage } from '../../lib/moneyPages/types';
+import ProvinceHero from './ProvinceHero.astro';
+import TrustBar from './TrustBar.astro';
+import QuickAnswerBox from './QuickAnswerBox.astro';
+import BrandModelGrid from './BrandModelGrid.astro';
+import SellingSteps from './SellingSteps.astro';
+import PriceFactors from './PriceFactors.astro';
+import LocalAreaList from './LocalAreaList.astro';
+import FAQSection from './FAQSection.astro';
+import LineCTA from './LineCTA.astro';
+import RelatedProvinceLinks from './RelatedProvinceLinks.astro';
+import RelatedBrandLinks from './RelatedBrandLinks.astro';
+
+interface Props {
+  data: ProvinceMoneyPage;
+  h1: string;
+}
+
+const { data, h1 } = Astro.props;
+---
+
+<div class="money-page money-page--province">
+  <ProvinceHero title={h1} />
+  <TrustBar />
+  <LineCTA />
+
+  <div class="money-page__intro">
+    {data.introParagraphs.map((p) => <p>{p}</p>)}
+  </div>
+
+  <QuickAnswerBox answer={data.quickAnswer} />
+  <BrandModelGrid brands={data.brands} popularModels={data.popularModels} />
+  <LineCTA compact title="ส่งรูปประเมินราคาฟรี" />
+  <SellingSteps steps={data.steps} />
+  <LocalAreaList provinceName={data.provinceName} districts={data.districts} />
+  <PriceFactors factors={data.priceFactors} />
+  <FAQSection faqs={data.faqs} />
+  <RelatedBrandLinks brands={data.brands.slice(0, 6)} />
+  <RelatedProvinceLinks provinces={data.nearbyProvinces} />
+  <LineCTA compact />
+</div>

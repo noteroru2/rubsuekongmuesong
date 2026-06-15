@@ -1,0 +1,24 @@
+---
+import type { PriceFactor } from '../../lib/moneyPages/types';
+
+interface Props {
+  factors: PriceFactor[];
+  heading?: string;
+}
+
+const { factors, heading = 'ปัจจัยที่มีผลต่อราคารับซื้อ' } = Astro.props;
+---
+
+<section class="money-section price-factors" aria-labelledby="price-factors-heading">
+  <h2 id="price-factors-heading" class="money-section__title">{heading}</h2>
+  <ul class="price-factors__list">
+    {
+      factors.map((factor) => (
+        <li class="price-factors__item">
+          <strong>{factor.title}</strong>
+          <p>{factor.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

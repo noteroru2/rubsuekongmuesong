@@ -13,6 +13,7 @@ import {
   extractFaqFromHtml,
   buildGenericFaq,
 } from '../lib/schema';
+import { getMoneyPageFaqs } from '../lib/moneyPages';
 
 interface Props {
   page: PageRecord;
@@ -33,12 +34,15 @@ const faqPageTypes = new Set(['location', 'post', 'article', 'homepage']);
 const shouldAddFaq = faqPageTypes.has(page.pageType);
 
 let faqPairs: Array<{ question: string; answer: string }> = [];
+const moneyFaqs = getMoneyPageFaqs(page.path);
 if (shouldAddFaq) {
-  if (!hasKadence) {
+  if (moneyFaqs.length >= 1) {
+    faqPairs = moneyFaqs;
+  } else if (!hasKadence) {
     faqPairs = extractFaqFromHtml(page.bodyHtml || '');
   }
   // Fallback to generic FAQs when content doesn't have structured Q&A (< 2 pairs)
-  if (faqPairs.length < 2) {
+  if (faqPairs.length < 2 && moneyFaqs.length === 0) {
     faqPairs = buildGenericFaq(page.pageType, page.seo.h1 || '', seo.metaDescription || '');
   }
 }

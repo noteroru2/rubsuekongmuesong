@@ -1,0 +1,24 @@
+---
+import type { FAQItem } from '../../lib/moneyPages/types';
+
+interface Props {
+  faqs: FAQItem[];
+  heading?: string;
+}
+
+const { faqs, heading = 'คำถามที่พบบ่อย' } = Astro.props;
+---
+
+<section class="money-section faq-section" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="money-section__title">{heading}</h2>
+  <div class="faq-section__list">
+    {
+      faqs.map((faq) => (
+        <details class="faq-item">
+          <summary class="faq-item__q">{faq.question}</summary>
+          <p class="faq-item__a">{faq.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>

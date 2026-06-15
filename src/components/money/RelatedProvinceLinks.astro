@@ -1,0 +1,21 @@
+---
+import type { ProvinceLink } from '../../lib/moneyPages/types';
+import { HUB_PATH } from '../../lib/moneyPages/shared';
+
+interface Props {
+  provinces: ProvinceLink[];
+  heading?: string;
+}
+
+const { provinces, heading = 'จังหวัดใกล้เคียง' } = Astro.props;
+---
+
+<nav class="money-section related-links" aria-labelledby="related-provinces-heading">
+  <h2 id="related-provinces-heading" class="money-section__title">{heading}</h2>
+  <ul class="related-links__list">
+    <li><a href={HUB_PATH}>ดูทุกจังหวัด</a></li>
+    {provinces.map((p) => (
+      <li><a href={p.path}>รับซื้อกล้อง {p.name}</a></li>
+    ))}
+  </ul>
+</nav>

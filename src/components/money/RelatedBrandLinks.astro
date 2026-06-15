@@ -1,0 +1,28 @@
+---
+interface Props {
+  brands?: string[];
+  modelsPath?: string;
+  heading?: string;
+}
+
+const {
+  brands = ['Canon', 'Sony', 'Fujifilm', 'Nikon', 'Leica', 'DJI'],
+  modelsPath = '/models/',
+  heading = 'แบรนด์ที่รับซื้อ',
+} = Astro.props;
+---
+
+<nav class="money-section related-links" aria-labelledby="related-brands-heading">
+  <h2 id="related-brands-heading" class="money-section__title">{heading}</h2>
+  <ul class="related-links__list related-links__list--brands">
+    {brands.map((brand) => {
+      const slug = brand.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-');
+      return (
+        <li>
+          <a href={`${modelsPath}#${slug}`}>รับซื้อกล้อง {brand}</a>
+        </li>
+      );
+    })}
+    <li><a href={modelsPath}>ดูรุ่นทั้งหมด</a></li>
+  </ul>
+</nav>

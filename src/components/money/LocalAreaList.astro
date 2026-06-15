@@ -1,0 +1,18 @@
+---
+interface Props {
+  provinceName: string;
+  districts: string[];
+}
+
+const { provinceName, districts } = Astro.props;
+---
+
+<section class="money-section local-areas" aria-labelledby="local-areas-heading">
+  <h2 id="local-areas-heading" class="money-section__title">
+    พื้นที่ให้บริการใน{provinceName}
+  </h2>
+  <ul class="local-areas__list">
+    {districts.map((district) => <li>{district}</li>)}
+  </ul>
+  <p class="money-section__note">นอกพื้นที่ข้างต้นก็นัดรับหรือส่ง EMS ได้ทั่วประเทศ</p>
+</section>

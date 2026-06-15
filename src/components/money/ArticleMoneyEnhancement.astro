@@ -1,0 +1,53 @@
+---
+import type { ArticleMoneyEnhancement } from '../../lib/moneyPages/types';
+import { HUB_PATH } from '../../lib/moneyPages/shared';
+import QuickAnswerBox from './QuickAnswerBox.astro';
+import FAQSection from './FAQSection.astro';
+import LineCTA from './LineCTA.astro';
+import RelatedBrandLinks from './RelatedBrandLinks.astro';
+
+interface Props {
+  data: ArticleMoneyEnhancement;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="money-page money-page--article">
+  <QuickAnswerBox answer={data.quickAnswer} />
+
+  {
+    data.sections?.map((section) => (
+      <section class="money-section" aria-labelledby={`section-${section.title}`}>
+        <h2 id={`section-${section.title}`} class="money-section__title">{section.title}</h2>
+        <ul class="article-money-list">
+          {section.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+    ))
+  }
+
+  {
+    data.sellCtaTitle && (
+      <aside class="shutter-sell-cta">
+        <h2>{data.sellCtaTitle}</h2>
+        {data.sellCtaDesc && <p>{data.sellCtaDesc}</p>}
+        <LineCTA title="ส่งรูปประเมินราคาฟรี" />
+      </aside>
+    )
+  }
+
+  <FAQSection faqs={data.faqs} />
+
+  <nav class="money-section related-links" aria-labelledby="article-related-heading">
+    <h2 id="article-related-heading" class="money-section__title">ลิงก์ที่เกี่ยวข้อง</h2>
+    <ul class="related-links__list">
+      <li><a href={HUB_PATH}>รับซื้อกล้องทุกจังหวัด</a></li>
+      <li><a href="/models/">รุ่นกล้องที่รับซื้อ</a></li>
+      <li><a href="/process/">ขั้นตอนการขายกล้อง</a></li>
+      <li><a href="/article/shutter-count/">เช็ค Shutter Count</a></li>
+    </ul>
+  </nav>
+
+  <RelatedBrandLinks />
+</div>

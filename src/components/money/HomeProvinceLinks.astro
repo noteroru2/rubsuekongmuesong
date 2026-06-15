@@ -1,0 +1,27 @@
+---
+import { TOP_PROVINCE_LINKS } from '../../lib/moneyPages/shared';
+
+interface Props {
+  heading?: string;
+}
+
+const { heading = 'รับซื้อกล้องตามจังหวัดยอดนิยม' } = Astro.props;
+---
+
+<section class="home-provinces" aria-labelledby="home-provinces-heading">
+  <div class="home-provinces__inner">
+    <div class="home-provinces__head">
+      <h2 id="home-provinces-heading">{heading}</h2>
+      <a href="/category/รับซื้อกล้อง/">ดูทุกจังหวัด →</a>
+    </div>
+    <ul class="home-provinces__grid">
+      {TOP_PROVINCE_LINKS.map((p) => (
+        <li>
+          <a class="home-provinces__card" href={p.path}>
+            {p.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

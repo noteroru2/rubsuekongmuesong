@@ -1,0 +1,40 @@
+---
+import type { CategoryHubEnhancement } from '../../lib/moneyPages/types';
+import QuickAnswerBox from './QuickAnswerBox.astro';
+import LineCTA from './LineCTA.astro';
+import RelatedBrandLinks from './RelatedBrandLinks.astro';
+
+interface Props {
+  data: CategoryHubEnhancement;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="money-page money-page--hub">
+  <div class="category-hub-hero">
+    <p class="province-hero__label">รับซื้อกล้องมือสอง</p>
+    <h1 class="province-hero__title">รับซื้อกล้องมือสองทุกจังหวัด</h1>
+    <p class="category-hub-hero__intro">{data.intro}</p>
+  </div>
+
+  <QuickAnswerBox answer={data.quickAnswer} />
+  <LineCTA />
+
+  <nav class="money-section category-hub-grid" aria-labelledby="hub-provinces-heading">
+    <h2 id="hub-provinces-heading" class="money-section__title">เลือกจังหวัดของคุณ</h2>
+    <ul class="category-hub-grid__list">
+      {data.provinces.map((p) => (
+        <li>
+          <a class="category-hub-card" href={p.path}>
+            <strong>รับซื้อกล้อง {p.name}</strong>
+            <span>ประเมินฟรี · โอนทันที →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <RelatedBrandLinks heading="แบรนด์ที่รับซื้อ" />
+  <LineCTA compact />
+</div>

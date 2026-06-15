@@ -43,3 +43,9 @@ export function fixWordPressHtml(html: string): string {
 
   return out;
 }
+
+/** Remove the first H1 from HTML to avoid duplicate headings on money pages. */
+export function stripFirstH1(html: string): string {
+  if (!html) return html;
+  return html.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/i, '');
+}

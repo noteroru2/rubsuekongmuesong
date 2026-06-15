@@ -1,0 +1,15 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+}
+
+const { label = 'รับซื้อกล้องมือสอง', title, description } = Astro.props;
+---
+
+<div class="province-hero">
+  <p class="province-hero__label">{label}</p>
+  <h1 class="province-hero__title">{title}</h1>
+  {description && <p class="province-hero__desc">{description}</p>}
+</div>
