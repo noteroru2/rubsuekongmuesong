@@ -1,5 +1,5 @@
 ---
-import { CONTACT, LOGO_URL, NAV_LINKS, SITE_NAME } from '../config/site';
+import { CONTACT, LOGO_HEIGHT, LOGO_URL, LOGO_WIDTH, NAV_LINKS, SITE_NAME } from '../config/site';
 
 const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const phoneDisplay = '064-257-9353';
@@ -13,8 +13,8 @@ const phoneDisplay = '064-257-9353';
         class="brand__logo"
         src={LOGO_URL}
         alt={SITE_NAME}
-        width="200"
-        height="40"
+        width={LOGO_WIDTH}
+        height={LOGO_HEIGHT}
         decoding="async"
         fetchpriority="high"
       />

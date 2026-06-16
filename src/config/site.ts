@@ -34,16 +34,16 @@ export const NAV_LINKS = [
   { href: '/about/', label: 'เกี่ยวกับเรา' },
 ] as const;
 
-export const LOGO_URL =
-  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-3.webp';
+export const LOGO_URL = '/images/brand/logo-header.webp';
+export const LOGO_WIDTH = 228;
+export const LOGO_HEIGHT = 80;
 
-export const FAVICON_URL =
-  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-32x32.webp';
+export const FAVICON_URL = '/images/brand/favicon-32.webp';
 
-export const APPLE_TOUCH_ICON_URL =
-  '/images/uploads/2025/06/cropped-ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1-1-180x180.webp';
+export const APPLE_TOUCH_ICON_URL = '/images/brand/apple-touch-icon-180.webp';
 
-export const FOOTER_LOGO_URL =
-  '/images/uploads/2025/06/ChatGPT-Image-19-มิ.ย.-2568-22_55_11-1.webp';
+export const FOOTER_LOGO_URL = '/images/brand/logo-footer.webp';
+export const FOOTER_LOGO_WIDTH = 364;
+export const FOOTER_LOGO_HEIGHT = 128;
 
 export const OG_DEFAULT_IMAGE = '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp';

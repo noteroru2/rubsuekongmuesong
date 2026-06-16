@@ -224,7 +224,7 @@ ul { list-style: none; padding: 0; }
 
 /* Logo */
 .brand { flex-shrink: 0; display: flex; align-items: center; }
-.brand__logo { height: 40px; width: auto; object-fit: contain; }
+.brand__logo { height: 40px; width: auto; max-width: min(52vw, 228px); object-fit: contain; }
 
 /* Desktop nav */
 .main-nav { flex: 1; display: none; }
@@ -409,7 +409,7 @@ ul { list-style: none; padding: 0; }
 }
 .site-footer a:hover { color: var(--primary); }
 
-.site-footer__brand img { height: 64px; width: auto; margin-bottom: 1rem; }
+.site-footer__brand img { height: 64px; width: auto; max-width: 100%; margin-bottom: 1rem; object-fit: contain; }
 .site-footer__tagline {
   color: var(--text-soft);
   font-size: 0.875rem;

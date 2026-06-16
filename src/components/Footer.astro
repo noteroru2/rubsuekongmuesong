@@ -1,5 +1,14 @@
 ---
-import { COMPANY, CONTACT, FOOTER_LOGO_URL, LINE_ID, NAV_LINKS, SITE_NAME } from '../config/site';
+import {
+  COMPANY,
+  CONTACT,
+  FOOTER_LOGO_HEIGHT,
+  FOOTER_LOGO_URL,
+  FOOTER_LOGO_WIDTH,
+  LINE_ID,
+  NAV_LINKS,
+  SITE_NAME,
+} from '../config/site';
 
 const cameraBrands = [
   { label: 'รับซื้อกล้อง Canon', href: '/models/#canon' },
@@ -20,8 +29,8 @@ const cameraBrands = [
       <img
         src={FOOTER_LOGO_URL}
         alt={SITE_NAME}
-        width="80"
-        height="80"
+        width={FOOTER_LOGO_WIDTH}
+        height={FOOTER_LOGO_HEIGHT}
         loading="lazy"
         decoding="async"
       />

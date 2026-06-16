@@ -17,6 +17,7 @@
     "redirects": "node scripts/generate-legacy-redirects.mjs",
     "images": "node scripts/migrate-images.mjs",
     "blog:index": "node scripts/generate-blog-index.mjs",
+    "brand:assets": "node scripts/generate-brand-assets.mjs",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"
