@@ -4,6 +4,10 @@ import { HUB_PATH, KEEP_PROVINCE_LINKS } from './shared';
 export const SHUTTER_COUNT_PATH = '/article/shutter-count/';
 export const CAMERA_360_PATH = '/article/กล้อง-360-องศา/';
 export const PACK_CAMERA_PATH = '/article/วิธีแพ็คกล้อง/';
+export const DSLR_PATH = '/article/กล้อง-dslr-คืออะไร/';
+export const BRIDGE_PATH = '/article/กล้องบริดจ์/';
+export const CAMERA_TYPES_PATH = '/article/กล้องถ่ายรูปมีกี่ชนิด/';
+export const SONY_A7_COMPARE_PATH = '/article/sony-a7iii-vs-a7iv/';
 export const CATEGORY_HUB_PATH = HUB_PATH;
 
 export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
@@ -171,7 +175,170 @@ export const CATEGORY_HUB_ENHANCEMENT: CategoryHubEnhancement = {
   provinces: KEEP_PROVINCE_LINKS,
 };
 
+export const DSLR_ENHANCEMENT: ArticleMoneyEnhancement = {
+  quickAnswer:
+    'กล้อง DSLR (Digital Single-Lens Reflex) ใช้กระจกสะท้อนภาพและช่องมองแบบ Optical Viewfinder ให้ภาพคมชัด แบตทนทาน และเลนส์ให้เลือกมากมาย เหมาะทั้งมือใหม่และมืออาชีพ',
+  sections: [
+    {
+      title: 'รุ่น DSLR ที่เรารับซื้อบ่อย',
+      items: ['Canon EOS 90D', 'Canon EOS 80D', 'Canon 5D Mark IV', 'Canon 6D Mark II', 'Nikon D850', 'Nikon D750', 'Nikon D3500'],
+    },
+    {
+      title: 'ปัจจัยที่มีผลต่อราคารับซื้อ',
+      items: [
+        'Shutter Count — ยิ่งน้อยยิ่งได้ราคาดี',
+        'รุ่นและความต้องการตลาด (Full Frame มักได้ราคาสูงกว่า)',
+        'สภาพเซ็นเซอร์และช่องมองภาพ',
+        'อุปกรณ์ครบ: กล่อง แบต ที่ชาร์จ เลนส์ kit',
+      ],
+    },
+  ],
+  sellCtaTitle: 'มีกล้อง DSLR อยากขาย?',
+  sellCtaDesc: 'ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาประเมินราคาฟรี LINE @webuy โอนทันที',
+  faqs: [
+    {
+      question: 'รับซื้อกล้อง DSLR ทุกแบรนด์ไหม?',
+      answer: 'รับครับ ทั้ง Canon และ Nikon รุ่นยอดนิยม ส่งรูปสภาพจริงมาประเมินได้',
+    },
+    {
+      question: 'ขายกล้อง DSLR ต้องมีกล่องไหม?',
+      answer: 'ไม่จำเป็น แต่ถ้ามีกล่อง แบต และเลนส์ kit อาจได้ราคาสูงขึ้น',
+    },
+    {
+      question: 'Shutter Count สูงยังขายได้ไหม?',
+      answer: 'ได้ครับ ขึ้นอยู่กับรุ่นและสภาพโดยรวม กล้องโปรทนชัตเตอร์สูงกว่ารุ่น entry',
+    },
+    {
+      question: 'รับซื้อเลนส์ DSLR แยกจากตัวกล้องไหม?',
+      answer: 'รับครับ ทั้งเลนส์ EF, EF-S, F-mount และเลนส์เดี่ยว',
+    },
+  ],
+};
+
+export const BRIDGE_ENHANCEMENT: ArticleMoneyEnhancement = {
+  quickAnswer:
+    'กล้องบริดจ์ (Bridge Camera) คือกล้องที่มีเลนส์ซูมในตัวแบบยาว ใช้งานง่าย ไม่ต้องเปลี่ยนเลนส์ เหมาะกับงานท่องเที่ยว ถ่ายนก และงานที่ต้องการซูมไกล',
+  sections: [
+    {
+      title: 'รุ่นบริดจ์ที่เรารับซื้อบ่อย',
+      items: ['Sony RX10 IV', 'Sony RX10 III', 'Panasonic FZ1000 II', 'Canon PowerShot SX70 HS', 'Nikon P1000', 'Nikon P950'],
+    },
+    {
+      title: 'ปัจจัยที่มีผลต่อราคา',
+      items: [
+        'ความยาวซูมและรุ่น (RX10 series ยังมี demand)',
+        'สภาพเลนส์และระบบซูม',
+        'การทำงานของระบบโฟกัสและจอ',
+        'อุปกรณ์ครบ: แบต ที่ชาร์จ กล่อง',
+      ],
+    },
+  ],
+  sellCtaTitle: 'มีกล้องบริดจ์อยากขาย?',
+  sellCtaDesc: 'ส่งรูปกล้องพร้อมอุปกรณ์มาประเมินราคาฟรี ไม่มีค่าธรรมเนียม',
+  faqs: [
+    {
+      question: 'รับซื้อกล้องบริดจ์ Sony RX10 ไหม?',
+      answer: 'รับครับ RX10 III และ RX10 IV ยังมี demand สูงในตลาดมือสอง',
+    },
+    {
+      question: 'กล้องบริดจ์ซูมไม่ได้ ยังขายได้ไหม?',
+      answer: 'ขึ้นอยู่กับปัญหา ส่งรูปและอธิบายอาการมาประเมินก่อน',
+    },
+    {
+      question: 'ขายกล้องบริดจ์แล้วได้เงินเมื่อไหร่?',
+      answer: 'หลังตกลงราคาและตรวจสอบ โอนเงินทันที ส่ง EMS หรือนัดรับได้',
+    },
+    {
+      question: 'รับซื้อ Nikon P1000 ด้วยไหม?',
+      answer: 'รับครับ รุ่นซูม 125x ยังมีคนสนใจในตลาดมือสอง',
+    },
+  ],
+};
+
+export const CAMERA_TYPES_ENHANCEMENT: ArticleMoneyEnhancement = {
+  quickAnswer:
+    'กล้องถ่ายรูปหลักๆ แบ่งเป็น 6 ประเภท: DSLR, Mirrorless, คอมแพค, บริดจ์, แอคชั่น/360 และฟิล์ม แต่ละประเภทเหมาะกับการใช้งานต่างกัน',
+  sections: [
+    {
+      title: 'ประเภทกล้องที่เรารับซื้อทุกชนิด',
+      items: ['DSLR — Canon, Nikon', 'Mirrorless — Sony, Fuji, Canon R', 'คอมแพค — RX100, X100', 'บริดจ์ — RX10, P1000', 'แอคชั่น/360 — GoPro, Insta360', 'ฟิล์ม — Leica, Contax (ตามรุ่น)'],
+    },
+    {
+      title: 'ไม่แน่ใจว่ากล้องคุณเป็นประเภทไหน?',
+      items: [
+        'ส่งรูปกล้องมาที่ LINE @webuy',
+        'แจ้งรุ่นและยี่ห้อ (ถ้ารู้)',
+        'รับราคาเบื้องต้นภายใน 30 นาที',
+      ],
+    },
+  ],
+  sellCtaTitle: 'รู้แล้วว่ากล้องคุณเป็นประเภทไหน — อยากขาย?',
+  sellCtaDesc: 'รับซื้อกล้องมือสองทุกประเภท ทุกแบรนด์ ประเมินฟรี จ่ายสดทันที',
+  faqs: [
+    {
+      question: 'รับซื้อกล้องทุกประเภทจริงไหม?',
+      answer: 'รับครับ ทั้ง DSLR, Mirrorless, คอมแพค, บริดจ์, แอคชั่น และ 360',
+    },
+    {
+      question: 'กล้องเก่ามาก ยังขายได้ไหม?',
+      answer: 'ขึ้นอยู่กับรุ่นและสภาพ รุ่นที่ยังมี demand ในตลาดมือสองยังรับซื้อได้',
+    },
+    {
+      question: 'ขายกล้องหลายตัวพร้อมกันได้ไหม?',
+      answer: 'ได้ครับ ส่งรูปทุกตัวมาประเมินราคาแยกหรือรวมยอดตามตกลง',
+    },
+    {
+      question: 'อยู่ต่างจังหวัด ขายกล้องได้ไหม?',
+      answer: 'ได้ครับ ส่ง EMS ทั่วประเทศ หลังตรวจสอบโอนเงินทันที',
+    },
+  ],
+};
+
+export const SONY_A7_COMPARE_ENHANCEMENT: ArticleMoneyEnhancement = {
+  quickAnswer:
+    'Sony A7 III เหมาะกับงบจำกัด โฟกัสดี วิดีโอ 4K ครบ — A7 IV อัปเกรดโฟกัส 33MP วิดีโอ 10-bit ดีกว่า ถ้าขาย A7 III เพื่ออัป A7 IV เรารับซื้อ A7 III ราคาดี',
+  sections: [
+    {
+      title: 'รุ่น Sony A7 ที่เรารับซื้อ',
+      items: ['Sony A7 III', 'Sony A7 IV', 'Sony A7C', 'Sony A7C II', 'Sony A7R IV', 'Sony A7R V'],
+    },
+    {
+      title: 'เตรียมกล้องก่อนขาย — ได้ราคาดีขึ้น',
+      items: [
+        'เช็ค Shutter Count แล้วแจ้งมาด้วย',
+        'ถ่ายรูปจอ ด้านหน้า ด้านหลัง และ mount',
+        'แจ้งอุปกรณ์ครบ: กล่อง แบต ที่ชาร์จ',
+        'ทำความสะอาดเลนส์ก่อนถ่ายรูป',
+      ],
+    },
+  ],
+  sellCtaTitle: 'เลือก A7 IV แล้ว — ขาย A7 III ที่นี่',
+  sellCtaDesc: 'รับซื้อ Sony A7 III และ A7 IV ราคาตลาด ส่งรูปประเมินฟรี LINE @webuy',
+  faqs: [
+    {
+      question: 'รับซื้อ Sony A7 III ราคาเท่าไหร่?',
+      answer: 'ขึ้นอยู่กับสภาพ Shutter Count และอุปกรณ์ ส่งรูปมาประเมินฟรี',
+    },
+    {
+      question: 'ขาย A7 III แล้วซื้อ A7 IV คุ้มไหม?',
+      answer: 'ถ้าต้องการโฟกัสดีขึ้น วิดีโอ 10-bit และ 33MP การอัปเกรดคุ้ม ขาย A7 III ช่วยลดเงินออก',
+    },
+    {
+      question: 'A7 III ชัตเตอร์สูง ยังขายได้ไหม?',
+      answer: 'ได้ครับ A7 III ทนชัตเตอร์สูง เราดูสภาพโดยรวมเป็นหลัก',
+    },
+    {
+      question: 'รับซื้อพร้อมเลนส์ kit 28-70 ไหม?',
+      answer: 'รับครับ ประเมินแยกชิ้นหรือรวมยอดตามสภาพจริง',
+    },
+  ],
+};
+
 export const ARTICLE_ENHANCEMENT_MAP = new Map<string, ArticleMoneyEnhancement>([
   [CAMERA_360_PATH, CAMERA_360_ENHANCEMENT],
   [PACK_CAMERA_PATH, PACK_CAMERA_ENHANCEMENT],
+  [DSLR_PATH, DSLR_ENHANCEMENT],
+  [BRIDGE_PATH, BRIDGE_ENHANCEMENT],
+  [CAMERA_TYPES_PATH, CAMERA_TYPES_ENHANCEMENT],
+  [SONY_A7_COMPARE_PATH, SONY_A7_COMPARE_ENHANCEMENT],
 ]);

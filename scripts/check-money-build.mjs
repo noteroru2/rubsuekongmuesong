@@ -7,11 +7,17 @@ const checks = [
   ['shutter', path.join(root, 'article', 'shutter-count', 'index.html'), 'money-page'],
   ['kalasin', path.join(root, 'รับซื้อกล้อง', 'รับซื้อกล้องมือสอง-กาฬส', 'index.html'), 'money-page--province'],
   ['surin', path.join(root, 'รับซื้อกล้อง', 'ร้านรับซื้อกล้องสุรินท', 'index.html'), 'money-page--province'],
+  ['sakon', path.join(root, 'รับซื้อกล้อง', 'ร้านรับซื้อกล้องสกลนคร', 'index.html'), 'money-page--province'],
+  ['nongkhai', path.join(root, 'รับซื้อกล้อง', 'ร้านรับซื้อกล้องหนองคา', 'index.html'), 'money-page--province'],
   ['khonkaen', path.join(root, 'รับซื้อกล้อง', 'รับซื้อกล้องมือสอง-ขอนแ', 'index.html'), 'money-page--province'],
   ['prachin', path.join(root, 'รับซื้อกล้อง', 'ร้านรับซื้อกล้องปราจีน', 'index.html'), 'money-page--province'],
   ['hub', path.join(root, 'category', 'รับซื้อกล้อง', 'index.html'), 'category-hub-grid'],
   ['360', path.join(root, 'article', 'กล้อง-360-องศา', 'index.html'), 'money-page--article'],
   ['pack', path.join(root, 'article', 'วิธีแพ็คกล้อง', 'index.html'), 'money-page--article'],
+  ['dslr', path.join(root, 'article', 'กล้อง-dslr-คืออะไร', 'index.html'), 'money-page--article'],
+  ['bridge', path.join(root, 'article', 'กล้องบริดจ์', 'index.html'), 'money-page--article'],
+  ['types', path.join(root, 'article', 'กล้องถ่ายรูปมีกี่ชนิด', 'index.html'), 'money-page--article'],
+  ['sony-a7', path.join(root, 'article', 'sony-a7iii-vs-a7iv', 'index.html'), 'money-page--article'],
   ['home', path.join(root, 'index.html'), 'home-provinces'],
 ];
 
