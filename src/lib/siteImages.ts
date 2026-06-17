@@ -5,6 +5,12 @@ export interface SiteImage {
   alt: string;
   width: number;
   height: number;
+  /** Future production path once real photo is ready */
+  targetSrc?: string;
+  /** PII / usage notes for real photography */
+  note?: string;
+  /** placeholder = mockup or missing file; ready = approved for production */
+  status?: 'placeholder' | 'ready';
 }
 
 const SITE = '/images/site';
@@ -83,6 +89,91 @@ export const SITE_IMAGES = {
     height: 630,
   },
 } as const satisfies Record<string, SiteImage>;
+
+/**
+ * Phase 2 — real trust photography slots.
+ * NOT wired into pages until status = 'ready' and targetSrc file exists.
+ * src points to Phase 1 mockup so build/audit stay green.
+ */
+const REAL = '/images/site/real';
+
+export const REAL_TRUST_IMAGES = {
+  realLineChat1: {
+    src: `${SITE}/process-line-chat-1200x800.webp`,
+    targetSrc: `${REAL}/real-line-chat-1-1200x800.webp`,
+    alt: 'ตัวอย่างแชท LINE ประเมินราคากล้องมือสอง',
+    width: 1200,
+    height: 800,
+    note: 'ต้อง blur ชื่อลูกค้า เบอร์โทร รูปโปรไฟล์ และข้อความส่วนตัวก่อนใช้จริง',
+    status: 'placeholder',
+  },
+  realLineChat2: {
+    src: `${SITE}/trust-line-example-800x600.webp`,
+    targetSrc: `${REAL}/real-line-chat-2-1200x800.webp`,
+    alt: 'ตัวอย่างบทสนทนา LINE หลังตกลงราคากล้อง',
+    width: 1200,
+    height: 800,
+    note: 'ต้อง blur ชื่อลูกค้า เลขบัญชี และข้อความส่วนตัวก่อนใช้จริง',
+    status: 'placeholder',
+  },
+  realTransferSlip1: {
+    src: `${SITE}/trust-transfer-example-800x600.webp`,
+    targetSrc: `${REAL}/real-transfer-slip-1-800x600.webp`,
+    alt: 'ตัวอย่างสลิปโอนเงินหลังขายกล้องมือสอง',
+    width: 800,
+    height: 600,
+    note: 'ต้อง blur เลขบัญชี ชื่อบัญชี ยอดเงิน และ QR ก่อนใช้จริง',
+    status: 'placeholder',
+  },
+  realTransferSlip2: {
+    src: `${SITE}/process-payment-1200x800.webp`,
+    targetSrc: `${REAL}/real-transfer-slip-2-800x600.webp`,
+    alt: 'ตัวอย่างการโอนเงินค่ารับซื้อกล้อง',
+    width: 800,
+    height: 600,
+    note: 'ต้อง blur เลขบัญชี ชื่อบัญชี และรหัสอ้างอิงก่อนใช้จริง',
+    status: 'placeholder',
+  },
+  realStorefrontWide: {
+    src: `${SITE}/about-store-sign-800x800.webp`,
+    targetSrc: `${REAL}/real-storefront-wide-1600x900.webp`,
+    alt: 'หน้าร้านรับซื้อกล้องมือสอง อุบลราชธานี',
+    width: 1600,
+    height: 900,
+    note: 'ถ่ายกลางวัน ป้ายร้านอ่านได้ชัด ไม่ต้อง blur (ไม่มี PII)',
+    status: 'placeholder',
+  },
+  realOwnerTeam: {
+    src: `${SITE}/about-workbench-1200x800.webp`,
+    targetSrc: `${REAL}/real-owner-team-1200x800.webp`,
+    alt: 'ทีมงานตรวจสอบกล้องมือสองที่ร้าน',
+    width: 1200,
+    height: 800,
+    note: 'ขอความยินยอมก่อนเผยหน้า blur ป้ายชื่อพนักงานถ้ามี',
+    status: 'placeholder',
+  },
+  realInspectionDesk: {
+    src: `${SITE}/about-inspection-desk-1200x800.webp`,
+    targetSrc: `${REAL}/real-inspection-desk-1200x800.webp`,
+    alt: 'โต๊ะตรวจเช็กกล้องมือสองก่อนรับซื้อ',
+    width: 1200,
+    height: 800,
+    note: 'blur serial number กล้องลูกค้าและสติกเกอร์ส่วนตัวถ้ามีในภาพ',
+    status: 'placeholder',
+  },
+  realGoogleBusiness: {
+    src: `${SITE}/about-store-sign-800x800.webp`,
+    targetSrc: `${REAL}/real-google-business-1200x800.webp`,
+    alt: 'หน้า Google Business ของร้านรับซื้อกล้องมือสอง',
+    width: 1200,
+    height: 800,
+    note: 'blur ชื่อรีวิวเต็ม เบอร์โทรใน screenshot และข้อมูลส่วนตัว',
+    status: 'placeholder',
+  },
+} as const satisfies Record<string, SiteImage>;
+
+/** Keys must stay unique — used by QA */
+export const REAL_TRUST_IMAGE_KEYS = Object.keys(REAL_TRUST_IMAGES);
 
 export const PROCESS_PHOTO_TIPS: SiteImage[] = [
   {
