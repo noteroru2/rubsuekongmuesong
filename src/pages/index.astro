@@ -2,9 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPostCard from '../components/BlogPostCard.astro';
 import HomeInteractions from '../components/HomeInteractions.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import { getBlogPosts } from '../lib/articles';
 import { getHomePage } from '../lib/content';
 import HomeProvinceLinks from '../components/money/HomeProvinceLinks.astro';
+import { BRAND_IMAGES, HOME_PROCESS_STEPS, SITE_IMAGES } from '../lib/siteImages';
 import { CONTACT, LINE_ID } from '../config/site';
 
 const page = getHomePage();
@@ -13,14 +15,32 @@ if (!page) throw new Error('Homepage content missing. Run: npm run crawl');
 const latestPosts = getBlogPosts().slice(0, 6);
 
 const brands = [
-  { id: 'canon',    name: 'Canon',            img: '/images/uploads/2025/06/รับซื้อกล้อง-canon.webp',        alt: 'รับซื้อกล้อง Canon มือสอง',    models: ['EOS R5', 'EOS R6 II', 'EOS R50', '5D Mark IV', '90D', 'M50 II'] },
-  { id: 'sony',     name: 'Sony',             img: '/images/uploads/2025/06/Sony-A7-III-Body-Black-Thai-1.webp', alt: 'รับซื้อกล้อง Sony มือสอง',    models: ['A7 IV', 'A7 III', 'A7C', 'A6700', 'RX100 VII', 'ZV-E10'] },
-  { id: 'fujifilm', name: 'Fujifilm',         img: '/images/uploads/2025/06/DSCF0088-Photoroom-1-1.webp',       alt: 'รับซื้อกล้อง Fujifilm มือสอง', models: ['X-T5', 'X-T4', 'X-S20', 'X100VI', 'GFX 100S', 'X-A7'] },
-  { id: 'nikon',    name: 'Nikon',            img: '/images/uploads/2025/06/70d.webp',                          alt: 'รับซื้อกล้อง Nikon มือสอง',   models: ['Z8', 'Z6 III', 'Z5 II', 'D850', 'D750', 'Z50'] },
-  { id: 'leica',    name: 'Leica',            img: '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp',          alt: 'รับซื้อกล้อง Leica มือสอง',   models: ['M11', 'M10', 'Q3', 'Q2', 'SL2', 'M6'] },
-  { id: 'panasonic',name: 'Panasonic',        img: '/images/uploads/2025/06/กล้อง-Mirrorless.webp',            alt: 'รับซื้อกล้อง Panasonic มือสอง',models: ['S5 II', 'S1', 'GH6', 'GH5', 'G9 II', 'G7'] },
-  { id: 'olympus',  name: 'Olympus',          img: '/images/uploads/2025/06/กล้องคอมแพค.webp',                 alt: 'รับซื้อกล้อง Olympus มือสอง', models: ['OM-5', 'E-M1 III', 'E-M10 IV', 'E-M5 III', 'PEN-F', 'E-PL10'] },
-  { id: 'dji',      name: 'DJI',              img: '/images/uploads/2025/06/Osmo-Action-5-Pro.webp',             alt: 'รับซื้อกล้อง DJI มือสอง',     models: ['Osmo Action 5 Pro', 'Mavic 3 Pro', 'Mini 4 Pro', 'Pocket 3', 'OM 6', 'Air 3'] },
+  { id: 'canon',    name: 'Canon',            ...BRAND_IMAGES.canon,    models: ['EOS R5', 'EOS R6 II', 'EOS R50', '5D Mark IV', '90D', 'M50 II'] },
+  { id: 'sony',     name: 'Sony',             ...BRAND_IMAGES.sony,     models: ['A7 IV', 'A7 III', 'A7C', 'A6700', 'RX100 VII', 'ZV-E10'] },
+  { id: 'fujifilm', name: 'Fujifilm',         ...BRAND_IMAGES.fujifilm, models: ['X-T5', 'X-T4', 'X-S20', 'X100VI', 'GFX 100S', 'X-A7'] },
+  { id: 'nikon',    name: 'Nikon',            ...BRAND_IMAGES.nikon,    models: ['Z8', 'Z6 III', 'Z5 II', 'D850', 'D750', 'Z50'] },
+  { id: 'leica',    name: 'Leica',            ...BRAND_IMAGES.leica,    models: ['M11', 'M10', 'Q3', 'Q2', 'SL2', 'M6'] },
+  { id: 'panasonic',name: 'Panasonic',        ...BRAND_IMAGES.panasonic,models: ['S5 II', 'S1', 'GH6', 'GH5', 'G9 II', 'G7'] },
+  { id: 'olympus',  name: 'Olympus',          ...BRAND_IMAGES.olympus,  models: ['OM-5', 'E-M1 III', 'E-M10 IV', 'E-M5 III', 'PEN-F', 'E-PL10'] },
+  { id: 'dji',      name: 'DJI',              ...BRAND_IMAGES.dji,      models: ['Osmo Action 5 Pro', 'Mavic 3 Pro', 'Mini 4 Pro', 'Pocket 3', 'OM 6', 'Air 3'] },
+];
+
+const processSteps = [
+  {
+    image: HOME_PROCESS_STEPS[0],
+    title: 'ถ่ายรูปกล้องแล้วส่งมาทาง LINE',
+    desc: 'รูปด้านหน้า ด้านหลัง จอ และอุปกรณ์ที่มี ไม่ต้องนัดล่วงหน้า ส่งได้ทุกเวลา',
+  },
+  {
+    image: HOME_PROCESS_STEPS[1],
+    title: 'รับราคาประเมินภายใน 30 นาที',
+    desc: 'เจ้าหน้าที่ดูรูปแล้วแจ้งราคา ถ้าพอใจก็นัดส่งได้เลย ไม่พอใจก็ไม่ต้องขาย',
+  },
+  {
+    image: HOME_PROCESS_STEPS[2],
+    title: 'ส่ง EMS หรือนัดรับ แล้วรับเงิน',
+    desc: 'ตรวจสภาพเสร็จโอนทันที ส่วนใหญ่ได้เงินภายในวันเดียวกัน',
+  },
 ];
 
 const galleryItems = [
@@ -45,6 +65,7 @@ const reviews = [
 ---
 
 <BaseLayout page={page} bodyClass="page-home">
+  <link slot="head" rel="preload" as="image" href={SITE_IMAGES.heroHome.src} fetchpriority="high" />
 
   <!-- ─── HERO ─── -->
   <section class="hero" aria-label="รับซื้อกล้องมือสอง">
@@ -95,13 +116,10 @@ const reviews = [
 
       <div class="hero__visual">
         <div class="hero__img-wrap">
-          <img
-            src="/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp"
-            alt="รับซื้อกล้องมือสองทุกยี่ห้อ อุบลราชธานี"
-            width="420"
-            height="315"
+          <OptimizedImage
+            image={SITE_IMAGES.heroHome}
+            loading="eager"
             fetchpriority="high"
-            decoding="async"
           />
         </div>
       </div>
@@ -179,7 +197,7 @@ const reviews = [
         {brands.map((brand) => (
           <div class="brand-card">
             <div class="brand-card__img">
-              <img src={brand.img} alt={brand.alt} width="320" height="180" loading="lazy" decoding="async" />
+              <OptimizedImage src={brand.src} alt={brand.alt} width={brand.width} height={brand.height} />
             </div>
             <div class="brand-card__body">
               <h3 class="brand-card__name">{brand.name}</h3>
@@ -200,38 +218,28 @@ const reviews = [
   <section class="process-section" aria-labelledby="process-title">
     <div class="process-section__inner">
       <h2 id="process-title">ขายกล้องยังไง?</h2>
-      <div class="process-steps">
-        <div class="process-step">
-          <span class="process-step__n" aria-hidden="true">01</span>
-          <div class="process-step__body">
-            <h3>ถ่ายรูปกล้องแล้วส่งมาทาง LINE</h3>
-            <p>รูปด้านหน้า ด้านหลัง จอ และอุปกรณ์ที่มี ไม่ต้องนัดล่วงหน้า ส่งได้ทุกเวลา</p>
-          </div>
-        </div>
-        <div class="process-step__arrow" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M13 6l6 6-6 6"/>
-          </svg>
-        </div>
-        <div class="process-step">
-          <span class="process-step__n" aria-hidden="true">02</span>
-          <div class="process-step__body">
-            <h3>รับราคาประเมินภายใน 30 นาที</h3>
-            <p>เจ้าหน้าที่ดูรูปแล้วแจ้งราคา ถ้าพอใจก็นัดส่งได้เลย ไม่พอใจก็ไม่ต้องขาย</p>
-          </div>
-        </div>
-        <div class="process-step__arrow" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M13 6l6 6-6 6"/>
-          </svg>
-        </div>
-        <div class="process-step">
-          <span class="process-step__n" aria-hidden="true">03</span>
-          <div class="process-step__body">
-            <h3>ส่ง EMS หรือนัดรับ แล้วรับเงิน</h3>
-            <p>ตรวจสภาพเสร็จโอนทันที ส่วนใหญ่ได้เงินภายในวันเดียวกัน</p>
-          </div>
-        </div>
+      <div class="process-steps process-steps--visual">
+        {processSteps.map((step, i) => (
+          <>
+            {i > 0 && (
+              <div class="process-step__arrow" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </div>
+            )}
+            <div class="process-step process-step--visual">
+              <div class="process-step__img">
+                <OptimizedImage image={step.image} />
+              </div>
+              <span class="process-step__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div class="process-step__body">
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            </div>
+          </>
+        ))}
       </div>
       <a class="process-section__cta" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
         เริ่มขายกล้องเลย — แชท LINE {LINE_ID}
@@ -243,7 +251,7 @@ const reviews = [
   </section>
 
   <!-- ─── GALLERY ─── -->
-  <section class="mosaic-section" aria-label="ตัวอย่างงานรับซื้อจริง">
+  <section class="mosaic-section" aria-label="ตัวอย่างขั้นตอนการรับซื้อ">
     <div class="mosaic-section__inner">
       <div class="mosaic-grid">
         {galleryItems.map((item, i) => (
@@ -259,7 +267,7 @@ const reviews = [
           </div>
         ))}
       </div>
-      <p class="mosaic-section__caption">ตัวอย่างงานรับซื้อจริง — ส่งผ่าน EMS ทั่วประเทศ</p>
+      <p class="mosaic-section__caption">ตัวอย่างขั้นตอนการรับซื้อ — ส่งผ่าน EMS ทั่วประเทศ</p>
     </div>
   </section>
 
@@ -267,8 +275,18 @@ const reviews = [
   <section class="quotes-section" aria-labelledby="quotes-title">
     <div class="quotes-section__inner">
       <div class="quotes-header">
-        <h2 id="quotes-title">ลูกค้าพูดถึงเรา</h2>
-        <a href="/review/" class="quotes-header__more">ดูรีวิวทั้งหมด →</a>
+        <h2 id="quotes-title">ตัวอย่างประสบการณ์ลูกค้า</h2>
+        <a href="/review/" class="quotes-header__more">ดูเพิ่มเติม →</a>
+      </div>
+      <div class="trust-examples">
+        <figure class="trust-example">
+          <OptimizedImage image={SITE_IMAGES.trustLineExample} class="trust-example__img" />
+          <figcaption>ตัวอย่างขั้นตอนแชท LINE ประเมินราคา</figcaption>
+        </figure>
+        <figure class="trust-example">
+          <OptimizedImage image={SITE_IMAGES.trustTransferExample} class="trust-example__img" />
+          <figcaption>ตัวอย่างขั้นตอนการโอนเงินหลังตกลงราคา</figcaption>
+        </figure>
       </div>
       <div class="quotes-grid">
         {reviews.map((r) => (

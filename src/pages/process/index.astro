@@ -1,15 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 import { getPageByPath } from '../../lib/content';
+import { PROCESS_PHOTO_TIPS, SITE_IMAGES } from '../../lib/siteImages';
 import { CONTACT } from '../../config/site';
 
 const page = getPageByPath('/process/');
 if (!page) throw new Error('Missing /process/ content');
+
+const photoTipLabels = [
+  'ด้านหน้า',
+  'ด้านหลัง',
+  'จอภาพ',
+  'เลนส์',
+  'อุปกรณ์ครบชุด',
+  'สภาพโดยรวม',
+];
+
+const guideImages = [
+  SITE_IMAGES.processShutterCount,
+  SITE_IMAGES.processSensorCheck,
+  SITE_IMAGES.processEms,
+];
+
+const guideTitles = [
+  'เช็ค Shutter Count ก่อนขายกล้องมือสอง',
+  'ตรวจสภาพเซนเซอร์และเลนส์ก่อนรับซื้อกล้อง',
+  'ขายกล้องผ่าน EMS หรือรับซื้อถึงที่',
+];
 ---
 
 <BaseLayout page={page} bodyClass="page-process">
   <div class="inner-page">
-    <!-- Hero -->
     <div class="process-hero">
       <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">ขั้นตอนการขาย</p>
       <h1>ขั้นตอนการขายกล้องมือสอง</h1>
@@ -22,21 +44,23 @@ if (!page) throw new Error('Missing /process/ content');
       </div>
     </div>
 
-    <!-- 3 Steps -->
     <section aria-labelledby="steps-title" style="margin-bottom:4rem;">
       <h2 id="steps-title" style="font-size:1.4rem;font-weight:800;margin-bottom:1.75rem;text-align:center;">ขายกล้องได้ใน 3 ขั้นตอน</h2>
-      <div class="process-steps-grid">
-        <div class="step-card">
+      <div class="process-steps-grid process-steps-grid--visual">
+        <div class="step-card step-card--visual">
+          <OptimizedImage image={SITE_IMAGES.processLineChat} class="step-card__img" />
           <div class="step-card__num" aria-hidden="true">1</div>
           <h3>ส่งรูป + รุ่นกล้อง</h3>
           <p>ถ่ายรูปกล้องทุกด้าน ด้านหน้า ด้านหลัง จอ และอุปกรณ์ที่มี ส่งผ่าน LINE @webuy</p>
         </div>
-        <div class="step-card">
+        <div class="step-card step-card--visual">
+          <OptimizedImage image={SITE_IMAGES.processInspection} class="step-card__img" />
           <div class="step-card__num" aria-hidden="true">2</div>
           <h3>รับราคาประเมิน</h3>
           <p>เจ้าหน้าที่ตอบกลับภายใน 10–30 นาที ราคายุติธรรม อ้างอิงตลาดจริง</p>
         </div>
-        <div class="step-card">
+        <div class="step-card step-card--visual">
+          <OptimizedImage image={SITE_IMAGES.processPayment} class="step-card__img" />
           <div class="step-card__num" aria-hidden="true">3</div>
           <h3>รับเงินทันที</h3>
           <p>ส่ง EMS หรือนัดรับถึงบ้าน ตรวจสอบแล้วโอนเงินทันที ไม่ต้องรอ</p>
@@ -44,7 +68,31 @@ if (!page) throw new Error('Missing /process/ content');
       </div>
     </section>
 
-    <!-- Checklists -->
+    <section aria-labelledby="photo-tips-title" class="photo-tips-section">
+      <h2 id="photo-tips-title">วิธีถ่ายรูปกล้องส่งประเมินราคา</h2>
+      <p class="photo-tips-section__sub">ถ่ายครบ 6 มุมนี้ ช่วยให้ประเมินราคาได้แม่นยำขึ้น</p>
+      <div class="photo-tips-grid">
+        {PROCESS_PHOTO_TIPS.map((img, i) => (
+          <figure class="photo-tip">
+            <OptimizedImage image={img} class="photo-tip__img" />
+            <figcaption>{photoTipLabels[i]}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="guide-title" class="process-guides">
+      <h2 id="guide-title">เตรียมกล้องก่อนขาย</h2>
+      <div class="process-guides__grid">
+        {guideImages.map((img, i) => (
+          <figure class="process-guide">
+            <OptimizedImage image={img} class="process-guide__img" />
+            <figcaption>{guideTitles[i]}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
     <section aria-label="ข้อมูลสำคัญ" style="margin-bottom:4rem;">
       <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:1.75rem;text-align:center;">ข้อมูลที่ควรเตรียม</h2>
       <div class="process-checklists">
@@ -73,7 +121,6 @@ if (!page) throw new Error('Missing /process/ content');
       </div>
     </section>
 
-    <!-- Price guide -->
     <section aria-labelledby="price-title" class="price-guide">
       <h2 id="price-title">ปัจจัยที่กำหนดราคา</h2>
       <div style="overflow-x:auto;">
@@ -116,7 +163,6 @@ if (!page) throw new Error('Missing /process/ content');
       </div>
     </section>
 
-    <!-- FAQ -->
     <section aria-labelledby="faq-title" style="margin:3rem 0;">
       <h2 id="faq-title" style="font-size:1.3rem;font-weight:800;margin-bottom:1.25rem;">คำถามที่พบบ่อย</h2>
       <div class="faq-list">
@@ -143,7 +189,6 @@ if (!page) throw new Error('Missing /process/ content');
       </div>
     </section>
 
-    <!-- CTA -->
     <div class="review-cta-banner" style="margin-bottom:4rem;">
       <h2>พร้อมขายกล้องแล้ว?</h2>
       <p>ส่งรูปกล้องมาประเมินฟรี ตอบไว ไม่มีข้อผูกมัด</p>

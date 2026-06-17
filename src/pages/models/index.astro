@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 import QuickAnswerBox from '../../components/money/QuickAnswerBox.astro';
 import FAQSection from '../../components/money/FAQSection.astro';
 import LineCTA from '../../components/money/LineCTA.astro';
 import RelatedProvinceLinks from '../../components/money/RelatedProvinceLinks.astro';
 import { getPageByPath } from '../../lib/content';
 import { BRAND_MONEY_PAGE_MAP } from '../../lib/moneyPages';
+import { BRAND_IMAGES } from '../../lib/siteImages';
 import { CONTACT } from '../../config/site';
 
 const page = getPageByPath('/models/');
@@ -13,11 +15,8 @@ if (!page) throw new Error('Missing /models/ content');
 
 const brands = [
   {
-    id: 'canon',
-    name: 'Canon',
+    ...BRAND_IMAGES.canon,
     badge: 'ยอดนิยม',
-    img: '/images/uploads/2025/06/รับซื้อกล้อง-canon.webp',
-    alt: 'รับซื้อกล้อง Canon มือสอง',
     models: [
       'EOS R5', 'EOS R6 Mark II', 'EOS R8', 'EOS R50', 'EOS R3',
       '5D Mark IV', '6D Mark II', '90D', '850D', '80D',
@@ -26,11 +25,8 @@ const brands = [
     ],
   },
   {
-    id: 'sony',
-    name: 'Sony',
+    ...BRAND_IMAGES.sony,
     badge: 'ขายดี',
-    img: '/images/uploads/2025/06/Sony-A7-III-Body-Black-Thai-1.webp',
-    alt: 'รับซื้อกล้อง Sony มือสอง',
     models: [
       'A7 IV', 'A7 III', 'A7C', 'A7C II', 'A7R V', 'A7R IV',
       'A9 III', 'A9 II', 'A6700', 'A6600', 'A6400',
@@ -38,11 +34,8 @@ const brands = [
     ],
   },
   {
-    id: 'fujifilm',
-    name: 'Fujifilm',
+    ...BRAND_IMAGES.fujifilm,
     badge: '',
-    img: '/images/uploads/2025/06/fuji-xt4-vs-xt5.webp',
-    alt: 'รับซื้อกล้อง Fujifilm มือสอง',
     models: [
       'X-T5', 'X-T4', 'X-T3', 'X-S20', 'X-S10',
       'X-H2S', 'X-H2', 'X100VI', 'X100V', 'X-Pro3',
@@ -50,11 +43,8 @@ const brands = [
     ],
   },
   {
-    id: 'nikon',
-    name: 'Nikon',
+    ...BRAND_IMAGES.nikon,
     badge: '',
-    img: '/images/uploads/2025/06/35.webp',
-    alt: 'รับซื้อกล้อง Nikon มือสอง',
     models: [
       'Z8', 'Z9', 'Z6 III', 'Z6 II', 'Z7 II',
       'Z5 II', 'Z50', 'Zfc', 'D850', 'D750',
@@ -62,11 +52,8 @@ const brands = [
     ],
   },
   {
-    id: 'leica',
-    name: 'Leica',
+    ...BRAND_IMAGES.leica,
     badge: 'ราคาสูง',
-    img: '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp',
-    alt: 'รับซื้อกล้อง Leica มือสอง',
     models: [
       'M11', 'M11-P', 'M10-R', 'M10', 'M6', 'MP',
       'Q3', 'Q2', 'Q', 'SL3', 'SL2', 'SL2-S',
@@ -74,11 +61,8 @@ const brands = [
     ],
   },
   {
-    id: 'panasonic',
-    name: 'Panasonic',
+    ...BRAND_IMAGES.panasonic,
     badge: '',
-    img: '/images/uploads/2025/06/กล้อง-Mirrorless.webp',
-    alt: 'รับซื้อกล้อง Panasonic มือสอง',
     models: [
       'S5 II', 'S5 IIX', 'S1R', 'S1', 'S1H',
       'GH6', 'GH5 II', 'GH5', 'G9 II', 'G9',
@@ -86,11 +70,8 @@ const brands = [
     ],
   },
   {
-    id: 'olympus',
-    name: 'Olympus / OM System',
+    ...BRAND_IMAGES.olympus,
     badge: '',
-    img: '/images/uploads/2025/06/กล้องคอมแพค.webp',
-    alt: 'รับซื้อกล้อง Olympus มือสอง',
     models: [
       'OM-1 Mark II', 'OM-1', 'OM-5',
       'E-M1X', 'E-M1 Mark III', 'E-M5 Mark III',
@@ -98,11 +79,8 @@ const brands = [
     ],
   },
   {
-    id: 'dji',
-    name: 'DJI',
+    ...BRAND_IMAGES.dji,
     badge: '',
-    img: '/images/uploads/2025/06/Osmo-Action-5-Pro.webp',
-    alt: 'รับซื้อกล้อง DJI มือสอง',
     models: [
       'Mavic 3 Pro', 'Mavic 3 Classic', 'Mini 4 Pro', 'Mini 3 Pro',
       'Air 3', 'Avata 2', 'Osmo Action 5 Pro', 'Osmo Action 4',
@@ -146,14 +124,7 @@ const brands = [
         {hub && <QuickAnswerBox answer={hub.quickAnswer} />}
         <div class="brand-section__body">
           <div class="brand-section__img">
-            <img
-              src={brand.img}
-              alt={brand.alt}
-              width="400"
-              height="300"
-              loading="lazy"
-              decoding="async"
-            />
+            <OptimizedImage src={brand.src} alt={brand.alt} width={brand.width} height={brand.height} />
           </div>
           <div class="brand-section__models">
             <h3>รุ่นที่รับซื้อ</h3>

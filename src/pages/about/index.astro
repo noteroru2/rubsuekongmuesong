@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 import { getPageByPath } from '../../lib/content';
+import { ABOUT_TRUST_GALLERY } from '../../lib/siteImages';
 import { COMPANY, CONTACT, LINE_ID } from '../../config/site';
 
 const page = getPageByPath('/about/');
@@ -109,27 +111,41 @@ if (!page) throw new Error('Missing /about/ content');
       </div>
     </div>
 
+    <!-- Trust gallery -->
+    <section aria-labelledby="about-gallery-title" class="about-gallery-section">
+      <h2 id="about-gallery-title">ร้านรับซื้อกล้องมือสอง อุบลราชธานี</h2>
+      <p class="about-gallery-section__sub">มีหน้าร้านจริง โต๊ะตรวจเช็กกล้อง และทีมงานพร้อมประเมินราคา</p>
+      <div class="about-gallery-grid">
+        {ABOUT_TRUST_GALLERY.map((img) => (
+          <figure class="about-gallery-item">
+            <OptimizedImage image={img} class="about-gallery-item__img" />
+            <figcaption>{img.alt}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
     <!-- Trust block -->
     <section aria-labelledby="trust-title" style="margin-bottom:4rem;">
       <h2 id="trust-title" style="font-size:1.3rem;font-weight:800;text-align:center;margin-bottom:1.75rem;">ทำไมต้องเชื่อใจเรา</h2>
       <div class="about-trust-grid">
         <div class="about-trust-item">
-          <span class="about-trust-item__icon" aria-hidden="true">🏢</span>
+          <span class="about-trust-item__icon" aria-hidden="true">✓</span>
           <h3>บริษัทจดทะเบียน</h3>
           <p>จดทะเบียนถูกต้องตามกฎหมาย มีเลขทะเบียนนิติบุคคล</p>
         </div>
         <div class="about-trust-item">
-          <span class="about-trust-item__icon" aria-hidden="true">🏪</span>
+          <span class="about-trust-item__icon" aria-hidden="true">✓</span>
           <h3>มีหน้าร้านจริง</h3>
           <p>มาที่ร้านได้เลย อุบลราชธานี</p>
         </div>
         <div class="about-trust-item">
-          <span class="about-trust-item__icon" aria-hidden="true">📞</span>
+          <span class="about-trust-item__icon" aria-hidden="true">✓</span>
           <h3>ติดต่อได้หลายช่องทาง</h3>
           <p>LINE, โทรศัพท์, Facebook</p>
         </div>
         <div class="about-trust-item">
-          <span class="about-trust-item__icon" aria-hidden="true">🎁</span>
+          <span class="about-trust-item__icon" aria-hidden="true">✓</span>
           <h3>ประเมินฟรี</h3>
           <p>ไม่มีค่าใช้จ่าย ไม่มีข้อผูกมัด</p>
         </div>

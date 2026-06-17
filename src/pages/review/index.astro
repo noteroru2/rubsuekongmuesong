@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
 import { getPageByPath } from '../../lib/content';
+import { REVIEW_GALLERY } from '../../lib/siteImages';
 import { CONTACT } from '../../config/site';
 
 const page = getPageByPath('/review/');
@@ -71,29 +73,18 @@ const reviews = [
     stars: 5,
   },
 ];
-
-const galleryImages = [
-  { src: '/images/uploads/2025/06/LINE_NOTE_250618_7.webp', alt: 'ตัวอย่างการโอนเงิน' },
-  { src: '/images/uploads/2025/06/LINE_NOTE_250618_8.webp', alt: 'ตัวอย่างแชทประเมินราคา' },
-  { src: '/images/uploads/2025/06/LINE_NOTE_250618_9.webp', alt: 'รับซื้อกล้องมือสอง' },
-  { src: '/images/uploads/2025/06/LINE_NOTE_250618_10.webp', alt: 'ตัวอย่างงานรับซื้อ' },
-  { src: '/images/uploads/2025/06/LINE_NOTE_250618_11.webp', alt: 'ลูกค้าพอใจ' },
-  { src: '/images/uploads/2025/06/S__18694154.webp', alt: 'กล้องที่รับซื้อ' },
-];
 ---
 
 <BaseLayout page={page} bodyClass="page-review">
   <div class="inner-page">
-    <!-- Hero -->
     <div class="review-hero">
-      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">รีวิวจากลูกค้า</p>
-      <h1>รีวิวจากลูกค้าจริง</h1>
-      <p>ลูกค้าที่ขายกล้องมือสองกับเราแล้วมากกว่า 1,000+ ราย</p>
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">ประสบการณ์ลูกค้า</p>
+      <h1>ตัวอย่างประสบการณ์ลูกค้า</h1>
+      <p>ข้อความด้านล่างเป็นตัวอย่างประสบการณ์การขายกล้องมือสองกับเรา ภาพประกอบแสดงตัวอย่างขั้นตอนการทำงาน</p>
     </div>
 
-    <!-- Review grid -->
     <section aria-labelledby="reviews-h2" style="margin-bottom:3rem;">
-      <h2 id="reviews-h2" class="sr-only">รีวิวทั้งหมด</h2>
+      <h2 id="reviews-h2" class="sr-only">ตัวอย่างประสบการณ์</h2>
       <div class="review-page-grid">
         {reviews.map((r) => (
           <div class="review-card">
@@ -113,35 +104,27 @@ const galleryImages = [
       </div>
     </section>
 
-    <!-- CTA after reviews -->
     <div class="review-cta-banner">
-      <h2>พอใจอยากขายกล้อง?</h2>
-      <p>ส่งรูปมาประเมินราคาฟรี ตอบไว ได้ราคาดีเหมือนลูกค้าคนอื่น</p>
+      <h2>พร้อมขายกล้อง?</h2>
+      <p>ส่งรูปมาประเมินราคาฟรี ตอบไว ไม่มีข้อผูกมัด</p>
       <a class="btn btn--primary btn--lg" href={CONTACT.lineCta} target="_blank" rel="noopener noreferrer">
         ส่งรูปประเมินราคาใน LINE
       </a>
     </div>
 
-    <!-- Gallery from real transactions -->
     <section aria-labelledby="gallery-h2" style="margin:3rem 0 4rem;">
-      <h2 id="gallery-h2" style="font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;">ตัวอย่างการรับซื้อจริง</h2>
+      <h2 id="gallery-h2" style="font-size:1.3rem;font-weight:800;margin-bottom:.5rem;">ตัวอย่างขั้นตอนการรับซื้อ</h2>
+      <p style="text-align:center;color:var(--text-soft);font-size:.9rem;margin-bottom:1.5rem;">ภาพจากขั้นตอนการทำงานจริงของร้าน — ข้อมูลส่วนตัวถูกปิดบังแล้ว</p>
       <div class="gallery-grid">
-        {galleryImages.map((img) => (
-          <div class="gallery-item">
-            <img
-              src={img.src}
-              alt={img.alt}
-              width="400"
-              height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+        {REVIEW_GALLERY.map((img) => (
+          <figure class="gallery-item">
+            <OptimizedImage image={img} class="gallery-item__img" />
+            <figcaption class="gallery-item__caption">{img.alt}</figcaption>
+          </figure>
         ))}
       </div>
     </section>
 
-    <!-- Second CTA -->
     <div class="review-cta-banner" style="margin-bottom:4rem;">
       <h2>เริ่มขายกล้องได้เลยตอนนี้</h2>
       <p>ส่งรูปกล้อง รับราคาฟรีภายใน 30 นาที</p>
@@ -163,5 +146,11 @@ const galleryImages = [
     overflow: hidden;
     clip: rect(0,0,0,0);
     white-space: nowrap;
+  }
+  .gallery-item__caption {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    text-align: center;
   }
 </style>

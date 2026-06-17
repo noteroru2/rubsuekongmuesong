@@ -18,6 +18,8 @@
     "images": "node scripts/migrate-images.mjs",
     "blog:index": "node scripts/generate-blog-index.mjs",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
+    "images:prepare": "node scripts/prepare-site-images.mjs",
+    "images:audit": "node scripts/audit-images.mjs",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"

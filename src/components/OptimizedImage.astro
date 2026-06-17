@@ -1,0 +1,43 @@
+---
+import type { SiteImage } from '../lib/siteImages';
+
+interface Props extends Partial<SiteImage> {
+  image?: SiteImage;
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  sizes?: string;
+}
+
+const {
+  image,
+  src = image?.src,
+  alt = image?.alt ?? '',
+  width = image?.width,
+  height = image?.height,
+  loading = 'lazy',
+  fetchpriority,
+  class: className,
+  sizes,
+} = Astro.props;
+
+if (!src || !width || !height) {
+  throw new Error('OptimizedImage requires src, width, and height (or a SiteImage object).');
+}
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  fetchpriority={fetchpriority}
+  class={className}
+  sizes={sizes}
+/>

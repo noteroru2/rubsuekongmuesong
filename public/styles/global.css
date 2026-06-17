@@ -617,9 +617,11 @@ ul { list-style: none; padding: 0; }
 }
 .hero__img-wrap img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
+  display: block;
 }
 .hero__img-badge {
   position: absolute;
@@ -2888,4 +2890,208 @@ ul { list-style: none; padding: 0; }
   text-decoration: none;
 }
 .home-provinces__card:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ── Image optimization / trust sections ── */
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.process-step--visual {
+  flex: 1 1 240px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.process-step__img {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.process-step__img img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.trust-examples {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+  .trust-examples { grid-template-columns: 1fr 1fr; }
+}
+.trust-example {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg);
+}
+.trust-example__img,
+.trust-example img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.trust-example figcaption {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.step-card--visual .step-card__img,
+.step-card__img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+.step-card__img img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.process-steps-grid--visual {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .process-steps-grid--visual { grid-template-columns: repeat(3, 1fr); }
+}
+
+.photo-tips-section,
+.process-guides {
+  margin-bottom: 3rem;
+}
+.photo-tips-section h2,
+.process-guides h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.photo-tips-section__sub {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+.photo-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .photo-tips-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.photo-tip {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.photo-tip__img img,
+.photo-tip img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.photo-tip figcaption {
+  padding: 0.5rem;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.process-guides__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .process-guides__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.process-guide {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.process-guide__img img,
+.process-guide img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  display: block;
+}
+.process-guide figcaption {
+  padding: 0.65rem;
+  font-size: 0.82rem;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.about-gallery-section {
+  margin-bottom: 3rem;
+}
+.about-gallery-section h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+}
+.about-gallery-section__sub {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.about-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .about-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.about-gallery-item {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.about-gallery-item__img img,
+.about-gallery-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.about-gallery-item figcaption {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.brand-section__img img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
 
