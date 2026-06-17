@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQSection from '../../components/money/FAQSection.astro';
+import LineCTA from '../../components/money/LineCTA.astro';
+import { BRAND_IMAGES, SITE_IMAGES } from '../../lib/siteImages';
+import { getPageByPath } from '../../lib/content';
+import type { PageRecord } from '../../lib/types';
+import { SITE_URL } from '../../config/site';
+import modelPages from '../../../content-input/camera-model-pages.json';
+
+type ModelFaq = { question: string; answer: string };
+type ModelPage = {
+  brand: string;
+  modelName: string;
+  slug: string;
+  h1: string;
+  title: string;
+  description: string;
+  intro: string[];
+  buyingOptions: string[];
+  priceFactors: string[];
+  photoChecklist: string[];
+  accessoriesChecklist: string[];
+  commonIssues: string[];
+  sellingSteps: string[];
+  relatedModels: string[];
+  faq: ModelFaq[];
+  ctaTitle: string;
+  ctaDescription: string;
+};
+
+export function getStaticPaths() {
+  return (modelPages as ModelPage[]).map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const pages = modelPages as ModelPage[];
+const item = pages.find((p) => p.slug === slug);
+if (!item) throw new Error(`Missing model page for slug: ${slug}`);
+
+const brandId = item.brand.toLowerCase();
+const brandImage = BRAND_IMAGES[brandId] ?? SITE_IMAGES.heroHome;
+const pagePath = `/models/${item.slug}/`;
+const canonical = `${SITE_URL}${pagePath}`;
+
+const shutterCountPageExists = !!getPageByPath('/article/shutter-count/');
+
+const related = item.relatedModels
+  .map((name) => pages.find((p) => p.brand === item.brand && p.modelName === name))
+  .filter(Boolean) as ModelPage[];
+
+const page: PageRecord = {
+  id: `model-${item.slug}`,
+  oldUrl: '',
+  path: pagePath,
+  pageType: 'article',
+  seo: {
+    title: item.title,
+    metaDescription: item.description,
+    canonical,
+    h1: item.h1,
+    ogTitle: item.title,
+    ogDescription: item.description,
+    ogUrl: canonical,
+    ogType: 'website',
+    ogImage: brandImage.src,
+  },
+  bodyHtml: [
+    ...item.intro.map((p) => `<p>${p}</p>`),
+    ...item.faq.map((f) => `<h2>${f.question}</h2><p>${f.answer}</p>`),
+  ].join('\n'),
+};
+
+const breadcrumbs = [
+  { label: 'หน้าแรก', href: '/' },
+  { label: 'รับซื้อกล้องตามรุ่น', href: '/models/' },
+  { label: item.h1, href: pagePath },
+];
+---
+
+<BaseLayout page={page} bodyClass="page-model">
+  <div class="inner-page">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <header class="models-hero" style="margin-top:1rem;">
+      <p style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem;">
+        รับซื้อกล้องตามรุ่น
+      </p>
+      <h1>{item.h1}</h1>
+      <p>{item.description}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-top:1.5rem;">
+        <a class="btn btn--primary btn--lg" href="/models/">ดูรุ่นทั้งหมด</a>
+        <a class="btn btn--secondary btn--lg" href="/process/">ดูขั้นตอนการขาย</a>
+      </div>
+    </header>
+
+    <section class="money-section" aria-label={`ภาพแบรนด์ ${item.brand}`}>
+      <div class="brand-section__body" style="margin-top:2rem;">
+        <div class="brand-section__img">
+          <OptimizedImage src={brandImage.src} alt={brandImage.alt} width={brandImage.width} height={brandImage.height} />
+        </div>
+        <div class="brand-section__models">
+          <h2>ลิงก์ที่เกี่ยวข้อง</h2>
+          <ul>
+            <li><a href="/">หน้าแรก</a></li>
+            <li><a href="/models/">รับซื้อกล้องตามรุ่น</a></li>
+            <li><a href="/process/">ขั้นตอนขายผ่าน LINE</a></li>
+            <li><a href="/review/">รีวิวและตัวอย่างการรับซื้อ</a></li>
+            {shutterCountPageExists && (
+              <li><a href="/article/shutter-count/">เช็ก Shutter Count คืออะไร</a></li>
+            )}
+          </ul>
+          <LineCTA title={item.ctaTitle} description={item.ctaDescription} />
+        </div>
+      </div>
+    </section>
+
+    <section class="money-section" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" class="money-section__title">ภาพรวมและสิ่งที่ทีมงานใช้ประเมิน</h2>
+      {item.intro.map((p) => <p>{p}</p>)}
+    </section>
+
+    <section class="money-section" aria-labelledby="buying-options-heading">
+      <h2 id="buying-options-heading" class="money-section__title">รุ่นนี้รับซื้อแบบไหนบ้าง</h2>
+      <ul>
+        {item.buyingOptions.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="money-section" aria-labelledby="price-factors-heading">
+      <h2 id="price-factors-heading" class="money-section__title">ปัจจัยที่มีผลต่อราคาประเมิน</h2>
+      <ul>
+        {item.priceFactors.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="money-section" aria-labelledby="photo-checklist-heading">
+      <h2 id="photo-checklist-heading" class="money-section__title">ก่อนขายควรถ่ายรูปอะไรส่งมา</h2>
+      <ul>
+        {item.photoChecklist.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="money-section" aria-labelledby="accessories-checklist-heading">
+      <h2 id="accessories-checklist-heading" class="money-section__title">อุปกรณ์ที่ควรเตรียม</h2>
+      <ul>
+        {item.accessoriesChecklist.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="money-section" aria-labelledby="common-issues-heading">
+      <h2 id="common-issues-heading" class="money-section__title">ตำหนิที่ควรแจ้งก่อนประเมิน</h2>
+      <ul>
+        {item.commonIssues.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section class="money-section" aria-labelledby="selling-steps-heading">
+      <h2 id="selling-steps-heading" class="money-section__title">ขั้นตอนขายผ่าน LINE</h2>
+      <ol>
+        {item.sellingSteps.map((x) => <li>{x}</li>)}
+      </ol>
+      <p style="margin-top:1rem;">
+        ถ้าสะดวก ส่งรูปที่ถ่ายไว้ + ระบุรุ่น/อุปกรณ์ที่มี + อาการหรือรอยตำหนิที่อยากให้ทีมงานดูเป็นพิเศษ
+      </p>
+      <LineCTA title={item.ctaTitle} description={item.ctaDescription} />
+    </section>
+
+    <section class="money-section" aria-labelledby="related-models-heading">
+      <h2 id="related-models-heading" class="money-section__title">รุ่นใกล้เคียงที่รับซื้อ</h2>
+      {related.length ? (
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={`/models/${r.slug}/`}>{r.modelName}</a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          ดูรุ่นอื่นในหน้า <a href="/models/">รับซื้อกล้องตามรุ่น</a> หรือส่งรูปมาถามได้เลย
+        </p>
+      )}
+    </section>
+
+    <FAQSection faqs={item.faq} heading="FAQ" />
+
+    <section class="money-section" aria-label="ปุ่มติดต่อ LINE">
+      <LineCTA title={item.ctaTitle} description={item.ctaDescription} />
+    </section>
+  </div>
+</BaseLayout>
+
