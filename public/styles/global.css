@@ -2733,6 +2733,27 @@ ul { list-style: none; padding: 0; }
 }
 .related-links__list a:hover { border-color: var(--primary); color: var(--primary); }
 
+.article-related-models { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.article-related-models h2 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+.related-model-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.related-model-links a {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--text);
+}
+.related-model-links a:hover { border-color: var(--primary); color: var(--primary); }
+
 .entry--money .entry-content--legacy {
   margin-top: 2rem;
   padding-top: 2rem;
