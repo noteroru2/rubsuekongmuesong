@@ -1,7 +1,4 @@
 {
-  "siteUrl": "https://xn--12cman8e0bjt1czaccb9b1fg31ad.com",
-  "generatedAt": "2026-06-15T08:15:39.982Z",
-  "totalPages": 2089,
   "routes": [
     {
       "path": "/",
@@ -9956,6 +9953,11 @@
     {
       "path": "/รับซื้อกล้อง/รับซื้อกล้อง-fuji/",
       "contentFile": "location-af61de9bc0da76ea3c43.json",
+      "pageType": "location"
+    },
+    {
+      "path": "/รับซื้อกล้อง/รับซื้อกล้อง-nikon/",
+      "contentFile": "location-b7e4c29a1f8d3e6a5c02.json",
       "pageType": "location"
     },
     {

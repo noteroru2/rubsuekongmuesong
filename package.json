@@ -28,6 +28,7 @@
     "qa:phase2": "node scripts/qa-phase2.mjs",
     "qa:camera-model-pages": "node scripts/qa-camera-model-pages.mjs",
     "qa:article-model-links": "node scripts/internal-link-model-pages.mjs qa",
+    "qa:remaining-model-links": "node scripts/remaining-model-internal-links.mjs qa",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"

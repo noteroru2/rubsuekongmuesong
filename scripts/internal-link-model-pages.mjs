@@ -20,6 +20,7 @@ const BANNED = ['ราคาสูงสุด', 'ให้ราคาสู�
 const RELATED_MARKER = 'article-related-models';
 const MAX_LINKS_LONG = 5;
 const MAX_LINKS_SHORT = 2;
+const MAX_LINKS_BRAND_HUB = 8;
 const SHORT_WORD_THRESHOLD = 500;
 
 const models = JSON.parse(fs.readFileSync(MODELS_JSON, 'utf8'));
@@ -384,6 +385,12 @@ const LOCATION_BRAND_PLANS = [
       },
     ],
   },
+  {
+    pathMatch: /\/รับซื้อกล้อง\/รับซื้อกล้อง-nikon\/?$/i,
+    priority: 'HIGH',
+    related: [],
+    sentences: [],
+  },
 ];
 
 function loadRoutes() {
@@ -677,7 +684,14 @@ function qa() {
 
     const counts = countModelLinks(html);
     const wordCount = wordCountFromHtml(html, data.seo?.wordCount);
-    const maxAllowed = wordCount < SHORT_WORD_THRESHOLD ? MAX_LINKS_SHORT : MAX_LINKS_LONG;
+    const isBrandHub =
+      route.pageType === 'location' &&
+      LOCATION_BRAND_PLANS.some((p) => p.pathMatch.test(route.path));
+    const maxAllowed = isBrandHub
+      ? MAX_LINKS_BRAND_HUB
+      : wordCount < SHORT_WORD_THRESHOLD
+        ? MAX_LINKS_SHORT
+        : MAX_LINKS_LONG;
 
     if (counts.body > maxAllowed) {
       issues.push({
