@@ -21,6 +21,8 @@
     "images:prepare": "node scripts/prepare-site-images.mjs",
     "images:audit": "node scripts/audit-images.mjs",
     "redirects:report": "node scripts/sync-redirect-report.mjs",
+    "redirects:sync": "node scripts/generate-vercel-redirects.mjs",
+    "qa:redirects": "node scripts/qa-redirects.mjs",
     "og:dedupe": "node scripts/dedupe-og-images.mjs",
     "qa:phase2": "node scripts/qa-phase2.mjs",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",

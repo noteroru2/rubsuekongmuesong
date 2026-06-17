@@ -158,9 +158,10 @@ WordPress may serve percent-encoded paths (e.g. \`%e0%b8%a3%e0%b8%b1%e0%b8%9a...
 
 ## Recommended next step
 
-1. Run \`node scripts/generate-vercel-redirects.mjs\` (Phase 2b) to merge \`_redirects\` → \`vercel.json\`.
-2. Test top 20 GSC URLs on Vercel preview before DNS cutover.
-3. See \`dns-cutover-checklist.md\`.
+1. Run \`npm run redirects:sync\` to merge \`_redirects\` → \`vercel.json\`.
+2. Run \`npm run qa:redirects\` after build.
+3. Test top 20 GSC URLs on Vercel preview before DNS cutover.
+4. See \`dns-cutover-checklist.md\` and \`vercel-redirect-sync-report.md\`.
 `;
 
   fs.writeFileSync(path.join(ROOT, 'redirect-sync-report.md'), report, 'utf8');

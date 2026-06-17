@@ -106,7 +106,7 @@ if (badOgRemaining.length) {
 }
 
 // 5. Reports exist
-for (const f of ['redirect-sync-report.md', 'dns-cutover-checklist.md', 'real-image-shot-list.md']) {
+for (const f of ['redirect-sync-report.md', 'vercel-redirect-sync-report.md', 'dns-cutover-checklist.md', 'real-image-shot-list.md']) {
   if (!fs.existsSync(path.resolve(f))) fail(`Missing ${f}`);
 }
 

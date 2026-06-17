@@ -3,9 +3,9 @@
 **Domain:** `xn--12cman8e0bjt1czaccb9b1fg31ad.com` (รับซื้อกล้องมือสอง.com)  
 **Target:** Vercel (Astro static)  
 **Preview:** `rubsuekongmuesong.vercel.app`  
-**Base commit:** `721a586` + Phase 2 prep
+**Base commit:** Phase 3 — Vercel redirect sync
 
-> ห้ามแก้ DNS จนกว่าจะเช็คทุกข้อด้านล่างผ่านบน preview
+> ห้ามแก้ DNS จนกว่าจะเช็คทุกข้อด้านล่างผ่านบน **Vercel preview หลัง deploy**
 
 ---
 
@@ -13,24 +13,25 @@
 
 - [ ] `npm run build` ผ่าน 2,256+ หน้า
 - [ ] `npm run images:audit` — broken = 0
+- [ ] `npm run redirects:sync` — sync `_redirects` → `vercel.json`
+- [ ] `npm run qa:redirects` — top 20 URLs ผ่าน
 - [ ] เปิด 6 หน้าหลัก: `/`, `/models/`, `/process/`, `/review/`, `/about/`, `/blog/`
 - [ ] ทดสอบ top 20 URL จาก GSC (ดู `redirect-map.csv` SECTION 1 KEEP)
-- [ ] ทดสอบ redirect สำคัญ:
+- [ ] ทดสอบ redirect สำคัญบน **preview URL จริง** (ไม่ใช่แค่ local simulation):
   - [ ] `/sitemap_index.xml` → `/sitemap-index.xml`
   - [ ] `/tag/ร้านรับซื้อกล้อง-นครสวร/` → หน้าจังหวัด
   - [ ] `/กล้อง/ร้านรับซื้อกล้อง-อุดรธา/` → หน้าจังหวัด
 - [ ] ตรวจ trailing slash: URL ไม่มี `/` ท้ายต้อง redirect หรือ serve ได้
 - [ ] ตรวจ canonical ใน `<link rel="canonical">` ตรงกับ URL จริง
-- [ ] ตรวจ `robots.txt` และ sitemap โหลดได้
-- [ ] Sync `vercel.json` redirects จาก `_redirects` (ดู `redirect-sync-report.md`)
+- [ ] ตรวจ `robots.txt` และ `sitemap-index.xml` โหลดได้
 
-## 2. Redirect sync (ก่อน DNS)
+## 2. Redirect sync (Phase 3 — done in code)
 
-- [ ] อ่าน `redirect-sync-report.md`
-- [ ] ยืนยัน `_redirects` มี 58 rules (TAG + /กล้อง/ + สกลนคร)
-- [ ] ยืนยัน `vercel.json` รองรับ redirect สำคัญ (ปัจจุบันมีแค่ sitemap — **ต้อง sync**)
-- [ ] ถ้าใช้ Vercel: generate redirects เข้า `vercel.json` หรือใช้ Edge Middleware
-- [ ] บันทึก encoded Thai URL ที่ GSC ยัง index อยู่ — เตรียม redirect ถ้า 404
+- [x] `npm run redirects:sync` — สร้าง `vercel.json` redirects จาก `_redirects`
+- [x] Encoded Thai URL variants เพิ่มใน `vercel.json`
+- [ ] อ่าน `vercel-redirect-sync-report.md` หลัง deploy
+- [ ] ยืนยันบน Vercel preview ว่า redirect ทำงาน (curl -I)
+- [ ] **262** redirect-map.csv 301 (medium/low) ยังไม่ sync — monitor GSC หลัง cutover
 
 ## 3. DNS changes (ทำเมื่อ preview พร้อม)
 
@@ -49,8 +50,8 @@
 | A | `@` | `76.76.21.21` (Vercel) |
 | CNAME | `www` | `cname.vercel-dns.com` |
 
-3. ใน Vercel เพิ่ม domain ทั้ง apex และ www
-4. เปิด redirect www → apex (หรือกลับกันตาม canonical)
+1. ใน Vercel เพิ่ม domain ทั้ง apex และ www
+2. เปิด redirect www → apex (หรือกลับกันตาม canonical)
 
 ### หลังเปลี่ยน DNS
 
@@ -72,6 +73,15 @@
 - [ ] GSC Performance — คลิก/impression ไม่ร่วงผิดปกติ
 - [ ] ตรวจ redirect chain ไม่เกิน 1 hop
 - [ ] Core Web Vitals บน mobile
+
+## 6. Go / No-go
+
+| Gate | Required |
+|------|----------|
+| vercel.json redirects synced | ✓ Phase 3 |
+| qa:redirects local pass | ✓ |
+| Vercel preview curl test | **ยังต้องทำก่อน DNS** |
+| Real trust photos | ไม่บล็อก cutover |
 
 ---
 

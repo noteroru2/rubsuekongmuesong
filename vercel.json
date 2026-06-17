@@ -5,21 +5,603 @@
       "source": "/sitemap_index.xml",
       "destination": "/sitemap-index.xml",
       "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%9E%E0%B8%B0%E0%B9%80%E0%B8%A2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องพะเยา/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B9%81/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99%E0%B8%84%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%AA%E0%B8%A7%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องนครสวร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99%E0%B8%84%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B8%E0%B8%A3/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุราษฎ/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B3%E0%B8%99%E0%B8%B2%E0%B8%88%E0%B9%80/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอำนาจเ/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/รับซื้อกล้องมือสอง-พะเย/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องพะเยา/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/รับซื้อกล้องมือสอง-สกลน/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/รับซื้อกล้องมือสอง-สระแ/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/รับซื้อกล้องสกลนคร/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/ร้านรับซื้อกล้อง-นครสวร/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องนครสวร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/ร้านรับซื้อกล้อง-สกลนคร/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/ร้านรับซื้อกล้อง-สระบุร/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/ร้านรับซื้อกล้อง-สุราษฎ/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุราษฎ/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/ร้านรับซื้อกล้อง-อำนาจเ/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอำนาจเ/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD-olympus-om-d-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87/",
+      "destination": "/models/#olympus",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD-sony-zv-e10-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87/",
+      "destination": "/models/#sony",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-dslr-%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5%E0%B8%A3%E0%B8%B1%E0%B8%A1%E0%B8%A2%E0%B9%8C/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-บุรี/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-dslr-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%81%E0%B8%A5/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-fujifilm-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%A1%E0%B8%B8%E0%B8%81/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-fujifilm-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B8%E0%B8%9A/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-gopro-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%82%E0%B8%AD%E0%B8%99/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ขอนแ/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-gopro-hero-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%99%E0%B8%84-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-gopro-hero-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AB%E0%B8%99-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-nikon-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%B8%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-olympus-om-d-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%9A%E0%B8%B8/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-บุรี/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-olympus-om-d-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B8-2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-sony-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%A3%E0%B9%89%E0%B8%AD/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ร้อย/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-sony-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B8%E0%B8%9A-2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-sony-a6400-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%B8/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%A1%E0%B8%B7-13/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%A1%E0%B8%B7-16/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%A1%E0%B8%B7%E0%B8%AD-3/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%A1%E0%B8%B7%E0%B8%AD-8/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B8%AA-15/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%94%E0%B9%88%E0%B8%A7-13/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%94%E0%B9%88%E0%B8%A7-15/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%96%E0%B8%B6%E0%B8%87-14/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%9E%E0%B8%A2%E0%B8%B1%E0%B8%84/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-มหาส/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%A3%E0%B8%B1%E0%B8%9A-67/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%B5/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ศรีส/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%B8%E0%B8%A3-6/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B3%E0%B8%99-5/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอำนาจเ/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%82%E0%B8%A1%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ศรีส/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%94%E0%B8%8A%E0%B8%AD/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%A5%E0%B8%99-63/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%82%E0%B8%9E%E0%B8%A5%E0%B8%B2/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%83%E0%B8%81%E0%B8%A5-12/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%83%E0%B8%81%E0%B8%A5-17/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%84%E0%B8%A1%E0%B9%88-26/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B8%AA-3/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B8%AA-5/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA-4/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B8%AA%E0%B9%8C%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA-13/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B8%AA%E0%B9%8C%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD-9/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%9E%E0%B8%99%E0%B8%A1/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99%E0%B8%84%E0%B8%A3/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุดรธา/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD-17/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%AA%E0%B8%81%E0%B8%A5%E0%B8%99/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อ-olympus-om-d-มือสอง/",
+      "destination": "/models/#olympus",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อ-sony-zv-e10-มือสอง/",
+      "destination": "/models/#sony",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-dslr-บุรีรัมย์/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-บุรี/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-dslr-มือสอง-สกล/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-fujifilm-มือสอง-มุก/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-fujifilm-มือสอง-อุบ/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-gopro-hero-มือสอง-นค-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-gopro-hero-มือสอง-หน-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-gopro-มือสอง-ขอน/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ขอนแ/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-nikon-มือสอง-สุร/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-olympus-om-d-มือสอง-บุ/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-บุรี/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-olympus-om-d-มือสอง-อุ-2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-sony-a6400-มือสอง-สุ/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-sony-มือสอง-ร้อ/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ร้อย/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้อง-sony-มือสอง-อุบ-2/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องถ่ายรูปมื-13/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องถ่ายรูปมื-16/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องถ่ายรูปมือ-3/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องถ่ายรูปมือ-8/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องพร้อมเลนส-15/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ใกล-12/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ใกล-17/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-เขมร/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ศรีส/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-เครื/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ด่ว-13/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ด่ว-15/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-เดชอ/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ถึง-14/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-พยัค/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-มหาส/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-โพลา/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ไม่-26/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-รับ-67/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-ราษี/",
+      "destination": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ศรีส/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-เลน-63/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-สุร-6/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-อากา/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสอง-อำน-5/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอำนาจเ/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสองเลนส-3/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องมือสองเลนส-5/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อกล้องวิดีโอมือส-4/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อเลนส์กล้องมือส-13/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/รับซื้อเลนส์กล้องมือสอ-9/",
+      "destination": "/models/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/ร้านรับซื้อกล้อง-นครพนม/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/ร้านรับซื้อกล้อง-สกลนคร/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/ร้านรับซื้อกล้อง-สุรินท/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/ร้านรับซื้อกล้อง-อุดรธา/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องอุดรธา/",
+      "permanent": true
+    },
+    {
+      "source": "/กล้อง/ร้านรับซื้อกล้องมือสอ-17/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/รับซื้อกล้อง/รับซื้อกล้องมือสอง-สกลน/",
+      "destination": "/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/styles/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

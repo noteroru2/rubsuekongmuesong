@@ -1,6 +1,6 @@
 # Redirect Sync Report
 
-Generated: 2026-06-17T06:00:22.226Z
+Generated: 2026-06-17T06:40:25.668Z
 
 ## Summary
 
@@ -8,7 +8,7 @@ Generated: 2026-06-17T06:00:22.226Z
 |--------|------------|
 | `public/_redirects` | **58** |
 | `redirect-map.csv` (301 actions) | **314** |
-| `vercel.json` redirects | **1** |
+| `vercel.json` redirects | **115** |
 
 ## Platform notes
 
@@ -67,25 +67,10 @@ Generated: 2026-06-17T06:00:22.226Z
 
 ### In _redirects but NOT in vercel.json
 
-**57** rules — **must sync before Vercel cutover**.
+**0** rules — **must sync before Vercel cutover**.
 
-- `/tag/ร้านรับซื้อกล้อง-นครสวร/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องนครสวร/`
-- `/tag/ร้านรับซื้อกล้อง-อำนาจเ/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องอำนาจเ/`
-- `/tag/ร้านรับซื้อกล้อง-สุราษฎ/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสุราษฎ/`
-- `/tag/รับซื้อกล้องมือสอง-พะเย/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องพะเยา/`
-- `/tag/ร้านรับซื้อกล้อง-สระบุร/` → `/`
-- `/tag/รับซื้อกล้องมือสอง-สระแ/` → `/`
-- `/tag/ร้านรับซื้อกล้อง-สกลนคร/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/`
-- `/tag/รับซื้อกล้องมือสอง-สกลน/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/`
-- `/tag/รับซื้อกล้องสกลนคร/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/`
-- `/กล้อง/ร้านรับซื้อกล้อง-สกลนคร/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/`
-- `/รับซื้อกล้อง/รับซื้อกล้องมือสอง-สกลน/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/`
-- `/กล้อง/รับซื้อกล้องมือสอง-ใกล-12/` → `/`
-- `/กล้อง/รับซื้อกล้องถ่ายรูปมือ-3/` → `/`
-- `/กล้อง/ร้านรับซื้อกล้อง-อุดรธา/` → `/รับซื้อกล้อง/ร้านรับซื้อกล้องอุดรธา/`
-- `/กล้อง/รับซื้อกล้องถ่ายรูปมือ-8/` → `/`
 
-- … and 42 more
+
 
 ## Trailing slash
 
@@ -101,11 +86,12 @@ WordPress may serve percent-encoded paths (e.g. `%e0%b8%a3%e0%b8%b1%e0%b8%9a...`
 |-------|--------|
 | _redirects has TAG + /กล้อง/ rules | ✓ PASS |
 | Sitemap redirect | ✓ PASS |
-| vercel.json covers _redirects | ✗ GAP (57 rules) |
+| vercel.json covers _redirects | ✓ PASS |
 | redirect-map.csv fully deployed | ⚠ PARTIAL (262 missing) |
 
 ## Recommended next step
 
-1. Run `node scripts/generate-vercel-redirects.mjs` (Phase 2b) to merge `_redirects` → `vercel.json`.
-2. Test top 20 GSC URLs on Vercel preview before DNS cutover.
-3. See `dns-cutover-checklist.md`.
+1. Run `npm run redirects:sync` to merge `_redirects` → `vercel.json`.
+2. Run `npm run qa:redirects` after build.
+3. Test top 20 GSC URLs on Vercel preview before DNS cutover.
+4. See `dns-cutover-checklist.md` and `vercel-redirect-sync-report.md`.
