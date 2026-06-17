@@ -6,6 +6,12 @@ import FAQSection from '../../components/money/FAQSection.astro';
 import LineCTA from '../../components/money/LineCTA.astro';
 import RelatedProvinceLinks from '../../components/money/RelatedProvinceLinks.astro';
 import { getPageByPath } from '../../lib/content';
+import {
+  getCameraModelPagesForBrandId,
+  modelPageAnchor,
+  modelPageHref,
+  POPULAR_MODEL_BRANDS,
+} from '../../lib/cameraModelPages';
 import { BRAND_MONEY_PAGE_MAP } from '../../lib/moneyPages';
 import { BRAND_IMAGES } from '../../lib/siteImages';
 import { CONTACT } from '../../config/site';
@@ -105,8 +111,27 @@ const brands = [
       </div>
     </div>
 
+  <!-- Popular model money pages -->
+  <section class="money-section popular-model-pages" id="popular-models" aria-labelledby="popular-models-heading">
+    <h2 id="popular-models-heading" class="money-section__title">รับซื้อกล้องตามรุ่นยอดนิยม</h2>
+    <p>เลือกรุ่นที่ต้องการขาย ส่งรูปประเมินราคาผ่าน LINE ได้ทันที</p>
+    {POPULAR_MODEL_BRANDS.map((group) => (
+      <div class="popular-model-pages__brand" id={`popular-${group.id}`}>
+        <h3 class="popular-model-pages__brand-name">{group.name}</h3>
+        <ul class="popular-model-pages__list">
+          {group.models.map((model) => (
+            <li>
+              <a href={modelPageHref(model.slug)}>{modelPageAnchor(model)}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
     <!-- Anchor tabs -->
     <nav class="brand-tabs" aria-label="แบรนด์กล้อง">
+      <a class="brand-tab" href="#popular-models">รุ่นยอดนิยม</a>
       {brands.map((b) => (
         <a class="brand-tab" href={`#${b.id}`}>{b.name}</a>
       ))}
@@ -115,6 +140,7 @@ const brands = [
     <!-- Brand sections -->
     {brands.map((brand) => {
       const hub = BRAND_MONEY_PAGE_MAP.get(brand.id);
+      const modelPageLinks = getCameraModelPagesForBrandId(brand.id);
       return (
       <section class="brand-section brand-section--hub" id={brand.id} aria-labelledby={`brand-${brand.id}`}>
         <div class="brand-section__header">
@@ -131,6 +157,18 @@ const brands = [
             <ul>
               {(hub?.popularModels ?? brand.models).map((m) => <li>{m}</li>)}
             </ul>
+            {modelPageLinks.length > 0 && (
+              <>
+                <h3>หน้ารับซื้อตามรุ่นยอดนิยม</h3>
+                <ul class="brand-model-page-links">
+                  {modelPageLinks.map((model) => (
+                    <li>
+                      <a href={modelPageHref(model.slug)}>{modelPageAnchor(model)}</a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             {hub && (
               <>
                 <h3>รุ่นยอดนิยมที่ขายง่าย</h3>

@@ -26,6 +26,7 @@
     "qa:redirects": "node scripts/qa-redirects.mjs",
     "og:dedupe": "node scripts/dedupe-og-images.mjs",
     "qa:phase2": "node scripts/qa-phase2.mjs",
+    "qa:camera-model-pages": "node scripts/qa-camera-model-pages.mjs",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"

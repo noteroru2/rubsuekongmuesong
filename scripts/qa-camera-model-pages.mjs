@@ -124,6 +124,41 @@ if (!sitemapFiles.length) {
   }
 }
 
+// Models hub (/models/) must link to all model money pages
+const hubFile = path.join(dist, 'models', 'index.html');
+if (!fs.existsSync(hubFile)) {
+  issues.push({ slug: 'models-hub', type: 'missing_hub_html' });
+} else {
+  const hubHtml = fs.readFileSync(hubFile, 'utf8');
+  const hubH1Count = (hubHtml.match(/<h1\b/gi) || []).length;
+  if (hubH1Count !== 1) issues.push({ slug: 'models-hub', type: 'hub_h1_count', value: hubH1Count });
+
+  if (!hubHtml.includes('รับซื้อกล้องตามรุ่นยอดนิยม')) {
+    issues.push({ slug: 'models-hub', type: 'hub_missing_popular_section' });
+  }
+
+  for (const p of pages) {
+    const href = `/models/${p.slug}/`;
+    if (!hubHtml.includes(`href="${href}"`) && !hubHtml.includes(`href='${href}'`)) {
+      issues.push({ slug: 'models-hub', type: 'hub_missing_model_link', value: href });
+    }
+  }
+
+  const hubHrefs = new Set();
+  const hubHrefRe = /href=(?:"([^"]+)"|'([^']+)')/gi;
+  let hmHub;
+  while ((hmHub = hubHrefRe.exec(hubHtml)) !== null) {
+    const href = (hmHub[1] || hmHub[2] || '').trim();
+    if (!href.startsWith('/')) continue;
+    hubHrefs.add(href);
+  }
+  for (const href of hubHrefs) {
+    const out = toDistFile(href);
+    if (!out) continue;
+    if (!fs.existsSync(out)) issues.push({ slug: 'models-hub', type: 'hub_broken_internal_link', value: href });
+  }
+}
+
 const byType = issues.reduce((acc, it) => {
   acc[it.type] = (acc[it.type] || 0) + 1;
   return acc;
@@ -157,6 +192,9 @@ lines.push(`- Internal links required present: ${issues.some((x) => x.type === '
 lines.push(`- Internal links not broken (best-effort): ${issues.some((x) => x.type === 'broken_internal_link') ? 'FAIL' : 'OK'}`);
 lines.push(`- FAQ render count matches data: ${issues.some((x) => x.type === 'faq_render_count_mismatch') ? 'FAIL' : 'OK'}`);
 lines.push(`- Sitemap contains all model URLs: ${issues.some((x) => x.type === 'missing_from_sitemap' || x.type === 'missing_sitemap_files') ? 'FAIL' : 'OK'}`);
+lines.push(`- Models hub links all model pages: ${issues.some((x) => x.type === 'hub_missing_model_link' || x.type === 'hub_missing_popular_section' || x.type === 'missing_hub_html') ? 'FAIL' : 'OK'}`);
+lines.push(`- Models hub H1 single: ${issues.some((x) => x.type === 'hub_h1_count') ? 'FAIL' : 'OK'}`);
+lines.push(`- Models hub internal links not broken: ${issues.some((x) => x.type === 'hub_broken_internal_link') ? 'FAIL' : 'OK'}`);
 lines.push(``);
 lines.push(`## Issues by type`);
 lines.push('```json');

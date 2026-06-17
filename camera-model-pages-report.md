@@ -1,6 +1,6 @@
 # Camera model pages QA report
 
-Generated: 2026-06-17T09:31:29.034Z
+Generated: 2026-06-17T11:24:48.380Z
 
 ## Summary
 - Model pages expected: 27
@@ -20,6 +20,9 @@ Generated: 2026-06-17T09:31:29.034Z
 - Internal links not broken (best-effort): OK
 - FAQ render count matches data: OK
 - Sitemap contains all model URLs: OK
+- Models hub links all model pages: OK
+- Models hub H1 single: OK
+- Models hub internal links not broken: OK
 
 ## Issues by type
 ```json
