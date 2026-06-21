@@ -2,6 +2,9 @@ import type { BrandModels, ProvinceLink } from './types';
 
 export const HUB_PATH = '/category/รับซื้อกล้อง/';
 
+export const SAFE_PRICING_NOTE =
+  'ประเมินตามรุ่น สภาพ อุปกรณ์ Shutter count และตลาดกล้องมือสอง';
+
 export const DEFAULT_BRANDS = ['Canon', 'Sony', 'Fujifilm', 'Nikon', 'Leica', 'DJI', 'Olympus', 'Panasonic'];
 
 export const DEFAULT_BRAND_MODELS: BrandModels[] = [

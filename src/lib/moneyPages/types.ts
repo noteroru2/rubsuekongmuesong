@@ -50,11 +50,17 @@ export interface BrandMoneyPage {
   topProvinces: ProvinceLink[];
 }
 
+export interface RelatedContentLink {
+  href: string;
+  label: string;
+}
+
 export interface ShutterCountEnhancement {
   quickAnswer: string;
   brandSteps: Array<{ brand: string; steps: string[] }>;
   shutterLevels: Array<{ level: string; range: string; meaning: string }>;
   faqs: FAQItem[];
+  relatedLinks?: RelatedContentLink[];
 }
 
 export interface ArticleMoneyEnhancement {
@@ -63,6 +69,7 @@ export interface ArticleMoneyEnhancement {
   faqs: FAQItem[];
   sellCtaTitle?: string;
   sellCtaDesc?: string;
+  relatedLinks?: RelatedContentLink[];
 }
 
 export interface CategoryHubEnhancement {

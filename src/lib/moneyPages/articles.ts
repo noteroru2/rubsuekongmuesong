@@ -1,5 +1,5 @@
 import type { ArticleMoneyEnhancement, CategoryHubEnhancement, ShutterCountEnhancement } from './types';
-import { HUB_PATH, KEEP_PROVINCE_LINKS } from './shared';
+import { HUB_PATH, KEEP_PROVINCE_LINKS, SAFE_PRICING_NOTE } from './shared';
 
 export const SHUTTER_COUNT_PATH = '/article/shutter-count/';
 export const CAMERA_360_PATH = '/article/กล้อง-360-องศา/';
@@ -12,7 +12,7 @@ export const CATEGORY_HUB_PATH = HUB_PATH;
 
 export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
   quickAnswer:
-    'Shutter Count คือจำนวนครั้งที่ม่านชัตเตอร์กลไกของกล้องเปิด-ปิดเพื่อถ่ายภาพ เปรียบเหมือนเลขไมล์ของรถ ยิ่งตัวเลขต่ำ ยิ่งบอกว่ากล้องใช้งานน้อยและมักได้ราคาดีกว่าเมื่อขาย',
+    `Shutter Count คือจำนวนครั้งที่ม่านชัตเตอร์เปิด-ปิดเพื่อถ่ายภาพ เปรียบเหมือนเลขไมล์ของกล้อง ยิ่งตัวเลขต่ำ ยิ่งบอกว่าใช้งานน้อย เมื่อขายมือสองเรา${SAFE_PRICING_NOTE}`,
   brandSteps: [
     {
       brand: 'Canon',
@@ -52,7 +52,7 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
     },
   ],
   shutterLevels: [
-    { level: 'ต่ำ', range: '0 – 20,000', meaning: 'ใช้งานน้อย มือสองยอดนิยม มักได้ราคาดีที่สุด' },
+    { level: 'ต่ำ', range: '0 – 20,000', meaning: 'ใช้งานน้อย มือสองยอดนิยม มักประเมินได้ดีเมื่อสภาพโดยรวมดี' },
     { level: 'กลาง', range: '20,000 – 80,000', meaning: 'ใช้งานปกติ ยังขายได้ดี ราคาขึ้นอยู่กับรุ่นและสภาพ' },
     { level: 'สูง', range: '80,000 – 200,000', meaning: 'ใช้งานหนัก อาจลดราคาบ้าง แต่รุ่นโปรทนชัตเตอร์สูงกว่า' },
     { level: 'สูงมาก', range: '200,000+', meaning: 'ใช้งานหนักมาก ราคาลดลง แต่ยังขายได้ถ้าสภาพโดยรวมดี' },
@@ -72,12 +72,19 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
     },
     {
       question: 'เช็คแล้วอยากขายกล้อง ต้องทำอย่างไร?',
-      answer: 'ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาที่ LINE @webuy รับราคาประเมินฟรีภายใน 30 นาที',
+      answer: `ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาที่ LINE @webuy เรา${SAFE_PRICING_NOTE} รับราคาเบื้องต้นฟรี`,
     },
     {
       question: 'Shutter Count มีผลต่อราคารับซื้อมากแค่ไหน?',
       answer: 'เป็นปัจจัยสำคัญหนึ่ง แต่ไม่ใช่ทั้งหมด สภาพตัวกล้อง เลนส์ และอุปกรณ์ครบชุดก็มีผลเช่นกัน',
     },
+  ],
+  relatedLinks: [
+    { href: '/process/', label: 'ขั้นตอนการขายกล้อง' },
+    { href: '/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/', label: 'รับซื้อกล้องมือสอง อุบลราชธานี' },
+    { href: '/article/วิธีแพ็คกล้อง/', label: 'วิธีแพ็คกล้องส่ง EMS' },
+    { href: '/รับซื้อกล้อง/รับซื้อกล้อง-sony/', label: 'รับซื้อกล้อง Sony' },
+    { href: '/รับซื้อกล้อง/รับซื้อกล้อง-canon/', label: 'รับซื้อกล้อง Canon' },
   ],
 };
 
@@ -123,7 +130,7 @@ export const CAMERA_360_ENHANCEMENT: ArticleMoneyEnhancement = {
 
 export const PACK_CAMERA_ENHANCEMENT: ArticleMoneyEnhancement = {
   quickAnswer:
-    'หลักการแพ็คกล้องส่งพัสดุที่ปลอดภัยคือ "ลดพื้นที่ว่างให้เป็นศูนย์" — ถอดเลนส์แยกจากบอดี้ ห่อบับเบิ้ลหนา ยัดกระดาษอุดช่องว่าง แล้วเขย่าทดสอบจนไม่มีเสียงกุกกัก',
+    'หลักการแพ็คกล้องส่งพัสดุที่ปลอดภัยคือ "ลดพื้นที่ว่างให้เป็นศูนย์" — ถอดเลนส์แยกจากบอดี้ ห่อบับเบิ้ลหนา ยัดกระดาษอุดช่องว่าง แล้วเขย่าทดสอบจนไม่มีเสียงกุกกัก แพ็คเสร็จส่งมาขายได้ที่ LINE @webuy',
   sections: [
     {
       title: 'เช็กลิสต์ก่อนส่งกล้อง',
@@ -142,7 +149,7 @@ export const PACK_CAMERA_ENHANCEMENT: ArticleMoneyEnhancement = {
     },
   ],
   sellCtaTitle: 'แพ็คเสร็จแล้ว ส่งมาขายกล้องเลย',
-  sellCtaDesc: 'ตกลงราคาทาง LINE @webuy ก่อนส่ง EMS ตรวจเสร็จโอนเงินทันที',
+  sellCtaDesc: `ตกลงราคาทาง LINE @webuy ก่อนส่ง EMS เรา${SAFE_PRICING_NOTE} ตรวจเสร็จโอนเงินตามที่ตกลง`,
   faqs: [
     {
       question: 'ส่งกล้องทาง EMS ปลอดภัยไหม?',
@@ -162,8 +169,14 @@ export const PACK_CAMERA_ENHANCEMENT: ArticleMoneyEnhancement = {
     },
     {
       question: 'รับซื้อกล้องที่ส่งมาจากต่างจังหวัดไหม?',
-      answer: 'รับครับ ลูกค้าส่วนใหญ่ส่ง EMS มาจากทั่วประเทศ โอนเงินทันทีหลังตรวจสอบ',
+      answer: 'รับครับ ลูกค้าส่วนใหญ่ส่ง EMS มาจากทั่วประเทศ โอนเงินหลังตรวจสอบตามที่ตกลง',
     },
+  ],
+  relatedLinks: [
+    { href: '/process/', label: 'ขั้นตอนการขายกล้อง' },
+    { href: HUB_PATH, label: 'รับซื้อกล้องทุกจังหวัด' },
+    { href: '/รับซื้อกล้อง/ร้านรับซื้อกล้องอุบลรา/', label: 'รับซื้อกล้องมือสอง อุบลราชธานี' },
+    { href: '/article/shutter-count/', label: 'เช็ค Shutter Count ก่อนขาย' },
   ],
 };
 
@@ -217,7 +230,7 @@ export const DSLR_ENHANCEMENT: ArticleMoneyEnhancement = {
 
 export const BRIDGE_ENHANCEMENT: ArticleMoneyEnhancement = {
   quickAnswer:
-    'กล้องบริดจ์ (Bridge Camera) คือกล้องที่มีเลนส์ซูมในตัวแบบยาว ใช้งานง่าย ไม่ต้องเปลี่ยนเลนส์ เหมาะกับงานท่องเที่ยว ถ่ายนก และงานที่ต้องการซูมไกล',
+    `กล้องบริดจ์ (Bridge Camera) คือกล้องที่มีเลนส์ซูมในตัวแบบยาว ใช้งานง่าย ไม่ต้องเปลี่ยนเลนส์ เหมาะกับงานท่องเที่ยว ถ่ายนก และงานที่ต้องการซูมไกล อยากขาย? เรา${SAFE_PRICING_NOTE}`,
   sections: [
     {
       title: 'รุ่นบริดจ์ที่เรารับซื้อบ่อย',
@@ -234,7 +247,7 @@ export const BRIDGE_ENHANCEMENT: ArticleMoneyEnhancement = {
     },
   ],
   sellCtaTitle: 'มีกล้องบริดจ์อยากขาย?',
-  sellCtaDesc: 'ส่งรูปกล้องพร้อมอุปกรณ์มาประเมินราคาฟรี ไม่มีค่าธรรมเนียม',
+  sellCtaDesc: `ส่งรูปกล้องพร้อมอุปกรณ์มาประเมินราคาฟรีที่ LINE @webuy เรา${SAFE_PRICING_NOTE}`,
   faqs: [
     {
       question: 'รับซื้อกล้องบริดจ์ Sony RX10 ไหม?',
@@ -252,6 +265,12 @@ export const BRIDGE_ENHANCEMENT: ArticleMoneyEnhancement = {
       question: 'รับซื้อ Nikon P1000 ด้วยไหม?',
       answer: 'รับครับ รุ่นซูม 125x ยังมีคนสนใจในตลาดมือสอง',
     },
+  ],
+  relatedLinks: [
+    { href: '/models/', label: 'รุ่นกล้องที่รับซื้อ' },
+    { href: '/รับซื้อกล้อง/รับซื้อกล้อง-sony/', label: 'รับซื้อกล้อง Sony' },
+    { href: '/รับซื้อกล้อง/รับซื้อกล้อง-nikon/', label: 'รับซื้อกล้อง Nikon' },
+    { href: HUB_PATH, label: 'รับซื้อกล้องทุกจังหวัด' },
   ],
 };
 

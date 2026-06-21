@@ -1,6 +1,6 @@
 ---
 import type { ShutterCountEnhancement } from '../../lib/moneyPages/types';
-import { HUB_PATH } from '../../lib/moneyPages/shared';
+import { HUB_PATH, SAFE_PRICING_NOTE } from '../../lib/moneyPages/shared';
 import QuickAnswerBox from './QuickAnswerBox.astro';
 import FAQSection from './FAQSection.astro';
 import LineCTA from './LineCTA.astro';
@@ -11,6 +11,19 @@ interface Props {
 }
 
 const { data } = Astro.props;
+
+const defaultRelated = [
+  { href: HUB_PATH, label: 'รับซื้อกล้องทุกจังหวัด' },
+  { href: '/models/', label: 'รุ่นกล้องที่รับซื้อ' },
+  { href: '/process/', label: 'ขั้นตอนการขายกล้อง' },
+];
+
+const relatedLinks = [
+  ...defaultRelated,
+  ...(data.relatedLinks ?? []).filter(
+    (link) => !defaultRelated.some((d) => d.href === link.href),
+  ),
+];
 ---
 
 <div class="money-page money-page--shutter">
@@ -66,8 +79,11 @@ const { data } = Astro.props;
 
   <aside class="shutter-sell-cta">
     <h2>เช็คแล้วอยากขายกล้อง?</h2>
-    <p>ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาประเมินราคาฟรี ไม่มีค่าธรรมเนียม</p>
-    <LineCTA title="ส่งรูปประเมินราคาฟรี" />
+    <p>{SAFE_PRICING_NOTE} — ส่งรูปกล้องพร้อมแจ้ง Shutter Count มาประเมินราคาฟรีที่ LINE @webuy</p>
+    <LineCTA
+      title="ส่งรูปประเมินราคาฟรี — LINE @webuy"
+      description={SAFE_PRICING_NOTE}
+    />
   </aside>
 
   <FAQSection faqs={data.faqs} />
@@ -75,9 +91,9 @@ const { data } = Astro.props;
   <nav class="money-section related-links" aria-labelledby="shutter-related-heading">
     <h2 id="shutter-related-heading" class="money-section__title">ลิงก์ที่เกี่ยวข้อง</h2>
     <ul class="related-links__list">
-      <li><a href={HUB_PATH}>รับซื้อกล้องทุกจังหวัด</a></li>
-      <li><a href="/models/">รุ่นกล้องที่รับซื้อ</a></li>
-      <li><a href="/process/">ขั้นตอนการขายกล้อง</a></li>
+      {relatedLinks.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
     </ul>
   </nav>
 
