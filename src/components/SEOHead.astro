@@ -14,6 +14,7 @@ import {
   buildGenericFaq,
 } from '../lib/schema';
 import { getMoneyPageFaqs } from '../lib/moneyPages';
+import { HOLD_NOINDEX, getRouteIndexPolicy } from '../lib/indexPolicy.js';
 
 interface Props {
   page: PageRecord;
@@ -21,17 +22,22 @@ interface Props {
 
 const { page } = Astro.props;
 const { seo } = page;
+const indexPolicy = getRouteIndexPolicy(page);
 const canonical =
   page.seo.canonical?.startsWith('http')
     ? page.seo.canonical
     : `${SITE_URL}${page.path}`;
 const ogImage = seo.ogImage ? absoluteAsset(seo.ogImage) : undefined;
 const schemaGraph = buildPageGraph(page);
+const robotsContent =
+  indexPolicy.lifecycle === HOLD_NOINDEX
+    ? 'noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+    : seo.robots || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
 
 // ---------- FAQ / AEO / GEO ----------
 const hasKadence = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
 const faqPageTypes = new Set(['location', 'post', 'article', 'homepage']);
-const shouldAddFaq = faqPageTypes.has(page.pageType);
+const shouldAddFaq = indexPolicy.lifecycle !== HOLD_NOINDEX && faqPageTypes.has(page.pageType);
 
 let faqPairs: Array<{ question: string; answer: string }> = [];
 const moneyFaqs = getMoneyPageFaqs(page.path);
@@ -41,7 +47,6 @@ if (shouldAddFaq) {
   } else if (!hasKadence) {
     faqPairs = extractFaqFromHtml(page.bodyHtml || '');
   }
-  // Fallback to generic FAQs when content doesn't have structured Q&A (< 2 pairs)
   if (faqPairs.length < 2 && moneyFaqs.length === 0) {
     faqPairs = buildGenericFaq(page.pageType, page.seo.h1 || '', seo.metaDescription || '');
   }
@@ -54,11 +59,7 @@ const faqSchema = faqPairs.length >= 1 ? buildFaqGraph(faqPairs, canonical) : nu
 <title>{seo.title}</title>
 {seo.metaDescription && <meta name="description" content={seo.metaDescription} />}
 <link rel="canonical" href={canonical} />
-<meta
-  name="robots"
-  content={seo.robots ||
-    'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}
-/>
+<meta name="robots" content={robotsContent} />
 
 {/* Open Graph */}
 <meta property="og:locale" content="th_TH" />

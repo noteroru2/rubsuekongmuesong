@@ -5,6 +5,7 @@ import { getAllRoutes, getPageByPath } from './content';
 import type { PageRecord } from './types';
 import { stripHtml } from './seo';
 import { OG_DEFAULT_IMAGE } from '../config/site';
+import { isEditorialIndexRoute } from './indexPolicy.js';
 
 export interface ArticleSummary {
   path: string;
@@ -20,8 +21,6 @@ const BLOG_INDEX_PATH = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   '../data/blog-index.json',
 );
-
-const BLOG_PAGE_TYPES = new Set(['post', 'location', 'article']);
 
 let blogPostsCache: ArticleSummary[] | null = null;
 
@@ -87,9 +86,13 @@ function sortByDateDesc(a: ArticleSummary, b: ArticleSummary): number {
   return db - da;
 }
 
+function isEditorialSummary(item: ArticleSummary): boolean {
+  return isEditorialIndexRoute({ path: item.path, pageType: item.pageType });
+}
+
 function buildFromRoutes(): ArticleSummary[] {
   return getAllRoutes()
-    .filter((route) => BLOG_PAGE_TYPES.has(route.pageType))
+    .filter((route) => isEditorialIndexRoute(route))
     .map((route) => summarizePage(route.path))
     .filter((item): item is ArticleSummary => item !== null)
     .sort(sortByDateDesc);
@@ -104,7 +107,7 @@ function loadBlogPosts(): ArticleSummary[] {
         posts: ArticleSummary[];
       };
       if (Array.isArray(data.posts) && data.posts.length > 0) {
-        blogPostsCache = data.posts;
+        blogPostsCache = data.posts.filter(isEditorialSummary).sort(sortByDateDesc);
         return blogPostsCache;
       }
     } catch {
@@ -116,12 +119,12 @@ function loadBlogPosts(): ArticleSummary[] {
   return blogPostsCache;
 }
 
-/** Knowledge articles under /article/ */
+/** Knowledge articles under /article/ that are allowed in the index. */
 export function getArticles(): ArticleSummary[] {
-  return loadBlogPosts().filter((p) => p.pageType === 'article');
+  return loadBlogPosts();
 }
 
-/** All buyback SEO pages: post + location + article (~1,600+). */
+/** Editorial blog pool only. Location/service/legacy SEO pages are excluded. */
 export function getBlogPosts(): ArticleSummary[] {
   return loadBlogPosts();
 }

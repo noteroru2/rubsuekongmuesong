@@ -1,17 +1,17 @@
 /**
- * Build src/data/blog-index.json from all buyback content pages.
+ * Build src/data/blog-index.json from indexable editorial content only.
  * Usage: node scripts/generate-blog-index.mjs
  */
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isEditorialIndexRoute } from '../src/lib/indexPolicy.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CONTENT_DIR = path.join(ROOT, 'src', 'data', 'content');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'routes-manifest.json');
 const OUT_PATH = path.join(ROOT, 'src', 'data', 'blog-index.json');
 
-const BLOG_PAGE_TYPES = new Set(['post', 'location', 'article']);
 const DEFAULT_IMAGE = '/images/uploads/2025/06/รับซื้อกล้องมือสอง.webp';
 
 function decodeEntities(text) {
@@ -69,7 +69,7 @@ const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
 const entries = [];
 
 for (const route of manifest.routes) {
-  if (!BLOG_PAGE_TYPES.has(route.pageType)) continue;
+  if (!isEditorialIndexRoute(route)) continue;
 
   const page = JSON.parse(readFileSync(path.join(CONTENT_DIR, route.contentFile), 'utf8'));
   if (!(page.bodyHtml || '').trim() && !page.seo?.h1) continue;
@@ -104,4 +104,4 @@ writeFileSync(
   ),
 );
 
-console.log(`Wrote ${entries.length} blog entries → ${OUT_PATH}`);
+console.log(`Wrote ${entries.length} indexable editorial entries → ${OUT_PATH}`);
