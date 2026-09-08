@@ -7,13 +7,8 @@ import {
   SITE_URL,
 } from '../config/site';
 import type { PageRecord } from '../lib/types';
-import {
-  buildPageGraph,
-  buildFaqGraph,
-  extractFaqFromHtml,
-  buildGenericFaq,
-} from '../lib/schema';
-import { getMoneyPageFaqs } from '../lib/moneyPages';
+import { buildPageGraph } from '../lib/schema';
+import { getOpenGraphType } from '../lib/pageIntent.js';
 import { INDEX, getRouteIndexPolicy } from '../lib/indexPolicy.js';
 
 interface Props {
@@ -29,29 +24,11 @@ const canonical =
     : `${SITE_URL}${page.path}`;
 const ogImage = seo.ogImage ? absoluteAsset(seo.ogImage) : undefined;
 const schemaGraph = buildPageGraph(page);
+const ogType = getOpenGraphType(page);
 const robotsContent =
   indexPolicy.lifecycle !== INDEX
     ? 'noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
     : seo.robots || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
-
-// ---------- FAQ / AEO / GEO ----------
-const hasKadence = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
-const faqPageTypes = new Set(['location', 'post', 'article', 'homepage']);
-const shouldAddFaq = indexPolicy.lifecycle === INDEX && faqPageTypes.has(page.pageType);
-
-let faqPairs: Array<{ question: string; answer: string }> = [];
-const moneyFaqs = getMoneyPageFaqs(page.path);
-if (shouldAddFaq) {
-  if (moneyFaqs.length >= 1) {
-    faqPairs = moneyFaqs;
-  } else if (!hasKadence) {
-    faqPairs = extractFaqFromHtml(page.bodyHtml || '');
-  }
-  if (faqPairs.length < 2 && moneyFaqs.length === 0) {
-    faqPairs = buildGenericFaq(page.pageType, page.seo.h1 || '', seo.metaDescription || '');
-  }
-}
-const faqSchema = faqPairs.length >= 1 ? buildFaqGraph(faqPairs, canonical) : null;
 ---
 
 <meta charset="UTF-8" />
@@ -61,9 +38,9 @@ const faqSchema = faqPairs.length >= 1 ? buildFaqGraph(faqPairs, canonical) : nu
 <link rel="canonical" href={canonical} />
 <meta name="robots" content={robotsContent} />
 
-{/* Open Graph */}
+{/* Open Graph — derived from current page intent, not migrated WordPress type. */}
 <meta property="og:locale" content="th_TH" />
-<meta property="og:type" content={seo.ogType || 'website'} />
+<meta property="og:type" content={ogType} />
 <meta property="og:title" content={seo.ogTitle || seo.title} />
 {seo.ogDescription && <meta property="og:description" content={seo.ogDescription} />}
 <meta property="og:url" content={canonical} />
@@ -82,18 +59,9 @@ const faqSchema = faqPairs.length >= 1 ? buildFaqGraph(faqPairs, canonical) : nu
 <link rel="icon" href={FAVICON_URL} sizes="32x32" type="image/webp" />
 <link rel="apple-touch-icon" href={APPLE_TOUCH_ICON_URL} />
 
-{/* JSON-LD — Page graph */}
+{/* C3: one intent-aware JSON-LD graph. Visual FAQ content remains on-page,
+    but FAQPage fallback/extraction markup is intentionally not emitted. */}
 <script
   type="application/ld+json"
   set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })}
 />
-
-{/* JSON-LD — FAQPage (AEO / GEO) */}
-{
-  faqSchema && (
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({ '@context': 'https://schema.org', ...faqSchema })}
-    />
-  )
-}

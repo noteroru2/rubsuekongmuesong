@@ -11,7 +11,14 @@ import ProvinceMoneyPage from '../components/money/ProvinceMoneyPage.astro';
 import ShutterCountEnhancement from '../components/money/ShutterCountEnhancement.astro';
 import BaseLayout from './BaseLayout.astro';
 import { buildBreadcrumbItems } from '../lib/breadcrumbs';
-import { fixWordPressHtml, stripFirstH1 } from '../lib/fixHtml';
+import { fixWordPressHtml } from '../lib/fixHtml';
+import { sanitizeImportedHeadings } from '../lib/contentHygiene.js';
+import {
+  PAGE_INTENTS,
+  classifyPageIntent,
+  isEditorialIntent,
+  isServiceIntent,
+} from '../lib/pageIntent.js';
 import {
   getProvinceMoneyPage,
   getShutterCountEnhancement,
@@ -25,9 +32,15 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const intent = classifyPageIntent(page);
 const isHomepage = page.pageType === 'homepage';
-const isBuybackArea = page.pageType === 'location';
 const isCategoryPage = page.pageType === 'category';
+const isEditorialPage = isEditorialIntent(intent);
+const isServicePage = isServiceIntent(intent);
+const isLocalService = intent === PAGE_INTENTS.LOCAL_SERVICE;
+const isGuidePage = intent === PAGE_INTENTS.GUIDE;
+const isDetailPage = !isHomepage && !isCategoryPage;
+
 const provinceMoney = getProvinceMoneyPage(page.path);
 const shutterEnhancement = getShutterCountEnhancement(page.path);
 const articleEnhancement = getArticleMoneyEnhancement(page.path);
@@ -37,33 +50,42 @@ const isMoneyShutter = Boolean(shutterEnhancement);
 const isMoneyArticleEnh = Boolean(articleEnhancement);
 const isCategoryHub = Boolean(categoryHub);
 const hasMoneyEnhancement = isMoneyProvince || isMoneyShutter || isMoneyArticleEnh || isCategoryHub;
+
+// C3: the Astro template owns H1. Imported WordPress H1s remain visible as H2s.
 const rawBodyHtml = fixWordPressHtml(page.bodyHtml || '');
-const bodyHtml = hasMoneyEnhancement && !isCategoryHub ? stripFirstH1(rawBodyHtml) : rawBodyHtml;
-const bodyHasH1 = /<h1[\s>]/i.test(bodyHtml);
-const hasKadenceLayout = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
-const isArticlePage = !isHomepage && !hasKadenceLayout && !isCategoryPage;
-const showArticleHero =
-  (isArticlePage || isMoneyArticleEnh) &&
+const bodyHtml = sanitizeImportedHeadings(rawBodyHtml);
+
+const showDetailHero =
+  isDetailPage &&
   page.seo.h1 &&
-  !bodyHasH1 &&
   !isMoneyProvince &&
   !isMoneyShutter &&
   !isCategoryHub;
-const breadcrumbs =
-  isArticlePage || isMoneyArticleEnh || isCategoryHub ? buildBreadcrumbItems(page) : [];
+const breadcrumbs = isDetailPage || isCategoryHub ? buildBreadcrumbItems(page) : [];
 const bodyClass = isHomepage
   ? 'page-home'
   : isCategoryHub
     ? 'page-category-hub'
-    : isArticlePage
-      ? isBuybackArea
-        ? 'page-location'
-        : 'page-article'
-      : '';
+    : isLocalService
+      ? 'page-location'
+      : isEditorialPage
+        ? 'page-article'
+        : isServicePage
+          ? 'page-service'
+          : 'page-content';
 const heroDescription =
-  isArticlePage && page.seo.metaDescription && !isMoneyProvince
+  isDetailPage && page.seo.metaDescription && !isMoneyProvince
     ? page.seo.metaDescription.replace(/\s*\.\.\.\s*$/, '').trim()
     : '';
+const heroLabel = isLocalService
+  ? 'รับซื้อกล้องมือสอง'
+  : isGuidePage
+    ? 'คู่มือและความรู้เรื่องกล้อง'
+    : isEditorialPage
+      ? 'บทความกล้อง'
+      : isServicePage
+        ? 'บริการรับซื้อกล้องมือสอง'
+        : '';
 ---
 
 <BaseLayout page={page} bodyClass={bodyClass}>
@@ -78,7 +100,7 @@ const heroDescription =
     )
   }
   {
-    isArticlePage && !isMoneyShutter && (
+    isDetailPage && !isMoneyShutter && (
       <div class="article-landing">
         <div class="article-landing__top">
           <Breadcrumbs items={breadcrumbs} />
@@ -88,12 +110,9 @@ const heroDescription =
             )
           }
           {
-            showArticleHero && (
+            showDetailHero && (
               <div class="location-hero">
-                {isBuybackArea && <p class="location-hero__label">รับซื้อกล้องมือสอง</p>}
-                {!isBuybackArea && isMoneyArticleEnh && (
-                  <p class="location-hero__label">บทความ</p>
-                )}
+                {heroLabel && <p class="location-hero__label">{heroLabel}</p>}
                 <h1 class="location-hero__title">{page.seo.h1}</h1>
                 {heroDescription && <p class="location-hero__desc">{heroDescription}</p>}
               </div>
@@ -117,7 +136,7 @@ const heroDescription =
         <div class="article-landing__top">
           <Breadcrumbs items={breadcrumbs} />
           <div class="location-hero">
-            <p class="location-hero__label">บทความ</p>
+            <p class="location-hero__label">คู่มือและความรู้เรื่องกล้อง</p>
             <h1 class="location-hero__title">{page.seo.h1}</h1>
           </div>
         </div>
@@ -127,7 +146,7 @@ const heroDescription =
   <article
     class:list={[
       'entry',
-      isHomepage ? 'entry--home' : isArticlePage || isCategoryHub ? 'entry--article' : 'content-wrap',
+      isHomepage ? 'entry--home' : isDetailPage || isCategoryHub ? 'entry--article' : 'content-wrap',
       hasMoneyEnhancement && 'entry--money',
     ]}
   >
@@ -147,7 +166,7 @@ const heroDescription =
           class:list={[
             'entry-content',
             'wp-content',
-            isArticlePage && 'content-article',
+            isDetailPage && 'content-article',
             hasMoneyEnhancement && 'entry-content--legacy',
           ]}
           set:html={bodyHtml}
@@ -161,16 +180,16 @@ const heroDescription =
     }
   </article>
   {
-    isArticlePage && !isMoneyProvince && !isMoneyArticleEnh && !isMoneyShutter && (
+    isDetailPage && !isMoneyProvince && !isMoneyArticleEnh && !isMoneyShutter && (
       <div class="article-landing__bottom">
         <SellStepsStrip />
         <ContactCta compact />
-        <RelatedPosts path={page.path} />
+        {isEditorialPage && <RelatedPosts path={page.path} />}
       </div>
     )
   }
   {
-    (isMoneyProvince || isMoneyArticleEnh || isMoneyShutter) && (
+    (isMoneyArticleEnh || isMoneyShutter) && (
       <div class="article-landing__bottom">
         <RelatedPosts path={page.path} />
       </div>
