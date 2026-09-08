@@ -1,0 +1,41 @@
+{
+  "batch": "CAMERA_C4",
+  "site": "https://xn--12cman8e0bjt1czaccb9b1fg31ad.com",
+  "gscProperty": "sc-domain:xn--12cman8e0bjt1czaccb9b1fg31ad.com",
+  "sourceThroughBatch": "C3",
+  "sourceSha": "34d15b7fe694840cda14bc89c73c8deabdb0c589",
+  "capturedDate": "2026-09-08",
+  "latestFinalizedGscDate": "2026-09-06",
+  "preCollapseReference": {
+    "dateFrom": "2026-08-17",
+    "dateTo": "2026-08-30",
+    "clicks": 216,
+    "impressions": 3007,
+    "ctr": 0.0718,
+    "position": 7.3026
+  },
+  "recoveryBaseline": {
+    "dateFrom": "2026-08-31",
+    "dateTo": "2026-09-06",
+    "clicks": 39,
+    "impressions": 353,
+    "ctr": 0.1105,
+    "position": 12.8754
+  },
+  "protectedWinnerBaseline": [
+    {"path":"/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ขอนแ/","clicks":9,"impressions":59,"ctr":0.1525,"position":6.8644},
+    {"path":"/รับซื้อกล้อง/ร้านรับซื้อกล้องเชียงร/","clicks":5,"impressions":24,"ctr":0.2083,"position":7.1667},
+    {"path":"/รับซื้อกล้อง/ร้านรับซื้อกล้องลำปาง/","clicks":4,"impressions":15,"ctr":0.2667,"position":8.2667},
+    {"path":"/รับซื้อกล้อง/ร้านรับซื้อกล้องนครสวร/","clicks":1,"impressions":17,"ctr":0.0588,"position":8.0},
+    {"path":"/article/วิธีแพ็คกล้อง/","clicks":0,"impressions":16,"ctr":0.0,"position":6.5},
+    {"path":"/models/","clicks":0,"impressions":9,"ctr":0.0,"position":21.3333}
+  ],
+  "observation": {
+    "clock": "INACTIVE",
+    "startCondition": "verify:c4-production returns PASS",
+    "firstDecisionAfterNewFinalizedDays": 7,
+    "primaryRecoveryWindowDays": 14,
+    "freezeMajorSeoChangesBeforeFirstDecision": true,
+    "initialVerdict": "WAIT_FOR_DEPLOY_OR_RECRAWL"
+  }
+}

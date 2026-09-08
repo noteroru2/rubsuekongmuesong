@@ -1,0 +1,7 @@
+{
+  "gate": "CAMERA_C4",
+  "includesThrough": "C3",
+  "sourceSha": "34d15b7fe694840cda14bc89c73c8deabdb0c589",
+  "gscBaselineFinalizedDate": "2026-09-06",
+  "expectedProductionVerdict": "PASS_AFTER_DEPLOY_VERIFICATION"
+}
