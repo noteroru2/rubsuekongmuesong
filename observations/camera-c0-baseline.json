@@ -1,0 +1,70 @@
+{
+  "batch": "Camera C0",
+  "capturedAt": "2026-09-08T22:07:00+07:00",
+  "timezone": "Asia/Bangkok",
+  "sourceCommit": "3d82193dca0bd284a3291d7510f2613b04c1fda3",
+  "gsc": {
+    "property": "sc-domain:xn--12cman8e0bjt1czaccb9b1fg31ad.com",
+    "finalizedThrough": "2026-09-06",
+    "current28d": {
+      "dateFrom": "2026-08-10",
+      "dateTo": "2026-09-06",
+      "clicks": 371,
+      "impressions": 5167,
+      "ctr": 0.0718,
+      "position": 7.8014
+    },
+    "previous28d": {
+      "dateFrom": "2026-07-13",
+      "dateTo": "2026-08-09",
+      "clicks": 533,
+      "impressions": 7848,
+      "ctr": 0.0679,
+      "position": 6.921
+    },
+    "preCollapse14d": {
+      "dateFrom": "2026-08-17",
+      "dateTo": "2026-08-30",
+      "clicks": 216,
+      "impressions": 3007,
+      "ctr": 0.0718,
+      "position": 7.3026
+    },
+    "postCollapse7d": {
+      "dateFrom": "2026-08-31",
+      "dateTo": "2026-09-06",
+      "clicks": 39,
+      "impressions": 353,
+      "ctr": 0.1105,
+      "position": 12.8754
+    },
+    "inflectionDate": "2026-08-31"
+  },
+  "diagnosis": {
+    "verdict": "ALGORITHMIC_VISIBILITY_INDEX_SURFACE_RECOVERY_NEEDED",
+    "confidence": "HIGH",
+    "notPrimary": [
+      "CTR decline",
+      "repository source deployment on 2026-08-31",
+      "site-wide robots block",
+      "single money-page failure"
+    ],
+    "primaryRiskSignals": [
+      "Approximately 1600+ post/location/article routes exposed through the blog system",
+      "Sitemap filters only the 404 page rather than using a lifecycle/index policy",
+      "Legacy /กล้อง/, /tag/, and /uncategorized/ families remain in the search surface",
+      "Previous SEO audit already classified hundreds of legacy /กล้อง/ URLs as thin or duplicated",
+      "Generic FAQ fallback is emitted across location/post/article templates",
+      "Related-content logic can fall back to latest pages outside a strong topical cluster",
+      "Legacy redirect consolidation remains partial"
+    ]
+  },
+  "protectedFamilies": [
+    "Proven /รับซื้อกล้อง/ province winners",
+    "/article/shutter-count/",
+    "/article/วิธีแพ็คกล้อง/",
+    "Other editorial pages with proven GSC demand",
+    "Useful camera brand/model hubs with distinct intent"
+  ],
+  "nextBatch": "Camera C1 — Index Surface Lifecycle Recovery"
+}
