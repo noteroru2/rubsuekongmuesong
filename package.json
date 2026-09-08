@@ -31,6 +31,8 @@
     "qa:remaining-model-links": "node scripts/remaining-model-internal-links.mjs qa",
     "audit:c1-index-surface": "node scripts/qa-c1-index-surface.mjs",
     "qa:c1": "npm run audit:c1-index-surface && npm run build",
+    "audit:c2-ownership": "node scripts/qa-c2-ownership.mjs",
+    "qa:c2": "npm run audit:c1-index-surface && npm run audit:c2-ownership && npm run build && npm run qa:redirects",
     "paths:restore": "node scripts/restore-original-paths.mjs && node scripts/generate-blog-index.mjs",
     "styles:fetch": "node scripts/fetch-wp-styles.mjs",
     "prebuild": "node scripts/generate-blog-index.mjs"

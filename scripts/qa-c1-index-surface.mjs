@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import {
   HOLD_NOINDEX,
   INDEX,
+  REDIRECT,
   getRouteIndexPolicy,
   isEditorialIndexRoute,
   normalizeIndexPath,
@@ -24,36 +25,55 @@ const decisions = manifest.routes.map((route) => ({
 }));
 const indexRoutes = decisions.filter((item) => item.lifecycle === INDEX);
 const heldRoutes = decisions.filter((item) => item.lifecycle === HOLD_NOINDEX);
+const redirectRoutes = decisions.filter((item) => item.lifecycle === REDIRECT);
 
 assert(indexRoutes.length > 0, 'C1 must retain INDEX routes');
-assert(heldRoutes.length > 0, 'C1 must create HOLD_NOINDEX routes');
+assert(heldRoutes.length > 0, 'C1 must retain HOLD_NOINDEX routes');
 
 const provinceRoutes = decisions.filter((item) => item.path.startsWith('/รับซื้อกล้อง/'));
 assert(provinceRoutes.length > 0, 'Expected province/service routes under /รับซื้อกล้อง/');
-assert(provinceRoutes.every((item) => item.lifecycle === INDEX), 'All /รับซื้อกล้อง/ routes must remain INDEX in C1');
+assert(
+  provinceRoutes.every((item) => [INDEX, REDIRECT].includes(item.lifecycle)),
+  'Province family may only be INDEX or exact-owner REDIRECT',
+);
 
 const articleRoutes = decisions.filter((item) => item.path.startsWith('/article/'));
 assert(articleRoutes.length > 0, 'Expected editorial routes under /article/');
-assert(articleRoutes.every((item) => item.lifecycle === INDEX), 'All /article/ routes must remain INDEX in C1');
+assert(articleRoutes.every((item) => item.lifecycle === INDEX), 'All /article/ routes must remain INDEX');
 
 const modelRoutes = decisions.filter((item) => item.path.startsWith('/models/'));
-assert(modelRoutes.every((item) => item.lifecycle === INDEX), 'All /models/ routes must remain INDEX in C1');
+assert(modelRoutes.every((item) => item.lifecycle === INDEX), 'All /models/ routes must remain INDEX');
 
 for (const prefix of ['/กล้อง/', '/tag/', '/uncategorized/']) {
   const legacy = decisions.filter((item) => item.path.startsWith(prefix));
-  assert(legacy.every((item) => item.lifecycle === HOLD_NOINDEX), `${prefix} must be HOLD_NOINDEX`);
+  assert(
+    legacy.every((item) => [HOLD_NOINDEX, REDIRECT].includes(item.lifecycle)),
+    `${prefix} may only be HOLD_NOINDEX or exact-owner REDIRECT`,
+  );
 }
 
 const shutter = decisions.find((item) => item.path === '/article/shutter-count/');
 if (shutter) assert(shutter.lifecycle === INDEX, 'shutter-count winner must remain INDEX');
 
+const khonKaen = decisions.find((item) => item.path === '/รับซื้อกล้อง/รับซื้อกล้องมือสอง-ขอนแ/');
+if (khonKaen) assert(khonKaen.lifecycle === INDEX, 'Khon Kaen winner must remain INDEX');
+
 assert(
   articleRoutes.every((item) => isEditorialIndexRoute(item)),
   'Editorial policy must recognize /article/ INDEX routes',
 );
-assert(astroConfig.includes('heldPaths') && astroConfig.includes('getRouteIndexPolicy'), 'Sitemap must use C1 lifecycle policy');
-assert(seoHead.includes('HOLD_NOINDEX') && seoHead.includes('noindex, follow'), 'SEOHead must force noindex on HOLD routes');
-assert(seoHead.includes("indexPolicy.lifecycle !== HOLD_NOINDEX"), 'FAQ schema must be disabled on HOLD routes');
+assert(
+  astroConfig.includes('nonIndexPaths') && astroConfig.includes('isIndexableRoute'),
+  'Sitemap must use lifecycle indexability policy',
+);
+assert(
+  seoHead.includes('indexPolicy.lifecycle !== INDEX') && seoHead.includes('noindex, follow'),
+  'SEOHead must force noindex on non-INDEX rendered routes',
+);
+assert(
+  seoHead.includes('indexPolicy.lifecycle === INDEX'),
+  'FAQ schema must be limited to INDEX routes',
+);
 assert(articles.includes('isEditorialIndexRoute'), 'Blog runtime must filter through editorial index policy');
 assert(blogGenerator.includes('isEditorialIndexRoute'), 'Blog prebuild must filter through editorial index policy');
 
@@ -66,7 +86,8 @@ console.log(JSON.stringify({
   totalRoutes: decisions.length,
   index: indexRoutes.length,
   holdNoindex: heldRoutes.length,
-  provinceIndex: provinceRoutes.length,
+  redirects: redirectRoutes.length,
+  provinceFamily: provinceRoutes.length,
   articleIndex: articleRoutes.length,
   modelIndex: modelRoutes.length,
   reasons,

@@ -1,12 +1,13 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
 import { getAllRoutes, getPageByPath } from '../lib/content';
+import { isRoutableRoute } from '../lib/indexPolicy.js';
 import { pathToSlugParam } from '../lib/seo';
 
 export async function getStaticPaths() {
   const skipPaths = new Set(['/blog/', '/category/article/', '/models/', '/process/', '/review/', '/about/']);
   const routes = getAllRoutes().filter(
-    (route) => route.path !== '/' && !skipPaths.has(route.path),
+    (route) => route.path !== '/' && !skipPaths.has(route.path) && isRoutableRoute(route),
   );
   return routes.map((route) => ({
     params: { path: pathToSlugParam(route.path) },

@@ -14,7 +14,7 @@ import {
   buildGenericFaq,
 } from '../lib/schema';
 import { getMoneyPageFaqs } from '../lib/moneyPages';
-import { HOLD_NOINDEX, getRouteIndexPolicy } from '../lib/indexPolicy.js';
+import { INDEX, getRouteIndexPolicy } from '../lib/indexPolicy.js';
 
 interface Props {
   page: PageRecord;
@@ -30,14 +30,14 @@ const canonical =
 const ogImage = seo.ogImage ? absoluteAsset(seo.ogImage) : undefined;
 const schemaGraph = buildPageGraph(page);
 const robotsContent =
-  indexPolicy.lifecycle === HOLD_NOINDEX
+  indexPolicy.lifecycle !== INDEX
     ? 'noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
     : seo.robots || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
 
 // ---------- FAQ / AEO / GEO ----------
 const hasKadence = /kb-row-layout|wp-block-kadence/i.test(page.bodyHtml || '');
 const faqPageTypes = new Set(['location', 'post', 'article', 'homepage']);
-const shouldAddFaq = indexPolicy.lifecycle !== HOLD_NOINDEX && faqPageTypes.has(page.pageType);
+const shouldAddFaq = indexPolicy.lifecycle === INDEX && faqPageTypes.has(page.pageType);
 
 let faqPairs: Array<{ question: string; answer: string }> = [];
 const moneyFaqs = getMoneyPageFaqs(page.path);
