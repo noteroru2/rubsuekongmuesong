@@ -9,8 +9,23 @@ import HomeProvinceLinks from '../components/money/HomeProvinceLinks.astro';
 import { BRAND_IMAGES, HOME_PROCESS_STEPS, SITE_IMAGES } from '../lib/siteImages';
 import { CONTACT, LINE_ID } from '../config/site';
 
-const page = getHomePage();
-if (!page) throw new Error('Homepage content missing. Run: npm run crawl');
+const sourcePage = getHomePage();
+if (!sourcePage) throw new Error('Homepage content missing. Run: npm run crawl');
+
+const homepageTitle = 'รับซื้อกล้องมือสองทั่วประเทศ | ประเมินฟรี LINE @webuy';
+const homepageDescription =
+  'รับซื้อกล้องมือสอง Canon Sony Nikon Fujifilm Leica DJI ส่งรุ่น รูป สภาพ อุปกรณ์ และ Shutter Count เพื่อประเมินเบื้องต้นฟรีทาง LINE @webuy มีหน้าร้านอุบลราชธานี รับทั่วประเทศ';
+
+const page = {
+  ...sourcePage,
+  seo: {
+    ...sourcePage.seo,
+    title: homepageTitle,
+    metaDescription: homepageDescription,
+    ogTitle: homepageTitle,
+    ogDescription: homepageDescription,
+  },
+};
 
 const latestPosts = getBlogPosts().slice(0, 6);
 
