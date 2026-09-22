@@ -116,8 +116,16 @@ function canonicalUrl(page: PageRecord): string {
     : `${SITE_URL}${page.path}`;
 }
 
+function safeDecodeText(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 function findProvince(page: PageRecord): string | null {
-  const text = decodeURIComponent(
+  const text = safeDecodeText(
     [page.seo.h1, page.seo.title, page.path].filter(Boolean).join(' '),
   );
   return THAI_PROVINCES.find((province) => text.includes(province)) || null;
