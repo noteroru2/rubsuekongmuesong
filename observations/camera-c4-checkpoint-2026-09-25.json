@@ -1,0 +1,67 @@
+{
+  "batch": "CAMERA_C4_POST_DEPLOY_CHECKPOINT",
+  "capturedDate": "2026-09-28",
+  "latestFinalizedGscDate": "2026-09-25",
+  "productionRecoveryDeploymentDate": "2026-09-22",
+  "comparison": {
+    "previous": {
+      "dateFrom": "2026-09-14",
+      "dateTo": "2026-09-19",
+      "clicks": 84,
+      "impressions": 1383,
+      "ctr": 0.0607,
+      "position": 7.1461
+    },
+    "current": {
+      "dateFrom": "2026-09-20",
+      "dateTo": "2026-09-25",
+      "clicks": 49,
+      "impressions": 514,
+      "ctr": 0.0953,
+      "position": 7.9436
+    }
+  },
+  "diagnostic": {
+    "visibilityLossStillPresent": true,
+    "ctrCollapsed": false,
+    "majorTechnicalNoGoFound": false,
+    "shutterPageRewriteAllowed": false,
+    "evidence": [
+      {
+        "query": "เช็คชัตเตอร์กล้อง",
+        "previous": {
+          "clicks": 0,
+          "impressions": 5,
+          "position": 5.4
+        },
+        "current": {
+          "clicks": 2,
+          "impressions": 11,
+          "position": 2.1818
+        }
+      },
+      {
+        "query": "เช็คชัตเตอร์ nikon",
+        "previous": {
+          "clicks": 0,
+          "impressions": 68,
+          "position": 7.6765
+        },
+        "current": {
+          "clicks": 0,
+          "impressions": 1,
+          "position": 7
+        }
+      }
+    ],
+    "interpretation": "Generic shutter-count ranking improved while Nikon query exposure collapsed; this is not evidence that the shutter article should be rewritten."
+  },
+  "guard": {
+    "freezeMajorSeoArchitectureChanges": true,
+    "freezeBroadContentRewrites": true,
+    "freezeFurtherIndexReduction": true,
+    "protectShutterCountArticle": true,
+    "nextDecisionCondition": "At least 7 new finalized GSC days after the 2026-09-22 production recovery deployment, unless a technical NO_GO appears."
+  },
+  "verdict": "OBSERVE_WITH_PROTECTION"
+}
