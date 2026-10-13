@@ -41,7 +41,7 @@ const isLocalService = intent === PAGE_INTENTS.LOCAL_SERVICE;
 const isGuidePage = intent === PAGE_INTENTS.GUIDE;
 const isDetailPage = !isHomepage && !isCategoryPage;
 
-const provinceMoney = getProvinceMoneyPage(page.path);
+const provinceMoney = page.path === '/รับซื้อกล้อง/ร้านรับซื้อกล้องพิษณุโ/' ? undefined : getProvinceMoneyPage(page.path);
 const shutterEnhancement = getShutterCountEnhancement(page.path);
 const articleEnhancement = getArticleMoneyEnhancement(page.path);
 const categoryHub = getCategoryHubEnhancement(page.path);

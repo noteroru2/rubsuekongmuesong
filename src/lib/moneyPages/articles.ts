@@ -12,7 +12,7 @@ export const CATEGORY_HUB_PATH = HUB_PATH;
 
 export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
   quickAnswer:
-    `Shutter Count คือจำนวนครั้งที่ม่านชัตเตอร์เปิด-ปิดเพื่อถ่ายภาพ เปรียบเหมือนเลขไมล์ของกล้อง ยิ่งตัวเลขต่ำ ยิ่งบอกว่าใช้งานน้อย เมื่อขายมือสองเรา${SAFE_PRICING_NOTE}`,
+    'ใช้เป็นข้อมูลประกอบร่วมกับรุ่น สภาพตัวกล้อง เลนส์ อุปกรณ์ และประวัติซ่อม ไม่ใช้ตัวเลขนี้เพียงอย่างเดียวตัดสินว่ากล้องสมบูรณ์หรือกำหนดราคาสุดท้าย ควรเก็บผลตรวจและวิธีที่ใช้ไว้เพื่ออธิบายว่าตัวเลขมาจากไหน',
   brandSteps: [
     {
       brand: 'Canon',
@@ -20,7 +20,7 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
         'ถ่ายรูป JPEG คุณภาพสูงสุด 1 รูป',
         'อัปโหลดไฟล์ที่ CameraShutterCount.com',
         'หรือใช้ EOS Info บน Windows สำหรับบางรุ่น DSLR',
-        'ดูค่า Shutter Count ในเมนูกล้องบางรุ่น (เช่น 1D series)',
+        'แจ้งรุ่นกล้องและตรวจการรองรับของเครื่องมือก่อน หากอ่านไม่ได้ให้ระบุว่ายังไม่ทราบ',
       ],
     },
     {
@@ -28,8 +28,8 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
       steps: [
         'ถ่ายรูป JPEG คุณภาพสูงสุด 1 รูป',
         'อัปโหลดไฟล์ที่ CameraShutterCount.com หรือ MyShutterCount.com',
-        'หรือใช้ Nikon Shutter Count tool บน Windows',
-        'บางรุ่น Z-series ดูได้ในเมนู Maintenance',
+        'แจ้งรุ่นกล้องและผลที่พบให้ร้านทราบ ไม่ใช้คำแนะนำเมนูจากกล้องคนละรุ่นแทนกัน',
+        'หากยังอ่านจำนวนชัตเตอร์ไม่ได้ ให้ระบุว่ายังไม่ทราบ แทนการใส่ 0 หรือคาดเดาจากจำนวนไฟล์ภาพ',
       ],
     },
     {
@@ -38,7 +38,7 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
         'ถ่ายรูป JPEG คุณภาพสูงสุด 1 รูป',
         'อัปโหลดไฟล์ที่ CameraShutterCount.com',
         'หรือใช้ Sony A7 Shutter Count (Windows)',
-        'บางรุ่น Alpha ดูได้ผ่าน Imaging Edge Desktop',
+        'ตรวจว่ารุ่นกล้องรองรับเครื่องมือหรือไม่ หากอ่านไม่ได้ให้ระบุว่ายังไม่ทราบ',
       ],
     },
     {
@@ -47,24 +47,19 @@ export const SHUTTER_COUNT_ENHANCEMENT: ShutterCountEnhancement = {
         'ถ่ายรูป JPEG คุณภาพสูงสุด 1 รูป',
         'อัปโหลดไฟล์ที่ CameraShutterCount.com',
         'หรือใช้ Fujifilm Shutter Count tool',
-        'บางรุ่น X-series ดูได้ในเมนู Setup > User Setting',
+        'ตรวจว่ารุ่นกล้องรองรับเครื่องมือหรือไม่ หากอ่านไม่ได้ให้ระบุว่ายังไม่ทราบ',
       ],
     },
   ],
-  shutterLevels: [
-    { level: 'ต่ำ', range: '0 – 20,000', meaning: 'ใช้งานน้อย มือสองยอดนิยม มักประเมินได้ดีเมื่อสภาพโดยรวมดี' },
-    { level: 'กลาง', range: '20,000 – 80,000', meaning: 'ใช้งานปกติ ยังขายได้ดี ราคาขึ้นอยู่กับรุ่นและสภาพ' },
-    { level: 'สูง', range: '80,000 – 200,000', meaning: 'ใช้งานหนัก อาจลดราคาบ้าง แต่รุ่นโปรทนชัตเตอร์สูงกว่า' },
-    { level: 'สูงมาก', range: '200,000+', meaning: 'ใช้งานหนักมาก ราคาลดลง แต่ยังขายได้ถ้าสภาพโดยรวมดี' },
-  ],
+  shutterLevels: [],
   faqs: [
     {
       question: 'Shutter Count สูงแค่ไหนถึงไม่ควรซื้อ?',
-      answer: 'ไม่มีตัวเลขตายตัว ขึ้นอยู่กับรุ่น กล้อง entry ที่เกิน 100,000 อาจเสี่ยง แต่กล้องโปรที่ทน 300,000+ ยังใช้ได้ ดูสภาพโดยรวมเป็นหลัก',
+      answer: 'ใช้เป็นข้อมูลประกอบร่วมกับรุ่น สภาพตัวกล้อง เลนส์ อุปกรณ์ และประวัติซ่อม ไม่ใช้ตัวเลขนี้เพียงอย่างเดียวตัดสินว่ากล้องสมบูรณ์หรือกำหนดราคาสุดท้าย',
     },
     {
       question: 'เช็ค Shutter Count ฟรีไหม?',
-      answer: 'ฟรีครับ ใช้เว็บ CameraShutterCount.com อัปโหลดไฟล์ JPEG ที่ถ่ายจากกล้องตัวเอง',
+      answer: 'เครื่องมือบางแห่งมีบริการอ่านข้อมูลจากไฟล์ภาพ แต่ต้องตรวจว่ารองรับรุ่นกล้องและชนิดไฟล์นั้นหรือไม่ การอ่านค่าไม่สำเร็จไม่ใช่ค่า 0',
     },
     {
       question: 'Mirrorless นับ Shutter Count เหมือน DSLR ไหม?',
