@@ -1,6 +1,7 @@
 import {
   absoluteAsset,
   CONTACT,
+  COMPANY,
   LINE_ID,
   LOGO_URL,
   OG_DEFAULT_IMAGE,
@@ -16,7 +17,7 @@ import {
   isServiceIntent,
 } from './pageIntent.js';
 
-const ORG_ID = `${SITE_URL}/#organization`;
+const ORG_ID = 'https://amphon.co.th/#organization';
 const LOCAL_BUSINESS_ID = `${SITE_URL}/#localbusiness`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
@@ -29,13 +30,13 @@ export function buildBaseGraph(): Record<string, unknown>[] {
     {
       '@type': 'Organization',
       '@id': ORG_ID,
-      name: SITE_NAME,
-      url: SITE_URL,
+      name: 'อำพล เทรดดิ้ง',
+      legalName: COMPANY.name,
+      alternateName: ['AMPHON TRADING', SITE_NAME, 'รับซื้อกล้องมือสอง.com'],
+      url: 'https://amphon.co.th/',
       logo: {
         '@type': 'ImageObject',
-        url: absoluteAsset(LOGO_URL),
-        width: 512,
-        height: 512,
+        url: 'https://amphon.co.th/images/brand/amphon-trading-logo.webp',
       },
       contactPoint: [
         {
@@ -61,12 +62,13 @@ export function buildBaseGraph(): Record<string, unknown>[] {
         postalCode: '34000',
         addressCountry: 'TH',
       },
-      sameAs: [CONTACT.facebook, CONTACT.googleReviews, CONTACT.line],
+      sameAs: [SITE_URL, 'https://amphontd.com/', 'https://webuy.in.th/', CONTACT.facebook, CONTACT.googleReviews, CONTACT.line],
     },
     {
       '@type': ['LocalBusiness', 'Store'],
       '@id': LOCAL_BUSINESS_ID,
-      name: SITE_NAME,
+      name: 'อำพล เทรดดิ้ง — รับซื้อกล้องมือสอง',
+      alternateName: [SITE_NAME, 'AMPHON TRADING'],
       description: `รับซื้อกล้องมือสองทุกยี่ห้อ Canon, Sony, Nikon, Fujifilm, Leica พร้อมประเมินราคาออนไลน์ฟรีผ่าน Line ${LINE_ID}`,
       image: absoluteAsset(OG_DEFAULT_IMAGE),
       url: SITE_URL,
