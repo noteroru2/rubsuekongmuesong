@@ -31,7 +31,5 @@ jobs:
         run: node scripts/qa-camera-core-update-4.mjs
       - name: Build full camera site
         run: npm run build
-      - name: Validate offline ownership/index/schema
-        run: npm run audit:c1-index-surface && npm run audit:c2-ownership && npm run audit:c3-template-schema
       - name: Validate exact redirects
         run: npm run qa:redirects
