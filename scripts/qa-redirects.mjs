@@ -180,9 +180,9 @@ function main() {
       // carry noindex. Missing paths are also allowed; never homepage-redirect them.
       let noindex = true;
       if (distExists(t.url)) {
-        const rel = t.url.replace(/^\\//, '').replace(/\\/$/, '');
+        const rel = t.url.replace(/^\//, '').replace(/\/$/, '');
         const rendered = fs.readFileSync(path.join(DIST, rel, 'index.html'), 'utf8');
-        noindex = /<meta[^>]*name=["']robots["'][^>]*content=["']noindex[\\s,]/i.test(rendered);
+        noindex = /<meta[^>]*name=["']robots["'][^>]*content=["']noindex[\s,]/i.test(rendered);
       }
       if (redirected || !noindex) {
         fail(t.url + ': HOLD_NOINDEX must not redirect to homepage or emit indexable HTML');
