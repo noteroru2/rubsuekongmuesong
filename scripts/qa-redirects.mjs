@@ -176,12 +176,20 @@ function main() {
     } else if (t.type === 'hold') {
       const result = followRedirects(t.url, rules);
       const redirected = result.chain.some((c) => c.status === '301' || c.status === '302');
-      if (redirected || distExists(t.url)) {
+      // HOLD_NOINDEX pages may remain routable as 200 HTML, but must explicitly
+      // carry noindex. Missing paths are also allowed; never homepage-redirect them.
+      let noindex = true;
+      if (distExists(t.url)) {
+        const rel = t.url.replace(/^\\//, '').replace(/\\/$/, '');
+        const rendered = fs.readFileSync(path.join(DIST, rel, 'index.html'), 'utf8');
+        noindex = /<meta[^>]*name=["']robots["'][^>]*content=["']noindex[\\s,]/i.test(rendered);
+      }
+      if (redirected || !noindex) {
         fail(t.url + ': HOLD_NOINDEX must not redirect to homepage or emit indexable HTML');
         console.log('✗ ' + t.url + ' bad HOLD');
         continue;
       }
-      console.log('✓ ' + t.url + ' (HOLD_NOINDEX: no homepage redirect, no generated HTML)');
+      console.log('✓ ' + t.url + ' (HOLD_NOINDEX: no homepage redirect; noindex if rendered)');
     } else {
       const result = followRedirects(t.url, rules);
       const redirected = result.chain.some((c) => c.status === '301' || c.status === '302');
