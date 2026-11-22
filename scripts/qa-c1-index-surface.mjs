@@ -15,6 +15,7 @@ function assert(condition, message) {
 const manifest = JSON.parse(readFileSync(new URL('../src/data/routes-manifest.json', import.meta.url), 'utf8'));
 const astroConfig = readFileSync(new URL('../astro.config.mjs', import.meta.url), 'utf8');
 const seoHead = readFileSync(new URL('../src/components/SEOHead.astro', import.meta.url), 'utf8');
+const schemaSource = readFileSync(new URL('../src/lib/schema.ts', import.meta.url), 'utf8');
 const articles = readFileSync(new URL('../src/lib/articles.ts', import.meta.url), 'utf8');
 const blogGenerator = readFileSync(new URL('./generate-blog-index.mjs', import.meta.url), 'utf8');
 
@@ -70,9 +71,13 @@ assert(
   seoHead.includes('indexPolicy.lifecycle !== INDEX') && seoHead.includes('noindex, follow'),
   'SEOHead must force noindex on non-INDEX rendered routes',
 );
+// C3 removed all legacy FAQPage JSON-LD rather than conditionally emitting it.
+// The old C1 assertion required a string expression that no longer exists.
 assert(
-  seoHead.includes('indexPolicy.lifecycle === INDEX'),
-  'FAQ schema must be limited to INDEX routes',
+  !seoHead.includes("'@type': 'FAQPage'") &&
+  !schemaSource.includes("'@type': 'FAQPage'") &&
+  seoHead.includes('indexPolicy.lifecycle !== INDEX'),
+  'FAQPage schema must be absent (and non-INDEX pages must remain noindex)',
 );
 assert(articles.includes('isEditorialIndexRoute'), 'Blog runtime must filter through editorial index policy');
 assert(blogGenerator.includes('isEditorialIndexRoute'), 'Blog prebuild must filter through editorial index policy');
