@@ -102,8 +102,9 @@ const TOP_20_TESTS = [
   { url: '/กล้อง/รับซื้อกล้อง-dslr-มือสอง-สกล/', expect: '/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/', type: 'redirect' },
   { url: '/กล้อง/ร้านรับซื้อกล้อง-สุรินท/', expect: '/รับซื้อกล้อง/ร้านรับซื้อกล้องสุรินท/', type: 'redirect' },
   { url: '/รับซื้อกล้อง/รับซื้อกล้องมือสอง-สกลน/', expect: '/รับซื้อกล้อง/ร้านรับซื้อกล้องสกลนคร/', type: 'redirect' },
-  { url: '/tag/ร้านรับซื้อกล้อง-สระบุร/', expect: '/', type: 'redirect' },
-  { url: '/กล้อง/รับซื้อกล้องมือสอง-ใกล-12/', expect: '/', type: 'redirect' },
+  // These generic legacy URLs are intentionally HOLD_NOINDEX; homepage redirects would mislead users.
+  { url: '/tag/ร้านรับซื้อกล้อง-สระบุร/', type: 'hold' },
+  { url: '/กล้อง/รับซื้อกล้องมือสอง-ใกล-12/', type: 'hold' },
   // Encoded Thai (must 301)
   {
     url: '/tag/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AD%E0%B8%87-%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%AA%E0%B8%A7%E0%B8%A3/',
@@ -172,6 +173,15 @@ function main() {
       }
       redirectPass++;
       console.log(`✓ ${t.url} → ${final}`);
+    } else if (t.type === 'hold') {
+      const result = followRedirects(t.url, rules);
+      const redirected = result.chain.some((c) => c.status === '301' || c.status === '302');
+      if (redirected || distExists(t.url)) {
+        fail(t.url + ': HOLD_NOINDEX must not redirect to homepage or emit indexable HTML');
+        console.log('✗ ' + t.url + ' bad HOLD');
+        continue;
+      }
+      console.log('✓ ' + t.url + ' (HOLD_NOINDEX: no homepage redirect, no generated HTML)');
     } else {
       const result = followRedirects(t.url, rules);
       const redirected = result.chain.some((c) => c.status === '301' || c.status === '302');
