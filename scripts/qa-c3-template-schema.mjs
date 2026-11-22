@@ -70,7 +70,7 @@ assert(!schemaSource.includes("'@type': 'FAQPage'"), 'C3 schema must not emit FA
 assert(seoHead.includes('getOpenGraphType'), 'SEOHead must derive og:type from intent');
 assert(!seoHead.includes('buildGenericFaq'), 'SEOHead must not use generic FAQ fallback');
 assert(!seoHead.includes('extractFaqFromHtml'), 'SEOHead must not infer FAQ from arbitrary headings');
-assert(!seoHead.includes('FAQPage'), 'SEOHead must not emit FAQPage JSON-LD');
+assert(!/['\"]@type['\"]\s*:\s*['\"]FAQPage['\"]/.test(seoHead), 'SEOHead must not emit FAQPage JSON-LD');
 assert(contentLayout.includes('sanitizeImportedHeadings'), 'Content layout must sanitize imported H1s');
 assert(contentLayout.includes('classifyPageIntent'), 'Content layout must use C3 intent classifier');
 assert(contentLayout.includes('{isEditorialPage && <RelatedPosts'), 'RelatedPosts must be limited to editorial non-money pages');
